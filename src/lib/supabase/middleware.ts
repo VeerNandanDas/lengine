@@ -6,36 +6,48 @@ export async function updateSession(request: NextRequest) {
     request,
   });
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) =>
-            request.cookies.set(name, value)
-          );
-          supabaseResponse = NextResponse.next({
-            request,
-          });
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
-          );
-        },
-      },
-    }
-  );
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   let user = null;
-  try {
-    const { data } = await supabase.auth.getUser();
-    user = data?.user ?? null;
-  } catch {
-    // In case Supabase URL is placeholder or network fails
-    user = null;
+
+  // Only invoke Supabase auth if real configuration is present
+  if (
+    supabaseUrl &&
+    supabaseAnonKey &&
+    !supabaseUrl.includes("placeholder") &&
+    supabaseUrl.startsWith("http")
+  ) {
+    try {
+      const supabase = createServerClient(
+        supabaseUrl,
+        supabaseAnonKey,
+        {
+          cookies: {
+            getAll() {
+              return request.cookies.getAll();
+            },
+            setAll(cookiesToSet) {
+              cookiesToSet.forEach(({ name, value }) =>
+                request.cookies.set(name, value)
+              );
+              supabaseResponse = NextResponse.next({
+                request,
+              });
+              cookiesToSet.forEach(({ name, value, options }) =>
+                supabaseResponse.cookies.set(name, value, options)
+              );
+            },
+          },
+        }
+      );
+
+      const { data } = await supabase.auth.getUser();
+      user = data?.user ?? null;
+    } catch (e) {
+      // In case Supabase network fails or auth expires
+      user = null;
+    }
   }
 
   const isDemo = request.cookies.get("demo_session")?.value;
