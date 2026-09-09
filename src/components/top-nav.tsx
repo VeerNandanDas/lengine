@@ -1,0 +1,125 @@
+"use client";
+
+import { Search, CreditCard, LogOut, Settings, User } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Separator } from "@/components/ui/separator";
+import { createClient } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
+
+interface TopNavProps {
+  userEmail?: string;
+}
+
+export function TopNav({ userEmail }: TopNavProps) {
+  const router = useRouter();
+
+  async function handleSignOut() {
+    document.cookie = "demo_session=; path=/; max-age=0";
+    try {
+      const supabase = createClient();
+      await supabase.auth.signOut();
+    } catch {
+      // ignore
+    }
+    router.push("/login");
+    router.refresh();
+  }
+
+  return (
+    <header className="sticky top-0 z-40 flex h-14 items-center gap-3 border-b border-[#eaeaea] bg-white/80 backdrop-blur-xl px-4">
+      {/* Sidebar Toggle */}
+      <SidebarTrigger className="h-8 w-8 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors" />
+
+      <Separator orientation="vertical" className="h-5 bg-[#eaeaea]" />
+
+      {/* Global Search */}
+      <div className="relative flex-1 max-w-md">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+        <Input
+          type="search"
+          placeholder="Search buyers, flows, campaigns..."
+          className="h-9 pl-9 pr-4 bg-[#fafafa] border-[#eaeaea] text-sm text-slate-900 placeholder:text-slate-400 focus-visible:ring-1 focus-visible:ring-indigo-500 focus-visible:border-indigo-500 rounded-md"
+        />
+      </div>
+
+      {/* Right Side Actions */}
+      <div className="flex items-center gap-3 ml-auto">
+        {/* Credits Badge */}
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#fafafa] border border-[#eaeaea]">
+          <CreditCard className="h-3.5 w-3.5 text-slate-400" />
+          <span className="text-xs font-medium text-slate-600">Credits</span>
+          <Badge
+            variant="secondary"
+            className="bg-slate-900 text-white text-[10px] font-semibold px-1.5 py-0 h-5 hover:bg-slate-900"
+          >
+            500
+          </Badge>
+        </div>
+
+        <Separator orientation="vertical" className="h-5 bg-[#eaeaea]" />
+
+        {/* User Dropdown */}
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            render={
+              <button className="flex items-center gap-2 outline-none rounded-md px-2 py-1.5 hover:bg-slate-50 transition-colors" />
+            }
+          >
+            <Avatar className="h-7 w-7 border border-[#eaeaea]">
+              <AvatarFallback className="bg-indigo-100 text-indigo-700 text-xs font-medium">
+                {userEmail ? userEmail[0].toUpperCase() : "U"}
+              </AvatarFallback>
+            </Avatar>
+            <span className="text-sm font-medium text-slate-700 hidden md:inline-block max-w-[120px] truncate">
+              {userEmail || "User"}
+            </span>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            align="end"
+            className="w-56 bg-white border border-[#eaeaea] shadow-sm"
+          >
+            <div className="px-3 py-2">
+              <p className="text-sm font-medium text-slate-900">Account</p>
+              <p className="text-xs text-slate-500 truncate">
+                {userEmail || "user@example.com"}
+              </p>
+            </div>
+            <DropdownMenuSeparator className="bg-[#eaeaea]" />
+            <DropdownMenuItem
+              onClick={() => router.push("/dashboard/settings")}
+              className="cursor-pointer text-sm text-slate-600"
+            >
+              <User className="mr-2 h-4 w-4" />
+              Profile
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => router.push("/dashboard/settings")}
+              className="cursor-pointer text-sm text-slate-600"
+            >
+              <Settings className="mr-2 h-4 w-4" />
+              Settings
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-[#eaeaea]" />
+            <DropdownMenuItem
+              onClick={handleSignOut}
+              className="text-sm text-red-600 focus:text-red-600 focus:bg-red-50 cursor-pointer"
+            >
+              <LogOut className="mr-2 h-4 w-4" />
+              Sign Out
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </header>
+  );
+}
