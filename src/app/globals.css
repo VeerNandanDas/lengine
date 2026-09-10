@@ -48,7 +48,7 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* ─── Light Mode (default & only mode) ─── */
+/* ─── Light Mode (default) ─── */
 :root {
   --background: #ffffff;
   --foreground: #0f172a; /* slate-900 */
@@ -84,6 +84,41 @@
   --sidebar-ring: #4f46e5;
 }
 
+/* ─── Dark Mode ─── */
+.dark {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #0a0a0c;
+  --card-foreground: #fafafa;
+  --popover: #0a0a0c;
+  --popover-foreground: #fafafa;
+  --primary: #818cf8; /* indigo-400 */
+  --primary-foreground: #09090b;
+  --secondary: #18181b;
+  --secondary-foreground: #fafafa;
+  --muted: #1e1e22;
+  --muted-foreground: #a1a1aa;
+  --accent: #1e1e22;
+  --accent-foreground: #fafafa;
+  --destructive: #f87171;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #818cf8;
+  --chart-1: #818cf8;
+  --chart-2: #34d399;
+  --chart-3: #a1a1aa;
+  --chart-4: #fafafa;
+  --chart-5: #27272a;
+  --sidebar: #0a0a0c;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #818cf8;
+  --sidebar-primary-foreground: #09090b;
+  --sidebar-accent: #18181b;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #27272a;
+  --sidebar-ring: #818cf8;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -94,4 +129,40 @@
   html {
     @apply font-sans;
   }
+}
+
+/* ─── Mac Mockup Soft Green Glow Animation ─── */
+@keyframes greenGlowSpread {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.55);
+    filter: blur(16px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.08);
+    filter: blur(36px);
+  }
+  100% {
+    opacity: 0.85;
+    transform: translateY(0) scale(1);
+    filter: blur(30px);
+  }
+}
+
+@keyframes greenGlowPulse {
+  0%, 100% {
+    opacity: 0.75;
+    transform: translateY(0) scale(1);
+    filter: blur(30px);
+  }
+  50% {
+    opacity: 0.95;
+    transform: translateY(-4px) scale(1.05);
+    filter: blur(38px);
+  }
+}
+
+.animate-mac-glow {
+  animation: greenGlowSpread 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards, greenGlowPulse 5s ease-in-out 1.6s infinite;
 }

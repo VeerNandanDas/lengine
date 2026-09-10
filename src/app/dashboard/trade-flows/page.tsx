@@ -19,10 +19,10 @@ export default function TradeFlowsPage() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-1">
         <div>
-          <h1 className="text-xl font-semibold text-slate-900 tracking-tight">
+          <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100 tracking-tight">
             Trade Flows
           </h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             Global macroeconomic cargo volumes, tariff schedules, and bilateral freight corridor intelligence.
           </p>
         </div>
@@ -32,9 +32,9 @@ export default function TradeFlowsPage() {
             variant="outline"
             size="sm"
             onClick={() => {}}
-            className="h-8 border-[#eaeaea] bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-50 text-xs font-normal"
+            className="h-8 border-[#eaeaea] dark:border-[#27272a] bg-white dark:bg-[#121215] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-[#18181b] text-xs font-normal"
           >
-            <RefreshCw className="h-3.5 w-3.5 mr-1.5 text-slate-400" />
+            <RefreshCw className="h-3.5 w-3.5 mr-1.5 text-slate-400 dark:text-slate-500" />
             Sync Telemetry
           </Button>
 
@@ -42,16 +42,16 @@ export default function TradeFlowsPage() {
             variant="outline"
             size="sm"
             onClick={() => {}}
-            className="h-8 border-[#eaeaea] bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-50 text-xs font-normal"
+            className="h-8 border-[#eaeaea] dark:border-[#27272a] bg-white dark:bg-[#121215] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-[#18181b] text-xs font-normal"
           >
-            <Share2 className="h-3.5 w-3.5 mr-1.5 text-slate-400" />
+            <Share2 className="h-3.5 w-3.5 mr-1.5 text-slate-400 dark:text-slate-500" />
             Share Brief
           </Button>
 
           <Button
             size="sm"
             onClick={() => {}}
-            className="h-8 bg-slate-900 hover:bg-slate-800 text-white text-xs font-medium"
+            className="h-8 bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white text-xs font-medium"
           >
             <Download className="h-3.5 w-3.5 mr-1.5" />
             Export CSV

@@ -8,10 +8,13 @@ import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { PricingSection } from "@/components/landing/pricing-section";
 import { CtaBanner } from "@/components/landing/cta-banner";
 import { LandingFooter } from "@/components/landing/landing-footer";
+import { ScrollProgressWidget } from "@/components/landing/scroll-progress-widget";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-[#09090b] text-slate-900 dark:text-slate-100 selection:bg-indigo-100 selection:text-indigo-900 dark:selection:bg-indigo-900/40 dark:selection:text-indigo-200">
+      {/* Interactive Corner Scroll Progress & Jump-to-Top Widget */}
+      <ScrollProgressWidget />
       {/* 1. Top Institutional Sticky Navigation */}
       <LandingNav />
 

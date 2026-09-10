@@ -33,7 +33,7 @@ export default async function DashboardLayout({
       <AppSidebar userEmail={userEmail} />
       <SidebarInset>
         <TopNav userEmail={userEmail} />
-        <main className="flex-1 bg-[#fafafa]">
+        <main className="flex-1 bg-[#fafafa] dark:bg-[#09090b] text-slate-900 dark:text-slate-100 min-h-screen">
           <div className="p-6 lg:p-8">{children}</div>
         </main>
       </SidebarInset>

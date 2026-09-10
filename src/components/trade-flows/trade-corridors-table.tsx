@@ -22,14 +22,14 @@ export function TradeCorridorsTable({
   productName,
 }: TradeCorridorsTableProps) {
   return (
-    <div className="bg-white rounded-lg border border-[#eaeaea] overflow-hidden">
+    <div className="bg-white dark:bg-[#121215] rounded-lg border border-[#eaeaea] dark:border-[#27272a] overflow-hidden">
       {/* Table Header Section */}
-      <div className="p-5 border-b border-[#eaeaea] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <div className="p-5 border-b border-[#eaeaea] dark:border-[#27272a] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h3 className="text-sm font-semibold text-slate-900">
+          <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
             Top Global Trade Corridors
           </h3>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Active bilateral freight lanes, prevailing tariff regimes, and market concentration for {productName}
           </p>
         </div>
@@ -37,7 +37,7 @@ export function TradeCorridorsTable({
         <div className="flex items-center gap-2">
           <Badge
             variant="secondary"
-            className="bg-[#fafafa] text-slate-600 border border-[#eaeaea] text-xs font-normal"
+            className="bg-[#fafafa] dark:bg-[#18181b] text-slate-600 dark:text-slate-300 border border-[#eaeaea] dark:border-[#27272a] text-xs font-normal"
           >
             {corridors.length} Verified Corridors
           </Badge>
@@ -47,54 +47,54 @@ export function TradeCorridorsTable({
       {/* Table Container */}
       <div className="overflow-x-auto">
         <Table>
-          <TableHeader className="bg-[#fafafa]">
-            <TableRow className="hover:bg-[#fafafa] border-b border-[#eaeaea]">
-              <TableHead className="text-slate-500 font-medium text-xs uppercase tracking-wider py-3.5 pl-5">
+          <TableHeader className="bg-[#fafafa] dark:bg-[#18181b]">
+            <TableRow className="hover:bg-[#fafafa] dark:hover:bg-[#18181b] border-b border-[#eaeaea] dark:border-[#27272a]">
+              <TableHead className="text-slate-500 dark:text-slate-400 font-medium text-xs uppercase tracking-wider py-3.5 pl-5">
                 Trade Corridor
               </TableHead>
-              <TableHead className="text-slate-500 font-medium text-xs uppercase tracking-wider py-3.5">
+              <TableHead className="text-slate-500 dark:text-slate-400 font-medium text-xs uppercase tracking-wider py-3.5">
                 Annual Volume
               </TableHead>
-              <TableHead className="text-slate-500 font-medium text-xs uppercase tracking-wider py-3.5">
+              <TableHead className="text-slate-500 dark:text-slate-400 font-medium text-xs uppercase tracking-wider py-3.5">
                 YoY Growth
               </TableHead>
-              <TableHead className="text-slate-500 font-medium text-xs uppercase tracking-wider py-3.5">
+              <TableHead className="text-slate-500 dark:text-slate-400 font-medium text-xs uppercase tracking-wider py-3.5">
                 Tariff Rate
               </TableHead>
-              <TableHead className="text-slate-500 font-medium text-xs uppercase tracking-wider py-3.5">
+              <TableHead className="text-slate-500 dark:text-slate-400 font-medium text-xs uppercase tracking-wider py-3.5">
                 Market Share
               </TableHead>
-              <TableHead className="text-slate-500 font-medium text-xs uppercase tracking-wider py-3.5 pr-5 text-right">
+              <TableHead className="text-slate-500 dark:text-slate-400 font-medium text-xs uppercase tracking-wider py-3.5 pr-5 text-right">
                 Status
               </TableHead>
             </TableRow>
           </TableHeader>
 
-          <TableBody className="divide-y divide-[#eaeaea]">
+          <TableBody className="divide-y divide-[#eaeaea] dark:divide-[#27272a]">
             {corridors.map((corridor) => {
               const isPositive = corridor.yoyGrowth >= 0;
 
               return (
                 <TableRow
                   key={corridor.id}
-                  className="hover:bg-slate-50 transition-colors border-b border-[#eaeaea]"
+                  className="hover:bg-slate-50 dark:hover:bg-[#18181b] transition-colors border-b border-[#eaeaea] dark:border-[#27272a]"
                 >
                   {/* Corridor */}
                   <TableCell className="py-4 pl-5">
                     <div className="flex items-center gap-2">
-                      <div className="flex items-center gap-1.5 font-medium text-slate-900 text-sm">
-                        <span className="font-mono text-xs px-1.5 py-0.5 rounded bg-slate-100 border border-[#eaeaea] text-slate-700">
+                      <div className="flex items-center gap-1.5 font-medium text-slate-900 dark:text-slate-100 text-sm">
+                        <span className="font-mono text-xs px-1.5 py-0.5 rounded bg-slate-100 dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] text-slate-700 dark:text-slate-300">
                           {corridor.originCode}
                         </span>
                         <span>{corridor.origin}</span>
-                        <ArrowRight className="h-3.5 w-3.5 text-slate-400 flex-shrink-0" />
-                        <span className="font-mono text-xs px-1.5 py-0.5 rounded bg-slate-100 border border-[#eaeaea] text-slate-700">
+                        <ArrowRight className="h-3.5 w-3.5 text-slate-400 dark:text-slate-500 flex-shrink-0" />
+                        <span className="font-mono text-xs px-1.5 py-0.5 rounded bg-slate-100 dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] text-slate-700 dark:text-slate-300">
                           {corridor.destCode}
                         </span>
                         <span>{corridor.destination}</span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1.5 text-[11px] text-slate-400 mt-1">
+                    <div className="flex items-center gap-1.5 text-[11px] text-slate-400 dark:text-slate-500 mt-1">
                       <Clock className="h-3 w-3" />
                       <span>Avg transit: {corridor.avgTransitDays} days</span>
                     </div>
@@ -102,10 +102,10 @@ export function TradeCorridorsTable({
 
                   {/* Volume */}
                   <TableCell className="py-4">
-                    <span className="font-mono text-sm font-semibold text-slate-900">
+                    <span className="font-mono text-sm font-semibold text-slate-900 dark:text-slate-100">
                       {corridor.annualVolumeTeus}
                     </span>
-                    <span className="text-xs text-slate-400 ml-1">TEUs</span>
+                    <span className="text-xs text-slate-400 dark:text-slate-500 ml-1">TEUs</span>
                   </TableCell>
 
                   {/* YoY Growth */}
@@ -113,8 +113,8 @@ export function TradeCorridorsTable({
                     <div
                       className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded ${
                         isPositive
-                          ? "text-emerald-700 bg-emerald-50/80 border border-emerald-200"
-                          : "text-red-700 bg-red-50/80 border border-red-200"
+                          ? "text-emerald-700 dark:text-emerald-300 bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800"
+                          : "text-red-700 dark:text-red-300 bg-red-50/80 dark:bg-red-950/40 border border-red-200 dark:border-red-800"
                       }`}
                     >
                       {isPositive ? (
@@ -131,15 +131,15 @@ export function TradeCorridorsTable({
                   {/* Tariff Rate */}
                   <TableCell className="py-4">
                     <div className="flex items-center gap-1.5">
-                      <span className="font-mono text-sm font-medium text-slate-900">
+                      <span className="font-mono text-sm font-medium text-slate-900 dark:text-slate-100">
                         {corridor.tariffRate}
                       </span>
                       <Badge
                         variant="outline"
-                        className={`text-[10px] font-normal px-1.5 py-0 h-4 border-[#eaeaea] ${
+                        className={`text-[10px] font-normal px-1.5 py-0 h-4 border-[#eaeaea] dark:border-[#27272a] ${
                           corridor.tariffType === "FTA"
-                            ? "bg-emerald-50/50 text-emerald-700 border-emerald-200"
-                            : "bg-slate-50 text-slate-600"
+                            ? "bg-emerald-50/50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800"
+                            : "bg-slate-50 dark:bg-[#18181b] text-slate-600 dark:text-slate-300"
                         }`}
                       >
                         {corridor.tariffType}
@@ -151,13 +151,13 @@ export function TradeCorridorsTable({
                   <TableCell className="py-4">
                     <div className="w-36">
                       <div className="flex items-center justify-between text-xs mb-1">
-                        <span className="font-medium text-slate-900 font-mono">
+                        <span className="font-medium text-slate-900 dark:text-slate-100 font-mono">
                           {corridor.marketShare}%
                         </span>
                       </div>
-                      <div className="w-full h-1.5 rounded-full bg-slate-100 overflow-hidden">
+                      <div className="w-full h-1.5 rounded-full bg-slate-100 dark:bg-[#27272a] overflow-hidden">
                         <div
-                          className="h-full bg-indigo-600 rounded-full transition-all duration-300"
+                          className="h-full bg-indigo-600 dark:bg-indigo-500 rounded-full transition-all duration-300"
                           style={{ width: `${Math.min(corridor.marketShare * 2.5, 100)}%` }}
                         />
                       </div>
@@ -170,10 +170,10 @@ export function TradeCorridorsTable({
                       variant="secondary"
                       className={`text-xs font-normal border ${
                         corridor.status === "Optimal"
-                          ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                          ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800"
                           : corridor.status === "High Demand"
-                          ? "bg-indigo-50 text-indigo-700 border-indigo-200"
-                          : "bg-amber-50 text-amber-700 border-amber-200"
+                          ? "bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800"
+                          : "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800"
                       }`}
                     >
                       {corridor.status === "Optimal" && (
@@ -193,7 +193,7 @@ export function TradeCorridorsTable({
       </div>
 
       {/* Table Footer Summary */}
-      <div className="p-4 bg-[#fafafa] border-t border-[#eaeaea] flex items-center justify-between text-xs text-slate-500">
+      <div className="p-4 bg-[#fafafa] dark:bg-[#18181b] border-t border-[#eaeaea] dark:border-[#27272a] flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
         <span>Displaying primary maritime and intermodal freight corridors</span>
         <span className="font-mono">Tariff schedule: 2026 Revision</span>
       </div>

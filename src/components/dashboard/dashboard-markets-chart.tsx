@@ -29,20 +29,20 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
   if (active && payload && payload.length) {
     const item = payload[0].payload;
     return (
-      <div className="bg-white border border-[#eaeaea] rounded-lg p-2.5 shadow-xs text-xs">
-        <p className="font-semibold text-slate-900 mb-1">{item.region}</p>
+      <div className="bg-white dark:bg-[#121215] border border-[#eaeaea] dark:border-[#27272a] rounded-lg p-2.5 shadow-xs text-xs">
+        <p className="font-semibold text-slate-900 dark:text-slate-100 mb-1">{item.region}</p>
         <div className="space-y-1">
-          <div className="flex items-center justify-between gap-3 text-slate-500">
+          <div className="flex items-center justify-between gap-3 text-slate-500 dark:text-slate-400">
             <span>Market Share:</span>
-            <span className="font-mono font-semibold text-slate-900">{item.share}%</span>
+            <span className="font-mono font-semibold text-slate-900 dark:text-slate-100">{item.share}%</span>
           </div>
-          <div className="flex items-center justify-between gap-3 text-slate-500">
+          <div className="flex items-center justify-between gap-3 text-slate-500 dark:text-slate-400">
             <span>Active Buyers:</span>
-            <span className="font-mono text-slate-700">{item.buyers}</span>
+            <span className="font-mono text-slate-700 dark:text-slate-300">{item.buyers}</span>
           </div>
-          <div className="flex items-center justify-between gap-3 text-slate-500 pt-1 border-t border-[#eaeaea]">
+          <div className="flex items-center justify-between gap-3 text-slate-500 dark:text-slate-400 pt-1 border-t border-[#eaeaea] dark:border-[#27272a]">
             <span>YoY Expansion:</span>
-            <span className="font-medium text-emerald-600">{item.growth}</span>
+            <span className="font-medium text-emerald-600 dark:text-emerald-400">{item.growth}</span>
           </div>
         </div>
       </div>
@@ -75,7 +75,7 @@ export function DashboardMarketsChart() {
         >
           <CartesianGrid
             strokeDasharray="3 3"
-            stroke="#F1F5F9"
+            stroke="var(--border, #F1F5F9)"
             vertical={false}
           />
           <XAxis

@@ -39,15 +39,15 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
   if (active && payload && payload.length) {
     const item = payload[0].payload;
     return (
-      <div className="bg-white border border-[#eaeaea] rounded-lg p-2.5 shadow-xs text-xs">
-        <p className="font-semibold text-slate-900 mb-1">{item.day}</p>
-        <div className="flex items-center justify-between gap-3 text-slate-500">
+      <div className="bg-white dark:bg-[#121215] border border-[#eaeaea] dark:border-[#27272a] rounded-lg p-2.5 shadow-xs text-xs">
+        <p className="font-semibold text-slate-900 dark:text-slate-100 mb-1">{item.day}</p>
+        <div className="flex items-center justify-between gap-3 text-slate-500 dark:text-slate-400">
           <span>Daily Queries:</span>
-          <span className="font-mono font-semibold text-slate-900">
+          <span className="font-mono font-semibold text-slate-900 dark:text-slate-100">
             {item.searches.toLocaleString()}
           </span>
         </div>
-        <p className="text-[11px] text-indigo-600 mt-1 truncate max-w-[200px]">
+        <p className="text-[11px] text-indigo-600 dark:text-indigo-400 mt-1 truncate max-w-[200px]">
           Lead: {item.topCommodity}
         </p>
       </div>
@@ -80,14 +80,14 @@ export function DashboardSearchChart() {
         >
           <defs>
             <linearGradient id="searchVolumeGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#4F46E5" stopOpacity={0.08} />
+              <stop offset="0%" stopColor="#4F46E5" stopOpacity={0.2} />
               <stop offset="100%" stopColor="#4F46E5" stopOpacity={0.0} />
             </linearGradient>
           </defs>
 
           <CartesianGrid
             strokeDasharray="3 3"
-            stroke="#F1F5F9"
+            stroke="var(--border, #F1F5F9)"
             vertical={false}
           />
 

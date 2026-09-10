@@ -81,26 +81,26 @@ export function AppSidebar({ userEmail }: AppSidebarProps) {
   }
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-[#eaeaea]">
+    <Sidebar collapsible="icon" className="border-r border-[#eaeaea] dark:border-[#27272a] bg-[#fafafa] dark:bg-[#0a0a0c]">
       {/* Header — Branding */}
-      <SidebarHeader className="px-4 py-5 border-b border-[#eaeaea]">
+      <SidebarHeader className="px-4 py-5 border-b border-[#eaeaea] dark:border-[#27272a]">
         <Link
           href="/dashboard"
           className="flex items-center gap-2.5 group-data-[collapsible=icon]:justify-center"
         >
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-slate-900 text-white text-xs font-bold flex-shrink-0">
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold flex-shrink-0">
             L
           </div>
-          <span className="text-base font-semibold tracking-tight text-slate-900 group-data-[collapsible=icon]:hidden">
+          <span className="text-base font-semibold tracking-tight text-slate-900 dark:text-slate-100 group-data-[collapsible=icon]:hidden">
             Lengine
           </span>
         </Link>
       </SidebarHeader>
 
       {/* Navigation */}
-      <SidebarContent>
+      <SidebarContent className="dark:bg-[#0a0a0c]">
         <SidebarGroup>
-          <SidebarGroupLabel className="text-[11px] font-medium uppercase tracking-wider text-slate-400 px-4">
+          <SidebarGroupLabel className="text-[11px] font-medium uppercase tracking-wider text-slate-400 dark:text-slate-500 px-4">
             Platform
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -117,7 +117,7 @@ export function AppSidebar({ userEmail }: AppSidebarProps) {
                       render={<Link href={item.href} />}
                       isActive={isActive}
                       tooltip={item.title}
-                      className="h-9 px-3 text-sm font-normal text-slate-600 hover:text-slate-900 hover:bg-slate-50 data-[active=true]:bg-slate-100 data-[active=true]:text-slate-900 data-[active=true]:font-medium transition-colors rounded-md"
+                      className="h-9 px-3 text-sm font-normal text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/60 dark:hover:bg-[#18181b] data-[active=true]:bg-slate-200/60 dark:data-[active=true]:bg-[#18181b] data-[active=true]:text-slate-900 dark:data-[active=true]:text-slate-100 data-[active=true]:font-medium transition-colors rounded-md"
                     >
                       <item.icon className="h-4 w-4 flex-shrink-0" />
                       <span>{item.title}</span>
@@ -131,19 +131,19 @@ export function AppSidebar({ userEmail }: AppSidebarProps) {
       </SidebarContent>
 
       {/* Footer — User */}
-      <SidebarFooter className="border-t border-[#eaeaea] p-2">
+      <SidebarFooter className="border-t border-[#eaeaea] dark:border-[#27272a] p-2 dark:bg-[#0a0a0c]">
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger
                 render={
-                  <button className="flex w-full items-center gap-2 h-10 px-3 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-md transition-colors text-left group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0" />
+                  <button className="flex w-full items-center gap-2 h-10 px-3 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/60 dark:hover:bg-[#18181b] rounded-md transition-colors text-left group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0" />
                 }
               >
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-100 text-indigo-700 text-xs font-medium flex-shrink-0">
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-xs font-medium flex-shrink-0">
                   {userEmail ? userEmail[0].toUpperCase() : "U"}
                 </div>
-                <span className="truncate text-sm group-data-[collapsible=icon]:hidden">
+                <span className="truncate text-sm text-slate-700 dark:text-slate-300 group-data-[collapsible=icon]:hidden">
                   {userEmail || "User"}
                 </span>
                 <ChevronUp className="ml-auto h-4 w-4 text-slate-400 group-data-[collapsible=icon]:hidden" />
@@ -151,14 +151,14 @@ export function AppSidebar({ userEmail }: AppSidebarProps) {
               <DropdownMenuContent
                 side="top"
                 align="start"
-                className="w-56 bg-white border border-[#eaeaea] shadow-sm"
+                className="w-56 bg-white dark:bg-[#121215] border border-[#eaeaea] dark:border-[#27272a] shadow-sm"
               >
-                <div className="px-2 py-1.5 text-xs text-slate-500 truncate border-b border-[#eaeaea] mb-1">
+                <div className="px-2 py-1.5 text-xs text-slate-500 dark:text-slate-400 truncate border-b border-[#eaeaea] dark:border-[#27272a] mb-1">
                   {userEmail || "User"}
                 </div>
                 <DropdownMenuItem
                   onClick={handleSignOut}
-                  className="text-sm text-red-600 focus:text-red-600 focus:bg-red-50 cursor-pointer"
+                  className="text-sm text-red-600 dark:text-red-400 focus:text-red-600 focus:bg-red-50 dark:focus:bg-red-950/30 cursor-pointer"
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   Sign Out

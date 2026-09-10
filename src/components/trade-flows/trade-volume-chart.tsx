@@ -35,24 +35,24 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
   if (active && payload && payload.length) {
     const item = payload[0].payload;
     return (
-      <div className="bg-white border border-[#eaeaea] rounded-lg p-3 shadow-xs text-xs">
-        <p className="font-semibold text-slate-900 mb-1">{item.period}</p>
+      <div className="bg-white dark:bg-[#121215] border border-[#eaeaea] dark:border-[#27272a] rounded-lg p-3 shadow-xs text-xs">
+        <p className="font-semibold text-slate-900 dark:text-slate-100 mb-1">{item.period}</p>
         <div className="space-y-1">
-          <div className="flex items-center justify-between gap-4 text-slate-500">
+          <div className="flex items-center justify-between gap-4 text-slate-500 dark:text-slate-400">
             <span>Export Volume:</span>
-            <span className="font-mono font-medium text-slate-900">
+            <span className="font-mono font-medium text-slate-900 dark:text-slate-100">
               {item.teus.toLocaleString()} TEUs
             </span>
           </div>
-          <div className="flex items-center justify-between gap-4 text-slate-500">
+          <div className="flex items-center justify-between gap-4 text-slate-500 dark:text-slate-400">
             <span>Cargo Value:</span>
-            <span className="font-mono font-medium text-slate-900">
+            <span className="font-mono font-medium text-slate-900 dark:text-slate-100">
               ${(item.valueUsdMillions / 1000).toFixed(2)}B
             </span>
           </div>
-          <div className="flex items-center justify-between gap-4 text-slate-500 pt-1 border-t border-[#eaeaea]">
+          <div className="flex items-center justify-between gap-4 text-slate-500 dark:text-slate-400 pt-1 border-t border-[#eaeaea] dark:border-[#27272a]">
             <span>YoY Trajectory:</span>
-            <span className="font-medium text-emerald-600 flex items-center gap-0.5">
+            <span className="font-medium text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5">
               +{item.yoyDelta}%
             </span>
           </div>
@@ -79,30 +79,30 @@ export function TradeVolumeChart({ data, productName }: TradeVolumeChartProps) {
       : "0";
 
   return (
-    <div className="bg-white rounded-lg border border-[#eaeaea] p-5 flex flex-col justify-between">
+    <div className="bg-white dark:bg-[#121215] rounded-lg border border-[#eaeaea] dark:border-[#27272a] p-5 flex flex-col justify-between">
       {/* Chart Header */}
       <div className="flex items-start justify-between mb-4">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-sm font-semibold text-slate-900">
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
               Global Export Volume (TEUs)
             </h3>
-            <span className="text-xs px-2 py-0.5 rounded bg-slate-50 border border-[#eaeaea] text-slate-600 font-mono">
+            <span className="text-xs px-2 py-0.5 rounded bg-slate-50 dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] text-slate-600 dark:text-slate-300 font-mono">
               3-Year Horizon
             </span>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Quarterly cross-border freight volume for {productName}
           </p>
         </div>
 
         {/* Aggregate metric badge */}
         <div className="text-right">
-          <div className="flex items-center gap-1 text-emerald-600 text-xs font-semibold">
+          <div className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
             <TrendingUp className="h-3 w-3" />
             <span>+{totalGrowth}%</span>
           </div>
-          <p className="text-[11px] text-slate-400 mt-0.5">3Y cumulative expansion</p>
+          <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">3Y cumulative expansion</p>
         </div>
       </div>
 
@@ -116,14 +116,14 @@ export function TradeVolumeChart({ data, productName }: TradeVolumeChartProps) {
             >
               <defs>
                 <linearGradient id="tradeVolumeGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#4F46E5" stopOpacity={0.08} />
+                  <stop offset="0%" stopColor="#4F46E5" stopOpacity={0.2} />
                   <stop offset="100%" stopColor="#4F46E5" stopOpacity={0.0} />
                 </linearGradient>
               </defs>
 
               <CartesianGrid
                 strokeDasharray="3 3"
-                stroke="#F1F5F9"
+                stroke="var(--border, #F1F5F9)"
                 vertical={false}
               />
 
@@ -153,14 +153,14 @@ export function TradeVolumeChart({ data, productName }: TradeVolumeChartProps) {
                 activeDot={{
                   r: 4,
                   fill: "#4F46E5",
-                  stroke: "#FFFFFF",
+                  stroke: "var(--background, #FFFFFF)",
                   strokeWidth: 2,
                 }}
               />
             </AreaChart>
           </ResponsiveContainer>
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-xs text-slate-400">
+          <div className="w-full h-full flex items-center justify-center text-xs text-slate-400 dark:text-slate-500">
             <Activity className="h-4 w-4 animate-spin mr-2" />
             Loading volume telemetry...
           </div>
@@ -168,7 +168,7 @@ export function TradeVolumeChart({ data, productName }: TradeVolumeChartProps) {
       </div>
 
       {/* Bottom context caption */}
-      <div className="mt-3 pt-3 border-t border-[#eaeaea] flex items-center justify-between text-[11px] text-slate-400">
+      <div className="mt-3 pt-3 border-t border-[#eaeaea] dark:border-[#27272a] flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
         <span>Source: UN Comtrade & Global Port Telemetry</span>
         <span>Unit: 20-Foot Equivalent Units (TEUs)</span>
       </div>

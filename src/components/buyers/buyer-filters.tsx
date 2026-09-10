@@ -63,21 +63,21 @@ export function BuyerFilters({
     filters.certification !== "all";
 
   return (
-    <div className="bg-white rounded-lg border border-[#eaeaea] p-4 space-y-4">
+    <div className="bg-white dark:bg-[#121215] rounded-lg border border-[#eaeaea] dark:border-[#27272a] p-4 space-y-4">
       {/* Top Search Bar & Counter */}
       <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
         <div className="relative flex-1 max-w-lg">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-slate-500" />
           <Input
             value={filters.search}
             onChange={(e) => onFilterChange("search", e.target.value)}
             placeholder="Search foreign buyers by company, port, or product..."
-            className="h-9 pl-9 pr-8 bg-[#fafafa] border-[#eaeaea] text-sm text-slate-900 placeholder:text-slate-400 rounded-md focus-visible:ring-1 focus-visible:ring-indigo-500"
+            className="h-9 pl-9 pr-8 bg-[#fafafa] dark:bg-[#18181b] border-[#eaeaea] dark:border-[#27272a] text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-md focus-visible:ring-1 focus-visible:ring-indigo-500"
           />
           {filters.search && (
             <button
               onClick={() => onFilterChange("search", "")}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
             >
               <X className="h-3.5 w-3.5" />
             </button>
@@ -85,15 +85,15 @@ export function BuyerFilters({
         </div>
 
         <div className="flex items-center gap-3 justify-between md:justify-end text-xs">
-          <span className="text-slate-500">
-            Showing <strong className="font-semibold text-slate-900">{totalMatches}</strong> of {totalBuyers} consignees
+          <span className="text-slate-500 dark:text-slate-400">
+            Showing <strong className="font-semibold text-slate-900 dark:text-slate-100">{totalMatches}</strong> of {totalBuyers} consignees
           </span>
           {hasActiveFilters && (
             <Button
               variant="ghost"
               size="sm"
               onClick={onReset}
-              className="h-8 px-2 text-xs text-slate-500 hover:text-slate-900 hover:bg-slate-100"
+              className="h-8 px-2 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-[#18181b]"
             >
               <RotateCcw className="h-3 w-3 mr-1" />
               Reset Filters
@@ -103,16 +103,16 @@ export function BuyerFilters({
       </div>
 
       {/* Filter Selectors Bar */}
-      <div className="pt-3 border-t border-[#eaeaea] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+      <div className="pt-3 border-t border-[#eaeaea] dark:border-[#27272a] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
         {/* Destination Country */}
         <div className="space-y-1.5">
-          <label className="text-slate-500 font-medium text-[11px] uppercase tracking-wider block">
+          <label className="text-slate-500 dark:text-slate-400 font-medium text-[11px] uppercase tracking-wider block">
             Destination Country
           </label>
           <select
             value={filters.country}
             onChange={(e) => onFilterChange("country", e.target.value)}
-            className="w-full h-8 px-2.5 bg-[#fafafa] border border-[#eaeaea] rounded-md text-slate-700 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
+            className="w-full h-8 px-2.5 bg-[#fafafa] dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] rounded-md text-slate-700 dark:text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
           >
             {COUNTRIES.map((c) => (
               <option key={c.value} value={c.value}>
@@ -124,13 +124,13 @@ export function BuyerFilters({
 
         {/* MOQ Range */}
         <div className="space-y-1.5">
-          <label className="text-slate-500 font-medium text-[11px] uppercase tracking-wider block">
+          <label className="text-slate-500 dark:text-slate-400 font-medium text-[11px] uppercase tracking-wider block">
             Derived MOQ Range
           </label>
           <select
             value={filters.moqRange}
             onChange={(e) => onFilterChange("moqRange", e.target.value)}
-            className="w-full h-8 px-2.5 bg-[#fafafa] border border-[#eaeaea] rounded-md text-slate-700 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
+            className="w-full h-8 px-2.5 bg-[#fafafa] dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] rounded-md text-slate-700 dark:text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
           >
             {MOQ_RANGES.map((m) => (
               <option key={m.value} value={m.value}>
@@ -142,13 +142,13 @@ export function BuyerFilters({
 
         {/* Incoterms */}
         <div className="space-y-1.5">
-          <label className="text-slate-500 font-medium text-[11px] uppercase tracking-wider block">
+          <label className="text-slate-500 dark:text-slate-400 font-medium text-[11px] uppercase tracking-wider block">
             Primary Incoterms
           </label>
           <select
             value={filters.incoterm}
             onChange={(e) => onFilterChange("incoterm", e.target.value)}
-            className="w-full h-8 px-2.5 bg-[#fafafa] border border-[#eaeaea] rounded-md text-slate-700 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
+            className="w-full h-8 px-2.5 bg-[#fafafa] dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] rounded-md text-slate-700 dark:text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
           >
             {INCOTERMS.map((term) => (
               <option key={term} value={term}>
@@ -160,13 +160,13 @@ export function BuyerFilters({
 
         {/* Certifications */}
         <div className="space-y-1.5">
-          <label className="text-slate-500 font-medium text-[11px] uppercase tracking-wider block">
+          <label className="text-slate-500 dark:text-slate-400 font-medium text-[11px] uppercase tracking-wider block">
             Required Certification
           </label>
           <select
             value={filters.certification}
             onChange={(e) => onFilterChange("certification", e.target.value)}
-            className="w-full h-8 px-2.5 bg-[#fafafa] border border-[#eaeaea] rounded-md text-slate-700 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
+            className="w-full h-8 px-2.5 bg-[#fafafa] dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] rounded-md text-slate-700 dark:text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
           >
             {CERTIFICATIONS.map((cert) => (
               <option key={cert} value={cert}>

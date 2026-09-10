@@ -131,14 +131,14 @@ export default function CampaignsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-1">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-semibold text-slate-900 tracking-tight">
+            <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100 tracking-tight">
               Campaigns & Outreach
             </h1>
-            <span className="text-xs px-2 py-0.5 rounded bg-indigo-50 border border-indigo-200 text-indigo-700 font-mono">
+            <span className="text-xs px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 font-mono">
               Customs-Injected Multi-Channel
             </span>
           </div>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             Execute cold email and WhatsApp sequences with verified maritime manifest data injected per recipient.
           </p>
         </div>
@@ -147,9 +147,9 @@ export default function CampaignsPage() {
           <Button
             size="sm"
             onClick={() => setIsWizardOpen(true)}
-            className="h-9 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-4 shadow-xs flex items-center gap-1.5"
+            className="h-9 bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white text-xs font-semibold px-4 shadow-xs flex items-center gap-1.5"
           >
-            <Plus className="h-4 w-4 text-indigo-400" />
+            <Plus className="h-4 w-4 text-indigo-400 dark:text-indigo-200" />
             <span>New Campaign Wizard</span>
           </Button>
         </div>
@@ -157,19 +157,19 @@ export default function CampaignsPage() {
 
       {/* Success Notification Banner */}
       {launchSuccess && (
-        <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs flex items-center justify-between shadow-xs">
+        <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800/60 text-emerald-900 dark:text-emerald-200 text-xs flex items-center justify-between shadow-xs">
           <div className="flex items-center gap-2.5">
-            <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+            <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
             <div>
               <span className="font-bold">Campaign Launched Successfully!</span>
-              <p className="text-emerald-700 mt-0.5">
+              <p className="text-emerald-700 dark:text-emerald-300 mt-0.5">
                 Emails dispatched via SMTP relay. WhatsApp Day 3 condition scheduled upon email open tracking.
               </p>
             </div>
           </div>
           <button
             onClick={() => setLaunchSuccess(false)}
-            className="text-emerald-700 hover:text-emerald-900"
+            className="text-emerald-700 dark:text-emerald-300 hover:text-emerald-900 dark:hover:text-emerald-100"
           >
             <X className="h-4 w-4" />
           </button>
@@ -188,20 +188,20 @@ export default function CampaignsPage() {
           {/* Frosted Backdrop */}
           <div
             onClick={() => setIsWizardOpen(false)}
-            className="fixed inset-0 bg-slate-950/70 backdrop-blur-md transition-opacity"
+            className="fixed inset-0 bg-slate-950/70 dark:bg-black/80 backdrop-blur-md transition-opacity"
           />
 
           {/* Stepper Modal Container */}
-          <div className="relative z-10 w-full max-w-5xl bg-white rounded-2xl border border-[#eaeaea] shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh]">
+          <div className="relative z-10 w-full max-w-5xl bg-white dark:bg-[#121215] rounded-2xl border border-[#eaeaea] dark:border-[#27272a] shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh]">
             {/* Modal Header & Stepper Progress Bar */}
-            <div className="px-6 py-4 sm:px-8 border-b border-[#eaeaea] bg-white sticky top-0 z-20 space-y-4">
+            <div className="px-6 py-4 sm:px-8 border-b border-[#eaeaea] dark:border-[#27272a] bg-white dark:bg-[#121215] sticky top-0 z-20 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
-                    <Rocket className="h-4 w-4 text-indigo-600" />
+                  <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2">
+                    <Rocket className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
                     New Outreach Campaign Wizard
                   </h2>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
                     Step {currentStep} of 3:{" "}
                     {currentStep === 1
                       ? "Select Unlocked Consignees"
@@ -213,7 +213,7 @@ export default function CampaignsPage() {
 
                 <button
                   onClick={() => setIsWizardOpen(false)}
-                  className="h-8 w-8 rounded-lg border border-[#eaeaea] bg-[#fafafa] hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-slate-900"
+                  className="h-8 w-8 rounded-lg border border-[#eaeaea] dark:border-[#27272a] bg-[#fafafa] dark:bg-[#18181b] hover:bg-slate-100 dark:hover:bg-[#222226] flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -226,15 +226,15 @@ export default function CampaignsPage() {
                   onClick={() => setCurrentStep(1)}
                   className={`text-left p-2.5 rounded-lg border text-xs transition-all flex items-center gap-2.5 ${
                     currentStep === 1
-                      ? "bg-slate-900 text-white border-slate-900 font-semibold"
-                      : "bg-[#fafafa] text-slate-600 border-[#eaeaea] hover:bg-slate-100"
+                      ? "bg-slate-900 text-white border-slate-900 dark:bg-indigo-600 dark:border-indigo-600 font-semibold"
+                      : "bg-[#fafafa] dark:bg-[#18181b] text-slate-600 dark:text-slate-300 border-[#eaeaea] dark:border-[#27272a] hover:bg-slate-100 dark:hover:bg-[#222226]"
                   }`}
                 >
-                  <span className="h-5 w-5 rounded-full bg-white/20 flex items-center justify-center text-[11px] font-mono">
+                  <span className="h-5 w-5 rounded-full bg-white/20 dark:bg-white/20 flex items-center justify-center text-[11px] font-mono">
                     1
                   </span>
                   <div className="truncate">
-                    <span className="block text-[10px] text-slate-400 uppercase tracking-wider">Step 1</span>
+                    <span className="block text-[10px] text-slate-400 dark:text-slate-400 uppercase tracking-wider">Step 1</span>
                     <span className="truncate block">Audience Selection</span>
                   </div>
                 </button>
@@ -245,15 +245,15 @@ export default function CampaignsPage() {
                   disabled={selectedBuyerIds.length === 0}
                   className={`text-left p-2.5 rounded-lg border text-xs transition-all flex items-center gap-2.5 ${
                     currentStep === 2
-                      ? "bg-slate-900 text-white border-slate-900 font-semibold"
-                      : "bg-[#fafafa] text-slate-600 border-[#eaeaea] hover:bg-slate-100 disabled:opacity-50"
+                      ? "bg-slate-900 text-white border-slate-900 dark:bg-indigo-600 dark:border-indigo-600 font-semibold"
+                      : "bg-[#fafafa] dark:bg-[#18181b] text-slate-600 dark:text-slate-300 border-[#eaeaea] dark:border-[#27272a] hover:bg-slate-100 dark:hover:bg-[#222226] disabled:opacity-50"
                   }`}
                 >
-                  <span className="h-5 w-5 rounded-full bg-white/20 flex items-center justify-center text-[11px] font-mono">
+                  <span className="h-5 w-5 rounded-full bg-white/20 dark:bg-white/20 flex items-center justify-center text-[11px] font-mono">
                     2
                   </span>
                   <div className="truncate">
-                    <span className="block text-[10px] text-slate-400 uppercase tracking-wider">Step 2</span>
+                    <span className="block text-[10px] text-slate-400 dark:text-slate-400 uppercase tracking-wider">Step 2</span>
                     <span className="truncate block">Email Composer</span>
                   </div>
                 </button>
@@ -264,15 +264,15 @@ export default function CampaignsPage() {
                   disabled={selectedBuyerIds.length === 0}
                   className={`text-left p-2.5 rounded-lg border text-xs transition-all flex items-center gap-2.5 ${
                     currentStep === 3
-                      ? "bg-slate-900 text-white border-slate-900 font-semibold"
-                      : "bg-[#fafafa] text-slate-600 border-[#eaeaea] hover:bg-slate-100 disabled:opacity-50"
+                      ? "bg-slate-900 text-white border-slate-900 dark:bg-indigo-600 dark:border-indigo-600 font-semibold"
+                      : "bg-[#fafafa] dark:bg-[#18181b] text-slate-600 dark:text-slate-300 border-[#eaeaea] dark:border-[#27272a] hover:bg-slate-100 dark:hover:bg-[#222226] disabled:opacity-50"
                   }`}
                 >
-                  <span className="h-5 w-5 rounded-full bg-white/20 flex items-center justify-center text-[11px] font-mono">
+                  <span className="h-5 w-5 rounded-full bg-white/20 dark:bg-white/20 flex items-center justify-center text-[11px] font-mono">
                     3
                   </span>
                   <div className="truncate">
-                    <span className="block text-[10px] text-slate-400 uppercase tracking-wider">Step 3</span>
+                    <span className="block text-[10px] text-slate-400 dark:text-slate-400 uppercase tracking-wider">Step 3</span>
                     <span className="truncate block">Sequence & WhatsApp</span>
                   </div>
                 </button>
@@ -280,7 +280,7 @@ export default function CampaignsPage() {
             </div>
 
             {/* Stepper Body */}
-            <div className="flex-1 overflow-y-auto p-6 sm:p-8 bg-[#fafafa]">
+            <div className="flex-1 overflow-y-auto p-6 sm:p-8 bg-[#fafafa] dark:bg-[#09090b]">
               {/* STEP 1: Audience Selector */}
               {currentStep === 1 && (
                 <AudienceSelector
@@ -294,21 +294,21 @@ export default function CampaignsPage() {
               {/* STEP 2: Email Composer & Dynamic Variables */}
               {currentStep === 2 && (
                 <div className="space-y-4">
-                  <div className="bg-white p-3.5 rounded-xl border border-[#eaeaea] shadow-xs flex items-center justify-between gap-4">
+                  <div className="bg-white dark:bg-[#121215] p-3.5 rounded-xl border border-[#eaeaea] dark:border-[#27272a] shadow-xs flex items-center justify-between gap-4">
                     <div className="flex-1 max-w-md">
-                      <label className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block mb-1">
+                      <label className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold block mb-1">
                         Campaign Reference Title
                       </label>
                       <input
                         type="text"
                         value={campaignName}
                         onChange={(e) => setCampaignName(e.target.value)}
-                        className="w-full text-xs font-bold text-slate-900 bg-transparent border-b border-slate-200 focus:outline-hidden focus:border-indigo-500 pb-0.5"
+                        className="w-full text-xs font-bold text-slate-900 dark:text-slate-100 bg-transparent border-b border-slate-200 dark:border-[#27272a] focus:outline-hidden focus:border-indigo-500 dark:focus:border-indigo-400 pb-0.5"
                       />
                     </div>
 
-                    <div className="text-xs text-slate-500 flex items-center gap-1.5">
-                      <Users className="h-3.5 w-3.5 text-indigo-600" />
+                    <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                      <Users className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" />
                       <span>{selectedBuyers.length} Consignees in this sequence</span>
                     </div>
                   </div>
@@ -336,14 +336,14 @@ export default function CampaignsPage() {
             </div>
 
             {/* Stepper Bottom Navigation Footer */}
-            <div className="px-6 py-4 sm:px-8 border-t border-[#eaeaea] bg-white flex items-center justify-between sticky bottom-0 z-20">
+            <div className="px-6 py-4 sm:px-8 border-t border-[#eaeaea] dark:border-[#27272a] bg-white dark:bg-[#121215] flex items-center justify-between sticky bottom-0 z-20">
               <div>
                 {currentStep > 1 && (
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => setCurrentStep((prev) => (prev - 1) as 1 | 2 | 3)}
-                    className="h-8.5 text-xs text-slate-700 border-[#eaeaea]"
+                    className="h-8.5 text-xs text-slate-700 dark:text-slate-300 border-[#eaeaea] dark:border-[#27272a] bg-white dark:bg-[#18181b] hover:bg-slate-50 dark:hover:bg-[#222226]"
                   >
                     <ArrowLeft className="h-3.5 w-3.5 mr-1.5" />
                     Back
@@ -356,7 +356,7 @@ export default function CampaignsPage() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsWizardOpen(false)}
-                  className="h-8.5 text-xs text-slate-500 hover:text-slate-900"
+                  className="h-8.5 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
                 >
                   Cancel
                 </Button>
@@ -366,7 +366,7 @@ export default function CampaignsPage() {
                     size="sm"
                     disabled={selectedBuyerIds.length === 0}
                     onClick={() => setCurrentStep((prev) => (prev + 1) as 1 | 2 | 3)}
-                    className="h-8.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-4 shadow-xs flex items-center gap-1.5 disabled:opacity-50"
+                    className="h-8.5 bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white text-xs font-semibold px-4 shadow-xs flex items-center gap-1.5 disabled:opacity-50"
                   >
                     <span>
                       {currentStep === 1

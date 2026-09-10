@@ -211,37 +211,37 @@ export function BuyerDetailModal({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.97, y: 14 }}
         transition={{ duration: 0.22, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-5xl bg-white rounded-2xl border border-[#eaeaea] shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh]"
+        className="relative z-10 w-full max-w-5xl bg-white dark:bg-[#121215] rounded-2xl border border-[#eaeaea] dark:border-[#27272a] shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh]"
       >
         {/* Top Header Bar */}
-        <div className="px-6 py-4.5 sm:px-8 border-b border-[#eaeaea] bg-white sticky top-0 z-20">
+        <div className="px-6 py-4.5 sm:px-8 border-b border-[#eaeaea] dark:border-[#27272a] bg-white dark:bg-[#121215] sticky top-0 z-20">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex items-center gap-3.5 min-w-0">
-              <div className="h-11 w-11 rounded-xl bg-slate-50 border border-[#eaeaea] flex items-center justify-center text-xl shadow-xs flex-shrink-0">
+              <div className="h-11 w-11 rounded-xl bg-slate-50 dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] flex items-center justify-center text-xl shadow-xs flex-shrink-0">
                 {buyer.countryFlag}
               </div>
 
               <div className="min-w-0">
                 <div className="flex items-center gap-2.5 flex-wrap">
-                  <h2 className="text-xl font-bold text-slate-900 tracking-tight truncate">
+                  <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 tracking-tight truncate">
                     {buyer.name}
                   </h2>
                   <Badge
                     variant="secondary"
-                    className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-medium px-2 py-0.5 flex items-center gap-1 flex-shrink-0"
+                    className="bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-[11px] font-medium px-2 py-0.5 flex items-center gap-1 flex-shrink-0"
                   >
                     <ShieldCheck className="h-3.5 w-3.5" />
                     Verified Customs Profile
                   </Badge>
                 </div>
 
-                <p className="text-xs text-slate-500 flex items-center gap-2 mt-1 truncate">
-                  <span className="font-medium text-slate-700">{buyer.legalEntity}</span>
-                  <span className="text-slate-300">•</span>
+                <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2 mt-1 truncate">
+                  <span className="font-medium text-slate-700 dark:text-slate-300">{buyer.legalEntity}</span>
+                  <span className="text-slate-300 dark:text-slate-700">•</span>
                   <span>{buyer.city}, {buyer.country}</span>
-                  <span className="text-slate-300">•</span>
-                  <span className="flex items-center gap-1 text-slate-500">
-                    <Anchor className="h-3 w-3 text-slate-400" />
+                  <span className="text-slate-300 dark:text-slate-700">•</span>
+                  <span className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
+                    <Anchor className="h-3 w-3 text-slate-400 dark:text-slate-500" />
                     {buyer.portOfUnlading} ({buyer.portCode})
                   </span>
                 </p>
@@ -254,16 +254,16 @@ export function BuyerDetailModal({
                 variant="outline"
                 size="sm"
                 onClick={() => {}}
-                className="h-8.5 border-[#eaeaea] text-xs font-normal text-slate-600 hover:text-slate-900 bg-white"
+                className="h-8.5 border-[#eaeaea] dark:border-[#27272a] text-xs font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 bg-white dark:bg-[#18181b]"
               >
-                <Download className="h-3.5 w-3.5 mr-1.5 text-slate-400" />
+                <Download className="h-3.5 w-3.5 mr-1.5 text-slate-400 dark:text-slate-500" />
                 Export Dossier
               </Button>
 
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="h-8.5 w-8.5 rounded-lg border border-[#eaeaea] bg-[#fafafa] hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-slate-900 transition-colors"
+                className="h-8.5 w-8.5 rounded-lg border border-[#eaeaea] dark:border-[#27272a] bg-[#fafafa] dark:bg-[#18181b] hover:bg-slate-100 dark:hover:bg-[#202025] flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
               >
                 <X className="h-4 w-4" />
                 <span className="sr-only">Close</span>
@@ -272,39 +272,39 @@ export function BuyerDetailModal({
           </div>
 
           {/* Key Metrics Strip (Spacious 4-column KPI row) */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-[#eaeaea]">
-            <div className="bg-[#fafafa] rounded-lg p-2.5 border border-[#eaeaea]">
-              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-[#eaeaea] dark:border-[#27272a]">
+            <div className="bg-[#fafafa] dark:bg-[#18181b] rounded-lg p-2.5 border border-[#eaeaea] dark:border-[#27272a]">
+              <span className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold block">
                 Total Volume
               </span>
-              <span className="font-bold text-slate-900 font-mono text-base mt-0.5 block">
+              <span className="font-bold text-slate-900 dark:text-slate-100 font-mono text-base mt-0.5 block">
                 {buyer.annualTeus}
               </span>
             </div>
 
-            <div className="bg-[#fafafa] rounded-lg p-2.5 border border-[#eaeaea]">
-              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">
+            <div className="bg-[#fafafa] dark:bg-[#18181b] rounded-lg p-2.5 border border-[#eaeaea] dark:border-[#27272a]">
+              <span className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold block">
                 Annual Manifests
               </span>
-              <span className="font-bold text-slate-900 font-mono text-base mt-0.5 block">
+              <span className="font-bold text-slate-900 dark:text-slate-100 font-mono text-base mt-0.5 block">
                 {buyer.annualShipments} BoLs
               </span>
             </div>
 
-            <div className="bg-[#fafafa] rounded-lg p-2.5 border border-[#eaeaea]">
-              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">
+            <div className="bg-[#fafafa] dark:bg-[#18181b] rounded-lg p-2.5 border border-[#eaeaea] dark:border-[#27272a]">
+              <span className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold block">
                 Derived MOQ
               </span>
-              <span className="font-bold text-slate-900 font-mono text-base mt-0.5 block">
+              <span className="font-bold text-slate-900 dark:text-slate-100 font-mono text-base mt-0.5 block">
                 {buyer.derivedMoq}
               </span>
             </div>
 
-            <div className="bg-[#fafafa] rounded-lg p-2.5 border border-[#eaeaea]">
-              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">
+            <div className="bg-[#fafafa] dark:bg-[#18181b] rounded-lg p-2.5 border border-[#eaeaea] dark:border-[#27272a]">
+              <span className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold block">
                 Volume Reliability
               </span>
-              <span className="font-bold text-emerald-600 font-mono text-base mt-0.5 block">
+              <span className="font-bold text-emerald-600 dark:text-emerald-400 font-mono text-base mt-0.5 block">
                 {buyer.consistencyScore}% score
               </span>
             </div>
@@ -314,16 +314,16 @@ export function BuyerDetailModal({
           <div className="flex items-center gap-2 mt-4">
             <button
               onClick={() => setActiveTab("manifests")}
-              className={`text-xs font-semibold px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`text-xs font-semibold px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeTab === "manifests"
-                  ? "bg-slate-900 text-white shadow-xs"
-                  : "bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200"
+                  ? "bg-slate-900 dark:bg-indigo-600 text-white shadow-xs"
+                  : "bg-slate-100 dark:bg-[#18181b] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200 dark:hover:bg-[#202025]"
               }`}
             >
               <FileText className="h-3.5 w-3.5" />
               <span>Bill of Lading Manifests</span>
               <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
-                activeTab === "manifests" ? "bg-slate-800 text-slate-300" : "bg-white text-slate-500"
+                activeTab === "manifests" ? "bg-slate-800 dark:bg-indigo-700 text-slate-300 dark:text-white" : "bg-white dark:bg-[#222228] text-slate-500 dark:text-slate-400"
               }`}>
                 {buyer.shipments.length}
               </span>
@@ -331,10 +331,10 @@ export function BuyerDetailModal({
 
             <button
               onClick={() => setActiveTab("contacts")}
-              className={`text-xs font-semibold px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`text-xs font-semibold px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeTab === "contacts"
-                  ? "bg-slate-900 text-white shadow-xs"
-                  : "bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200"
+                  ? "bg-slate-900 dark:bg-indigo-600 text-white shadow-xs"
+                  : "bg-slate-100 dark:bg-[#18181b] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200 dark:hover:bg-[#202025]"
               }`}
             >
               <Sparkles className="h-3.5 w-3.5 text-amber-400" />
@@ -352,10 +352,10 @@ export function BuyerDetailModal({
 
             <button
               onClick={() => setActiveTab("analytics")}
-              className={`text-xs font-semibold px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`text-xs font-semibold px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeTab === "analytics"
-                  ? "bg-slate-900 text-white shadow-xs"
-                  : "bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200"
+                  ? "bg-slate-900 dark:bg-indigo-600 text-white shadow-xs"
+                  : "bg-slate-100 dark:bg-[#18181b] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200 dark:hover:bg-[#202025]"
               }`}
             >
               <TrendingUp className="h-3.5 w-3.5" />
@@ -365,31 +365,31 @@ export function BuyerDetailModal({
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6 bg-[#fafafa]">
+        <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6 bg-[#fafafa] dark:bg-[#09090b]">
           {/* TAB 1: Customs Bill of Lading Manifests */}
           {activeTab === "manifests" && (
             <div className="space-y-4">
               {/* Executive Decision Makers Quick Banner */}
               {!isUnlocked && (
-                <div className="rounded-xl border border-indigo-200 bg-gradient-to-r from-indigo-50/80 via-white to-slate-50 p-4.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shadow-xs">
+                <div className="rounded-xl border border-indigo-200 dark:border-indigo-900/60 bg-gradient-to-r from-indigo-50/80 via-white to-slate-50 dark:from-indigo-950/40 dark:via-[#121215] dark:to-slate-950/40 p-4.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shadow-xs">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                        <Sparkles className="h-3.5 w-3.5 text-indigo-600" />
+                      <span className="text-xs font-bold text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
+                        <Sparkles className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" />
                         Executive Decision Makers Available
                       </span>
-                      <span className="text-[10px] font-mono font-semibold bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded border border-indigo-200">
+                      <span className="text-[10px] font-mono font-semibold bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 px-1.5 py-0.5 rounded border border-indigo-200 dark:border-indigo-800">
                         5 Credits Full Suite
                       </span>
                     </div>
-                    <p className="text-xs text-slate-600">
+                    <p className="text-xs text-slate-600 dark:text-slate-400">
                       Direct verified emails, phone lines, and LinkedIn profiles for {buyer.name}&apos;s key procurement officers.
                     </p>
                   </div>
                   <Button
                     size="sm"
                     onClick={() => setActiveTab("contacts")}
-                    className="h-8.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium px-3.5 flex-shrink-0 flex items-center gap-1.5 shadow-xs"
+                    className="h-8.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium px-3.5 flex-shrink-0 flex items-center gap-1.5 shadow-xs cursor-pointer"
                   >
                     <span>View Contacts</span>
                     <ArrowRight className="h-3 w-3" />
@@ -401,12 +401,12 @@ export function BuyerDetailModal({
               <div className="space-y-3.5">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <FileText className="h-4 w-4 text-indigo-600" />
-                    <h4 className="text-sm font-bold text-slate-900 tracking-tight">
+                    <FileText className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-slate-100 tracking-tight">
                       Raw Bill of Lading (BoL) Manifest Records
                     </h4>
                   </div>
-                  <span className="text-xs text-slate-400 font-mono">
+                  <span className="text-xs text-slate-400 dark:text-slate-500 font-mono">
                     Showing {buyer.shipments.length} verified customs filings
                   </span>
                 </div>
@@ -414,27 +414,27 @@ export function BuyerDetailModal({
                 {buyer.shipments.map((bol: BillOfLadingRecord) => (
                   <div
                     key={bol.bolNumber}
-                    className="bg-white rounded-xl border border-[#eaeaea] p-5 transition-all hover:border-slate-300 shadow-xs space-y-4"
+                    className="bg-white dark:bg-[#121215] rounded-xl border border-[#eaeaea] dark:border-[#27272a] p-5 transition-all hover:border-slate-300 dark:hover:border-slate-700 shadow-xs space-y-4"
                   >
                     {/* Top Row: BoL Number, Date, Status */}
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-3.5 border-b border-[#eaeaea]">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-3.5 border-b border-[#eaeaea] dark:border-[#27272a]">
                       <div className="flex items-center gap-2.5">
-                        <span className="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">
+                        <span className="text-[11px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-semibold">
                           BoL ID:
                         </span>
-                        <span className="font-mono font-bold text-slate-900 text-xs bg-slate-100 px-2.5 py-1 rounded border border-[#eaeaea]">
+                        <span className="font-mono font-bold text-slate-900 dark:text-slate-100 text-xs bg-slate-100 dark:bg-[#18181b] px-2.5 py-1 rounded border border-[#eaeaea] dark:border-[#27272a]">
                           {bol.bolNumber}
                         </span>
                       </div>
 
                       <div className="flex items-center gap-3">
-                        <span className="text-slate-500 flex items-center gap-1.5 font-mono text-xs">
-                          <Calendar className="h-3.5 w-3.5 text-slate-400" />
+                        <span className="text-slate-500 dark:text-slate-400 flex items-center gap-1.5 font-mono text-xs">
+                          <Calendar className="h-3.5 w-3.5 text-slate-400 dark:text-slate-500" />
                           {bol.date}
                         </span>
                         <Badge
                           variant="secondary"
-                          className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-medium px-2 py-0.5"
+                          className="bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-[10px] font-medium px-2 py-0.5"
                         >
                           {bol.customsStatus}
                         </Badge>
@@ -442,35 +442,35 @@ export function BuyerDetailModal({
                     </div>
 
                     {/* Middle Row: Freight Corridor & Vessel Telemetry (Clean, spacious 2 columns) */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-3.5 border-b border-[#eaeaea]">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-3.5 border-b border-[#eaeaea] dark:border-[#27272a]">
                       {/* Freight Corridor */}
-                      <div className="bg-[#fafafa] p-3 rounded-lg border border-[#eaeaea]">
-                        <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block mb-1.5">
+                      <div className="bg-[#fafafa] dark:bg-[#18181b] p-3 rounded-lg border border-[#eaeaea] dark:border-[#27272a]">
+                        <span className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold block mb-1.5">
                           Maritime Freight Corridor
                         </span>
-                        <div className="flex items-center gap-2 font-medium text-slate-800 text-xs flex-wrap">
-                          <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white border border-[#eaeaea] text-indigo-700">
+                        <div className="flex items-center gap-2 font-medium text-slate-800 dark:text-slate-200 text-xs flex-wrap">
+                          <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white dark:bg-[#202025] border border-[#eaeaea] dark:border-[#27272a] text-indigo-700 dark:text-indigo-400">
                             {bol.portOfLoadingCode}
                           </span>
-                          <span className="text-slate-700">{bol.portOfLoading}</span>
-                          <ArrowRight className="h-3.5 w-3.5 text-slate-400 flex-shrink-0" />
-                          <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white border border-[#eaeaea] text-emerald-700">
+                          <span className="text-slate-700 dark:text-slate-300">{bol.portOfLoading}</span>
+                          <ArrowRight className="h-3.5 w-3.5 text-slate-400 dark:text-slate-500 flex-shrink-0" />
+                          <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white dark:bg-[#202025] border border-[#eaeaea] dark:border-[#27272a] text-emerald-700 dark:text-emerald-400">
                             {bol.portOfUnladingCode}
                           </span>
-                          <span className="text-slate-700">{bol.portOfUnlading}</span>
+                          <span className="text-slate-700 dark:text-slate-300">{bol.portOfUnlading}</span>
                         </div>
                       </div>
 
                       {/* Vessel & Voyage */}
-                      <div className="bg-[#fafafa] p-3 rounded-lg border border-[#eaeaea]">
-                        <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block mb-1.5">
+                      <div className="bg-[#fafafa] dark:bg-[#18181b] p-3 rounded-lg border border-[#eaeaea] dark:border-[#27272a]">
+                        <span className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold block mb-1.5">
                           Carrier & Voyage Telemetry
                         </span>
-                        <div className="flex items-center gap-2 text-slate-800 text-xs">
-                          <Ship className="h-4 w-4 text-indigo-600 flex-shrink-0" />
+                        <div className="flex items-center gap-2 text-slate-800 dark:text-slate-200 text-xs">
+                          <Ship className="h-4 w-4 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
                           <span className="font-semibold">{bol.vessel}</span>
-                          <span className="text-slate-300">•</span>
-                          <span className="font-mono text-slate-500 bg-white px-2 py-0.5 rounded border border-[#eaeaea]">
+                          <span className="text-slate-300 dark:text-slate-700">•</span>
+                          <span className="font-mono text-slate-500 dark:text-slate-400 bg-white dark:bg-[#202025] px-2 py-0.5 rounded border border-[#eaeaea] dark:border-[#27272a]">
                             Voyage: {bol.voyage}
                           </span>
                         </div>
@@ -480,40 +480,40 @@ export function BuyerDetailModal({
                     {/* Bottom Row: Commodity Description, Shipper & Container Spec */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
                       <div className="md:col-span-2 space-y-1.5">
-                        <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">
+                        <span className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold block">
                           Declared Commodity & HS Code
                         </span>
-                        <p className="text-slate-800 font-medium leading-relaxed">
+                        <p className="text-slate-800 dark:text-slate-200 font-medium leading-relaxed">
                           {bol.commodityDesc}
                         </p>
-                        <div className="inline-block bg-slate-100 border border-[#eaeaea] px-2 py-0.5 rounded text-[11px] font-mono text-slate-600">
+                        <div className="inline-block bg-slate-100 dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] px-2 py-0.5 rounded text-[11px] font-mono text-slate-600 dark:text-slate-300">
                           HS Code: {bol.hsCode}
                         </div>
                       </div>
 
-                      <div className="space-y-3 bg-[#fafafa] p-3 rounded-lg border border-[#eaeaea]">
+                      <div className="space-y-3 bg-[#fafafa] dark:bg-[#18181b] p-3 rounded-lg border border-[#eaeaea] dark:border-[#27272a]">
                         <div>
-                          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">
+                          <span className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold block">
                             Shipper / Exporter
                           </span>
-                          <p className="font-semibold text-slate-900 mt-0.5">
+                          <p className="font-semibold text-slate-900 dark:text-slate-100 mt-0.5">
                             {bol.shipper}
                           </p>
-                          <span className="text-[11px] text-slate-500">
+                          <span className="text-[11px] text-slate-500 dark:text-slate-400">
                             Origin: {bol.shipperOrigin}
                           </span>
                         </div>
 
-                        <div className="pt-2 border-t border-[#eaeaea] flex items-center justify-between text-[11px]">
+                        <div className="pt-2 border-t border-[#eaeaea] dark:border-[#27272a] flex items-center justify-between text-[11px]">
                           <div>
-                            <span className="text-slate-400 block text-[10px]">Container</span>
-                            <span className="font-mono font-medium text-slate-700">
+                            <span className="text-slate-400 dark:text-slate-500 block text-[10px]">Container</span>
+                            <span className="font-mono font-medium text-slate-700 dark:text-slate-300">
                               {bol.containerId} ({bol.containerType})
                             </span>
                           </div>
                           <div className="text-right">
-                            <span className="text-slate-400 block text-[10px]">Gross Wt</span>
-                            <span className="font-mono font-medium text-slate-700">
+                            <span className="text-slate-400 dark:text-slate-500 block text-[10px]">Gross Wt</span>
+                            <span className="font-mono font-medium text-slate-700 dark:text-slate-300">
                               {bol.grossWeightKg}
                             </span>
                           </div>
@@ -640,7 +640,7 @@ export function BuyerDetailModal({
                           initial={{ opacity: 0, y: 14 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.25, delay: index * 0.06 }}
-                          className="bg-white rounded-xl border border-[#eaeaea] hover:border-slate-300 transition-all p-6 shadow-xs flex flex-col justify-between"
+                          className="bg-white dark:bg-[#121215] rounded-xl border border-[#eaeaea] dark:border-[#27272a] hover:border-slate-300 dark:hover:border-slate-700 transition-all p-6 shadow-xs flex flex-col justify-between"
                         >
                           <div>
                             {/* Profile Header */}
@@ -655,12 +655,12 @@ export function BuyerDetailModal({
                                 </div>
                                 <div>
                                   <div className="flex items-center gap-1.5">
-                                    <h5 className="text-base font-bold text-slate-900 tracking-tight">
+                                    <h5 className="text-base font-bold text-slate-900 dark:text-slate-100 tracking-tight">
                                       {contact.name}
                                     </h5>
-                                    <ShieldCheck className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                                    <ShieldCheck className="h-4 w-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                                   </div>
-                                  <span className="text-xs font-medium text-indigo-600">
+                                  <span className="text-xs font-medium text-indigo-600 dark:text-indigo-400">
                                     {contact.role}
                                   </span>
                                 </div>
@@ -669,27 +669,27 @@ export function BuyerDetailModal({
 
                             {/* Department Badge */}
                             <div className="mb-5">
-                              <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-slate-100 border border-[#eaeaea] px-2.5 py-0.5 rounded-md">
-                                <Building2 className="h-3 w-3 text-slate-400" />
+                              <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] px-2.5 py-0.5 rounded-md">
+                                <Building2 className="h-3 w-3 text-slate-400 dark:text-slate-500" />
                                 {contact.department}
                               </span>
                             </div>
 
                             {/* Contact Data Rows */}
-                            <div className="space-y-3 pt-1 border-t border-[#eaeaea]">
+                            <div className="space-y-3 pt-1 border-t border-[#eaeaea] dark:border-[#27272a]">
                               {/* Work Email Row */}
                               <div className="flex items-center justify-between text-xs py-1">
                                 <div className="flex items-center gap-2 min-w-0 pr-2">
-                                  <div className="h-7 w-7 rounded-md bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0">
+                                  <div className="h-7 w-7 rounded-md bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/60 flex items-center justify-center text-indigo-600 dark:text-indigo-400 flex-shrink-0">
                                     <Mail className="h-3.5 w-3.5" />
                                   </div>
                                   <div className="truncate">
-                                    <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+                                    <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider block">
                                       Direct Work Email
                                     </span>
                                     <a
                                       href={`mailto:${contact.email}`}
-                                      className="font-mono text-slate-800 hover:text-indigo-600 truncate block font-medium"
+                                      className="font-mono text-slate-800 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 truncate block font-medium"
                                     >
                                       {contact.email}
                                     </a>
@@ -699,16 +699,16 @@ export function BuyerDetailModal({
                                   variant="outline"
                                   size="sm"
                                   onClick={() => handleCopy(contact.email, `email-${contact.id}`)}
-                                  className="h-7 px-2 border-[#eaeaea] text-[11px] text-slate-600 hover:text-slate-900 bg-white flex-shrink-0"
+                                  className="h-7 px-2 border-[#eaeaea] dark:border-[#27272a] text-[11px] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 bg-white dark:bg-[#18181b] flex-shrink-0"
                                 >
                                   {copiedKey === `email-${contact.id}` ? (
                                     <>
-                                      <Check className="h-3 w-3 mr-1 text-emerald-600" />
-                                      <span className="text-emerald-600 font-medium">Copied</span>
+                                      <Check className="h-3 w-3 mr-1 text-emerald-600 dark:text-emerald-400" />
+                                      <span className="text-emerald-600 dark:text-emerald-400 font-medium">Copied</span>
                                     </>
                                   ) : (
                                     <>
-                                      <Copy className="h-3 w-3 mr-1 text-slate-400" />
+                                      <Copy className="h-3 w-3 mr-1 text-slate-400 dark:text-slate-500" />
                                       Copy
                                     </>
                                   )}
@@ -718,16 +718,16 @@ export function BuyerDetailModal({
                               {/* Direct Phone Row */}
                               <div className="flex items-center justify-between text-xs py-1">
                                 <div className="flex items-center gap-2 min-w-0 pr-2">
-                                  <div className="h-7 w-7 rounded-md bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0">
+                                  <div className="h-7 w-7 rounded-md bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-100 dark:border-emerald-900/60 flex items-center justify-center text-emerald-600 dark:text-emerald-400 flex-shrink-0">
                                     <Phone className="h-3.5 w-3.5" />
                                   </div>
                                   <div className="truncate">
-                                    <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+                                    <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider block">
                                       Direct Line / Desk
                                     </span>
                                     <a
                                       href={`tel:${contact.phone}`}
-                                      className="font-mono text-slate-800 hover:text-indigo-600 truncate block font-medium"
+                                      className="font-mono text-slate-800 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 truncate block font-medium"
                                     >
                                       {contact.phone}
                                     </a>
@@ -737,16 +737,16 @@ export function BuyerDetailModal({
                                   variant="outline"
                                   size="sm"
                                   onClick={() => handleCopy(contact.phone, `phone-${contact.id}`)}
-                                  className="h-7 px-2 border-[#eaeaea] text-[11px] text-slate-600 hover:text-slate-900 bg-white flex-shrink-0"
+                                  className="h-7 px-2 border-[#eaeaea] dark:border-[#27272a] text-[11px] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 bg-white dark:bg-[#18181b] flex-shrink-0"
                                 >
                                   {copiedKey === `phone-${contact.id}` ? (
                                     <>
-                                      <Check className="h-3 w-3 mr-1 text-emerald-600" />
-                                      <span className="text-emerald-600 font-medium">Copied</span>
+                                      <Check className="h-3 w-3 mr-1 text-emerald-600 dark:text-emerald-400" />
+                                      <span className="text-emerald-600 dark:text-emerald-400 font-medium">Copied</span>
                                     </>
                                   ) : (
                                     <>
-                                      <Copy className="h-3 w-3 mr-1 text-slate-400" />
+                                      <Copy className="h-3 w-3 mr-1 text-slate-400 dark:text-slate-500" />
                                       Copy
                                     </>
                                   )}
@@ -756,14 +756,14 @@ export function BuyerDetailModal({
                               {/* LinkedIn Profile */}
                               <div className="flex items-center justify-between text-xs py-1">
                                 <div className="flex items-center gap-2 min-w-0">
-                                  <div className="h-7 w-7 rounded-md bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 flex-shrink-0">
+                                  <div className="h-7 w-7 rounded-md bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-900/60 flex items-center justify-center text-blue-600 dark:text-blue-400 flex-shrink-0">
                                     <ExternalLink className="h-3.5 w-3.5" />
                                   </div>
                                   <div>
-                                    <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+                                    <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider block">
                                       Executive Network
                                     </span>
-                                    <span className="text-slate-800 font-medium">
+                                    <span className="text-slate-800 dark:text-slate-200 font-medium">
                                       LinkedIn Profile
                                     </span>
                                   </div>
@@ -772,7 +772,7 @@ export function BuyerDetailModal({
                                   href={contact.linkedinUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 text-[11px] font-medium text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 px-2.5 py-1 rounded-md transition-colors flex-shrink-0"
+                                  className="inline-flex items-center gap-1 text-[11px] font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 border border-indigo-100 dark:border-indigo-900/60 px-2.5 py-1 rounded-md transition-colors flex-shrink-0"
                                 >
                                   Connect
                                   <ExternalLink className="h-2.5 w-2.5" />
@@ -781,8 +781,8 @@ export function BuyerDetailModal({
                             </div>
                           </div>
 
-                          <div className="mt-5 pt-3 border-t border-[#eaeaea] flex items-center justify-between text-[10px] text-slate-400">
-                            <span className="flex items-center gap-1 text-emerald-600 font-medium">
+                          <div className="mt-5 pt-3 border-t border-[#eaeaea] dark:border-[#27272a] flex items-center justify-between text-[10px] text-slate-400 dark:text-slate-500">
+                            <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
                               <CheckCircle2 className="h-3 w-3" />
                               Verified Active Q3 2026
                             </span>
@@ -796,24 +796,24 @@ export function BuyerDetailModal({
                           initial={{ opacity: 0, y: 14 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.25, delay: index * 0.06 }}
-                          className="bg-white rounded-xl border border-[#eaeaea] p-6 shadow-xs flex flex-col justify-between relative overflow-hidden"
+                          className="bg-white dark:bg-[#121215] rounded-xl border border-[#eaeaea] dark:border-[#27272a] p-6 shadow-xs flex flex-col justify-between relative overflow-hidden"
                         >
                           <div>
                             <div className="flex items-start justify-between gap-3 mb-4">
                               <div className="flex items-center gap-3">
-                                <div className="h-12 w-12 rounded-xl bg-slate-100 border border-[#eaeaea] text-slate-400 font-bold text-sm flex items-center justify-center flex-shrink-0">
-                                  <Lock className="h-5 w-5 text-slate-400" />
+                                <div className="h-12 w-12 rounded-xl bg-slate-100 dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] text-slate-400 dark:text-slate-500 font-bold text-sm flex items-center justify-center flex-shrink-0">
+                                  <Lock className="h-5 w-5 text-slate-400 dark:text-slate-500" />
                                 </div>
                                 <div>
                                   <div className="flex items-center gap-2">
-                                    <h5 className="text-base font-bold text-slate-800 font-mono tracking-tight select-none">
+                                    <h5 className="text-base font-bold text-slate-800 dark:text-slate-200 font-mono tracking-tight select-none">
                                       {contact.maskedName}
                                     </h5>
-                                    <span className="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-medium">
+                                    <span className="text-[10px] bg-slate-100 dark:bg-[#18181b] text-slate-600 dark:text-slate-400 px-1.5 py-0.5 rounded font-medium">
                                       Locked
                                     </span>
                                   </div>
-                                  <span className="text-xs font-semibold text-slate-700 block mt-0.5">
+                                  <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mt-0.5">
                                     {contact.role}
                                   </span>
                                 </div>
@@ -821,75 +821,75 @@ export function BuyerDetailModal({
                             </div>
 
                             <div className="mb-5">
-                              <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 bg-slate-100 border border-[#eaeaea] px-2.5 py-0.5 rounded-md">
-                                <Building2 className="h-3 w-3 text-slate-400" />
+                              <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] px-2.5 py-0.5 rounded-md">
+                                <Building2 className="h-3 w-3 text-slate-400 dark:text-slate-500" />
                                 {contact.department}
                               </span>
                             </div>
 
-                            <div className="space-y-3 pt-1 border-t border-[#eaeaea]">
+                            <div className="space-y-3 pt-1 border-t border-[#eaeaea] dark:border-[#27272a]">
                               <div className="flex items-center justify-between text-xs py-1">
                                 <div className="flex items-center gap-2 min-w-0">
-                                  <div className="h-7 w-7 rounded-md bg-slate-100 border border-[#eaeaea] flex items-center justify-center text-slate-400 flex-shrink-0">
+                                  <div className="h-7 w-7 rounded-md bg-slate-100 dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] flex items-center justify-center text-slate-400 dark:text-slate-500 flex-shrink-0">
                                     <Mail className="h-3.5 w-3.5" />
                                   </div>
                                   <div>
-                                    <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+                                    <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider block">
                                       Direct Work Email
                                     </span>
-                                    <span className="font-mono text-slate-400 select-none blur-[2.5px]">
+                                    <span className="font-mono text-slate-400 dark:text-slate-500 select-none blur-[2.5px]">
                                       {contact.maskedEmail}
                                     </span>
                                   </div>
                                 </div>
-                                <span className="text-[10px] text-slate-400 font-mono bg-slate-50 px-1.5 py-0.5 rounded border border-[#eaeaea]">
+                                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono bg-slate-50 dark:bg-[#18181b] px-1.5 py-0.5 rounded border border-[#eaeaea] dark:border-[#27272a]">
                                   5 Credits
                                 </span>
                               </div>
 
                               <div className="flex items-center justify-between text-xs py-1">
                                 <div className="flex items-center gap-2 min-w-0">
-                                  <div className="h-7 w-7 rounded-md bg-slate-100 border border-[#eaeaea] flex items-center justify-center text-slate-400 flex-shrink-0">
+                                  <div className="h-7 w-7 rounded-md bg-slate-100 dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] flex items-center justify-center text-slate-400 dark:text-slate-500 flex-shrink-0">
                                     <Phone className="h-3.5 w-3.5" />
                                   </div>
                                   <div>
-                                    <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+                                    <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider block">
                                       Direct Line / Desk
                                     </span>
-                                    <span className="font-mono text-slate-400 select-none blur-[2.5px]">
+                                    <span className="font-mono text-slate-400 dark:text-slate-500 select-none blur-[2.5px]">
                                       {contact.maskedPhone}
                                     </span>
                                   </div>
                                 </div>
-                                <span className="text-[10px] text-slate-400 font-mono bg-slate-50 px-1.5 py-0.5 rounded border border-[#eaeaea]">
+                                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono bg-slate-50 dark:bg-[#18181b] px-1.5 py-0.5 rounded border border-[#eaeaea] dark:border-[#27272a]">
                                   5 Credits
                                 </span>
                               </div>
 
                               <div className="flex items-center justify-between text-xs py-1">
                                 <div className="flex items-center gap-2 min-w-0">
-                                  <div className="h-7 w-7 rounded-md bg-slate-100 border border-[#eaeaea] flex items-center justify-center text-slate-400 flex-shrink-0">
+                                  <div className="h-7 w-7 rounded-md bg-slate-100 dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] flex items-center justify-center text-slate-400 dark:text-slate-500 flex-shrink-0">
                                     <ExternalLink className="h-3.5 w-3.5" />
                                   </div>
                                   <div>
-                                    <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+                                    <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider block">
                                       Executive Network
                                     </span>
-                                    <span className="text-slate-400 text-xs">
+                                    <span className="text-slate-400 dark:text-slate-500 text-xs">
                                       LinkedIn Profile
                                     </span>
                                   </div>
                                 </div>
-                                <span className="text-[10px] text-slate-400 font-mono bg-slate-50 px-1.5 py-0.5 rounded border border-[#eaeaea]">
+                                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono bg-slate-50 dark:bg-[#18181b] px-1.5 py-0.5 rounded border border-[#eaeaea] dark:border-[#27272a]">
                                   Locked
                                 </span>
                               </div>
                             </div>
                           </div>
 
-                          <div className="mt-5 pt-3 border-t border-[#eaeaea] flex items-center justify-between text-[10px] text-slate-400">
-                            <span className="flex items-center gap-1 text-slate-500 font-medium">
-                              <Lock className="h-3 w-3 text-slate-400" />
+                          <div className="mt-5 pt-3 border-t border-[#eaeaea] dark:border-[#27272a] flex items-center justify-between text-[10px] text-slate-400 dark:text-slate-500">
+                            <span className="flex items-center gap-1 text-slate-500 dark:text-slate-400 font-medium">
+                              <Lock className="h-3 w-3 text-slate-400 dark:text-slate-500" />
                               Requires 5 Credits Unlock
                             </span>
                             <span>Key Sourcing Contact</span>
@@ -905,27 +905,27 @@ export function BuyerDetailModal({
           {activeTab === "analytics" && (
             <div className="space-y-6">
               {/* Consistency Sparkline Card */}
-              <div className="bg-white rounded-xl border border-[#eaeaea] p-6 shadow-xs">
+              <div className="bg-white dark:bg-[#121215] rounded-xl border border-[#eaeaea] dark:border-[#27272a] p-6 shadow-xs">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h4 className="text-sm font-bold text-slate-900 tracking-tight">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-slate-100 tracking-tight">
                       12-Month Customs Import Trajectory
                     </h4>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       Volume continuity derived from Bill of Lading manifests filed at {buyer.portOfUnlading}.
                     </p>
                   </div>
                   <div className="text-right">
-                    <span className="text-slate-400 text-[10px] uppercase font-semibold block">
+                    <span className="text-slate-400 dark:text-slate-500 text-[10px] uppercase font-semibold block">
                       Consistency Score
                     </span>
-                    <span className="text-base font-bold font-mono text-indigo-600">
+                    <span className="text-base font-bold font-mono text-indigo-600 dark:text-indigo-400">
                       {buyer.consistencyScore}%
                     </span>
                   </div>
                 </div>
 
-                <div className="bg-[#fafafa] border border-[#eaeaea] rounded-lg p-4">
+                <div className="bg-[#fafafa] dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] rounded-lg p-4">
                   <BuyerSparkline
                     data={buyer.sparkline}
                     gradientId={`modal-sparkline-${buyer.id}`}
@@ -935,24 +935,24 @@ export function BuyerDetailModal({
               </div>
 
               {/* Verified Trade Standards & Certifications */}
-              <div className="bg-white rounded-xl border border-[#eaeaea] p-6 shadow-xs space-y-4">
+              <div className="bg-white dark:bg-[#121215] rounded-xl border border-[#eaeaea] dark:border-[#27272a] p-6 shadow-xs space-y-4">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-emerald-600" />
-                  <h4 className="text-sm font-bold text-slate-900 tracking-tight">
+                  <ShieldCheck className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                  <h4 className="text-sm font-bold text-slate-900 dark:text-slate-100 tracking-tight">
                     Verified Compliance & Trade Standards
                   </h4>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                  <div className="space-y-2 bg-[#fafafa] p-4 rounded-lg border border-[#eaeaea]">
-                    <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">
+                  <div className="space-y-2 bg-[#fafafa] dark:bg-[#18181b] p-4 rounded-lg border border-[#eaeaea] dark:border-[#27272a]">
+                    <span className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold block">
                       Audited Trade Certifications
                     </span>
                     <div className="flex flex-wrap gap-1.5 pt-1">
                       {buyer.certifications.map((cert) => (
                         <span
                           key={cert}
-                          className="bg-white border border-[#eaeaea] text-slate-700 px-2.5 py-1 rounded-md text-xs font-medium shadow-2xs"
+                          className="bg-white dark:bg-[#202025] border border-[#eaeaea] dark:border-[#27272a] text-slate-700 dark:text-slate-200 px-2.5 py-1 rounded-md text-xs font-medium shadow-2xs"
                         >
                           {cert}
                         </span>
@@ -960,15 +960,15 @@ export function BuyerDetailModal({
                     </div>
                   </div>
 
-                  <div className="space-y-2 bg-[#fafafa] p-4 rounded-lg border border-[#eaeaea]">
-                    <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">
+                  <div className="space-y-2 bg-[#fafafa] dark:bg-[#18181b] p-4 rounded-lg border border-[#eaeaea] dark:border-[#27272a]">
+                    <span className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold block">
                       Customary Trade Incoterms
                     </span>
                     <div className="flex flex-wrap gap-1.5 pt-1">
                       {buyer.usualIncoterms.map((term) => (
                         <span
                           key={term}
-                          className="bg-indigo-50 border border-indigo-100 text-indigo-700 px-2.5 py-1 rounded-md text-xs font-mono font-medium"
+                          className="bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-100 dark:border-indigo-900/60 text-indigo-700 dark:text-indigo-300 px-2.5 py-1 rounded-md text-xs font-mono font-medium"
                         >
                           {term}
                         </span>
@@ -977,12 +977,12 @@ export function BuyerDetailModal({
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-[#eaeaea] flex items-center justify-between text-xs text-slate-500">
+                <div className="pt-2 border-t border-[#eaeaea] dark:border-[#27272a] flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
                   <span className="flex items-center gap-1.5">
-                    <Package className="h-4 w-4 text-slate-400" />
+                    <Package className="h-4 w-4 text-slate-400 dark:text-slate-500" />
                     <span>Active Global Shippers in Network: <strong>{buyer.verifiedSuppliersCount} exporters</strong></span>
                   </span>
-                  <span className="font-mono text-[11px] text-slate-400">
+                  <span className="font-mono text-[11px] text-slate-400 dark:text-slate-500">
                     Last Port Filing: {buyer.lastShipmentDate}
                   </span>
                 </div>
@@ -992,9 +992,9 @@ export function BuyerDetailModal({
         </div>
 
         {/* Modal Bottom Footer */}
-        <div className="px-6 py-4 sm:px-8 border-t border-[#eaeaea] bg-white flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sticky bottom-0 z-20">
-          <div className="text-xs text-slate-500 flex items-center gap-1.5">
-            <ShieldCheck className="h-4 w-4 text-emerald-600" />
+        <div className="px-6 py-4 sm:px-8 border-t border-[#eaeaea] dark:border-[#27272a] bg-white dark:bg-[#121215] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sticky bottom-0 z-20">
+          <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+            <ShieldCheck className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
             <span>Encrypted Trade Intelligence • Sourced directly from US Customs & Border Protection (CBP) manifests.</span>
           </div>
 
@@ -1003,7 +1003,7 @@ export function BuyerDetailModal({
               variant="outline"
               size="sm"
               onClick={onClose}
-              className="h-8.5 border-[#eaeaea] text-xs font-normal"
+              className="h-8.5 border-[#eaeaea] dark:border-[#27272a] text-xs font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 bg-white dark:bg-[#18181b]"
             >
               Close Dossier
             </Button>
@@ -1013,7 +1013,7 @@ export function BuyerDetailModal({
                 size="sm"
                 onClick={handleUnlockAll}
                 disabled={isUnlocking}
-                className="h-8.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 shadow-xs flex items-center gap-1.5"
+                className="h-8.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 shadow-xs flex items-center gap-1.5 cursor-pointer"
               >
                 {isUnlocking ? (
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />

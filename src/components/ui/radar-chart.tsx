@@ -366,13 +366,13 @@ export function RadarChartDemo({
         <Chart config={defaultRadarConfig} className="mx-auto aspect-square max-h-[250px]">
           <RadarChart data={data}>
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <PolarAngleAxis dataKey="category" tick={{ fontSize: 11, fill: "#64748b" }} />
-            <PolarGrid stroke="#e2e8f0" />
+            <PolarAngleAxis dataKey="category" tick={{ fontSize: 11, fill: "var(--muted-foreground, #64748b)" }} />
+            <PolarGrid stroke="var(--border, #e2e8f0)" />
             <Radar
               dataKey="sales"
               fill="var(--color-sales, #4f46e5)"
-              fillOpacity={0.5}
-              stroke="#4f46e5"
+              fillOpacity={0.4}
+              stroke="#6366f1"
               strokeWidth={1.5}
             />
           </RadarChart>

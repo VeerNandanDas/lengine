@@ -106,14 +106,14 @@ export default function BuyerDirectoryPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-1">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-semibold text-slate-900 tracking-tight">
+            <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100 tracking-tight">
               Buyer Directory
             </h1>
-            <span className="text-xs px-2 py-0.5 rounded bg-slate-100 border border-[#eaeaea] text-slate-600 font-mono">
+            <span className="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] text-slate-600 dark:text-slate-300 font-mono">
               Maritime Manifest Database
             </span>
           </div>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             Verified foreign consignees, derived import MOQs, and raw customs Bill of Lading histories.
           </p>
         </div>
@@ -123,16 +123,16 @@ export default function BuyerDirectoryPage() {
             variant="outline"
             size="sm"
             onClick={() => {}}
-            className="h-8 border-[#eaeaea] bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-50 text-xs font-normal"
+            className="h-8 border-[#eaeaea] dark:border-[#27272a] bg-white dark:bg-[#121215] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-[#18181b] text-xs font-normal"
           >
-            <RefreshCw className="h-3.5 w-3.5 mr-1.5 text-slate-400" />
+            <RefreshCw className="h-3.5 w-3.5 mr-1.5 text-slate-400 dark:text-slate-500" />
             Sync Customs Feed
           </Button>
 
           <Button
             size="sm"
             onClick={() => {}}
-            className="h-8 bg-slate-900 hover:bg-slate-800 text-white text-xs font-medium"
+            className="h-8 bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white text-xs font-medium"
           >
             <Download className="h-3.5 w-3.5 mr-1.5" />
             Export Consignees
@@ -162,21 +162,21 @@ export default function BuyerDirectoryPage() {
           ))}
         </div>
       ) : (
-        <div className="bg-white rounded-lg border border-[#eaeaea] p-12 text-center">
-          <div className="h-10 w-10 rounded-lg bg-[#fafafa] border border-[#eaeaea] flex items-center justify-center text-slate-400 mx-auto mb-3">
+        <div className="bg-white dark:bg-[#121215] rounded-lg border border-[#eaeaea] dark:border-[#27272a] p-12 text-center">
+          <div className="h-10 w-10 rounded-lg bg-[#fafafa] dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] flex items-center justify-center text-slate-400 dark:text-slate-500 mx-auto mb-3">
             <Layers className="h-5 w-5" />
           </div>
-          <h3 className="text-sm font-semibold text-slate-900 mb-1">
+          <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100 mb-1">
             No matching foreign consignees found
           </h3>
-          <p className="text-xs text-slate-500 max-w-sm mx-auto mb-4">
+          <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto mb-4">
             Try adjusting your search keywords, destination country, or loosening your MOQ and Incoterm filters.
           </p>
           <Button
             variant="outline"
             size="sm"
             onClick={handleResetFilters}
-            className="h-8 border-[#eaeaea] text-xs font-normal"
+            className="h-8 border-[#eaeaea] dark:border-[#27272a] bg-white dark:bg-[#18181b] text-xs font-normal"
           >
             Reset All Filters
           </Button>

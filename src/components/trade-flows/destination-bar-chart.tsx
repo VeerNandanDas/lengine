@@ -35,29 +35,29 @@ function CustomBarTooltip({ active, payload }: CustomBarTooltipProps) {
   if (active && payload && payload.length) {
     const item = payload[0].payload;
     return (
-      <div className="bg-white border border-[#eaeaea] rounded-lg p-3 shadow-xs text-xs">
+      <div className="bg-white dark:bg-[#121215] border border-[#eaeaea] dark:border-[#27272a] rounded-lg p-3 shadow-xs text-xs">
         <div className="flex items-center gap-1.5 mb-1.5">
-          <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">
+          <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-slate-100 dark:bg-[#18181b] text-slate-700 dark:text-slate-300">
             {item.code}
           </span>
-          <span className="font-semibold text-slate-900">{item.country}</span>
+          <span className="font-semibold text-slate-900 dark:text-slate-100">{item.country}</span>
         </div>
         <div className="space-y-1">
-          <div className="flex items-center justify-between gap-4 text-slate-500">
+          <div className="flex items-center justify-between gap-4 text-slate-500 dark:text-slate-400">
             <span>Import Volume:</span>
-            <span className="font-mono font-medium text-slate-900">
+            <span className="font-mono font-medium text-slate-900 dark:text-slate-100">
               {item.teus.toLocaleString()} TEUs
             </span>
           </div>
-          <div className="flex items-center justify-between gap-4 text-slate-500">
+          <div className="flex items-center justify-between gap-4 text-slate-500 dark:text-slate-400">
             <span>Market Share:</span>
-            <span className="font-mono font-medium text-slate-900">
+            <span className="font-mono font-medium text-slate-900 dark:text-slate-100">
               {item.share}% of world imports
             </span>
           </div>
-          <div className="flex items-center justify-between gap-4 text-slate-500 pt-1 border-t border-[#eaeaea]">
+          <div className="flex items-center justify-between gap-4 text-slate-500 dark:text-slate-400 pt-1 border-t border-[#eaeaea] dark:border-[#27272a]">
             <span>Import Growth:</span>
-            <span className="font-medium text-emerald-600 flex items-center gap-0.5">
+            <span className="font-medium text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5">
               +{item.growth}% YoY
             </span>
           </div>
@@ -83,30 +83,30 @@ export function DestinationBarChart({
     .toFixed(1);
 
   return (
-    <div className="bg-white rounded-lg border border-[#eaeaea] p-5 flex flex-col justify-between">
+    <div className="bg-white dark:bg-[#121215] rounded-lg border border-[#eaeaea] dark:border-[#27272a] p-5 flex flex-col justify-between">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-sm font-semibold text-slate-900">
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
               Top 5 Destination Countries
             </h3>
-            <span className="text-xs px-2 py-0.5 rounded bg-slate-50 border border-[#eaeaea] text-slate-600 font-mono">
+            <span className="text-xs px-2 py-0.5 rounded bg-slate-50 dark:bg-[#18181b] border border-[#eaeaea] dark:border-[#27272a] text-slate-600 dark:text-slate-300 font-mono">
               Market Concentration
             </span>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Primary import hubs for {productName}
           </p>
         </div>
 
         {/* Concentration badge */}
         <div className="text-right">
-          <div className="flex items-center gap-1 text-slate-900 text-xs font-semibold">
-            <Globe className="h-3 w-3 text-indigo-600" />
+          <div className="flex items-center gap-1 text-slate-900 dark:text-slate-100 text-xs font-semibold">
+            <Globe className="h-3 w-3 text-indigo-600 dark:text-indigo-400" />
             <span>{totalTop5Share}%</span>
           </div>
-          <p className="text-[11px] text-slate-400 mt-0.5">combined global share</p>
+          <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">combined global share</p>
         </div>
       </div>
 
@@ -120,7 +120,7 @@ export function DestinationBarChart({
             >
               <CartesianGrid
                 strokeDasharray="3 3"
-                stroke="#F1F5F9"
+                stroke="var(--border, #F1F5F9)"
                 vertical={false}
               />
               <XAxis
@@ -145,28 +145,28 @@ export function DestinationBarChart({
                 {data.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
-                    fill={index === 0 ? "#4F46E5" : "#334155"}
+                    fill={index === 0 ? "#4F46E5" : "#64748b"}
                   />
                 ))}
               </Bar>
             </BarChart>
           </ResponsiveContainer>
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-xs text-slate-400">
+          <div className="w-full h-full flex items-center justify-center text-xs text-slate-400 dark:text-slate-500">
             Loading destinations telemetry...
           </div>
         )}
       </div>
 
       {/* Footer */}
-      <div className="mt-3 pt-3 border-t border-[#eaeaea] flex items-center justify-between text-[11px] text-slate-400">
+      <div className="mt-3 pt-3 border-t border-[#eaeaea] dark:border-[#27272a] flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
         <div className="flex items-center gap-2">
           <span className="flex items-center gap-1">
             <span className="h-2 w-2 rounded-xs bg-[#4F46E5] inline-block" />
             Leading Destination
           </span>
           <span className="flex items-center gap-1">
-            <span className="h-2 w-2 rounded-xs bg-[#334155] inline-block" />
+            <span className="h-2 w-2 rounded-xs bg-[#64748b] inline-block" />
             Key Corridors
           </span>
         </div>
