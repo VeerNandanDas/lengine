@@ -4,8 +4,10 @@ import { useState, useMemo } from "react";
 import { BUYERS_DATA, CompanyBuyer } from "@/lib/buyers-data";
 import { BuyerFilters, FilterState } from "@/components/buyers/buyer-filters";
 import { CompanyCard } from "@/components/buyers/company-card";
-import { ShipmentHistorySheet } from "@/components/buyers/shipment-history-sheet";
-import { DecisionMakersModal } from "@/components/buyers/decision-makers-modal";
+import {
+  BuyerDetailModal,
+  BuyerModalTab,
+} from "@/components/buyers/buyer-detail-modal";
 import { Database, Download, RefreshCw, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -19,10 +21,8 @@ const initialFilters: FilterState = {
 
 export default function BuyerDirectoryPage() {
   const [filters, setFilters] = useState<FilterState>(initialFilters);
-  const [selectedBuyer, setSelectedBuyer] = useState<CompanyBuyer | null>(null);
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [enrichmentBuyer, setEnrichmentBuyer] = useState<CompanyBuyer | null>(null);
-  const [isEnrichmentModalOpen, setIsEnrichmentModalOpen] = useState(false);
+  const [activeBuyer, setActiveBuyer] = useState<CompanyBuyer | null>(null);
+  const [activeTab, setActiveTab] = useState<BuyerModalTab>("manifests");
 
   function handleFilterChange(key: keyof FilterState, value: string) {
     setFilters((prev) => ({ ...prev, [key]: value }));
@@ -33,17 +33,13 @@ export default function BuyerDirectoryPage() {
   }
 
   function handleSelectBuyer(buyer: CompanyBuyer) {
-    setSelectedBuyer(buyer);
-    setIsSheetOpen(true);
+    setActiveBuyer(buyer);
+    setActiveTab("manifests");
   }
 
   function handleOpenDecisionMakers(buyer: CompanyBuyer) {
-    setEnrichmentBuyer(buyer);
-    setIsEnrichmentModalOpen(true);
-  }
-
-  function handleCloseSheet() {
-    setIsSheetOpen(false);
+    setActiveBuyer(buyer);
+    setActiveTab("contacts");
   }
 
   // Filter evaluation logic
@@ -187,22 +183,12 @@ export default function BuyerDirectoryPage() {
         </div>
       )}
 
-      {/* Master-Detail Side-Sheet Drawer (Shipment BoL History) */}
-      <ShipmentHistorySheet
-        buyer={selectedBuyer}
-        isOpen={isSheetOpen}
-        onClose={handleCloseSheet}
-        onOpenDecisionMakers={(buyer) => {
-          setIsSheetOpen(false);
-          handleOpenDecisionMakers(buyer);
-        }}
-      />
-
-      {/* Executive Decision Makers Center Modal (5 Credits Batch Unlock) */}
-      <DecisionMakersModal
-        buyer={enrichmentBuyer}
-        isOpen={isEnrichmentModalOpen}
-        onClose={() => setIsEnrichmentModalOpen(false)}
+      {/* Unified Executive Buyer Intelligence Dossier (Centered Modal) */}
+      <BuyerDetailModal
+        buyer={activeBuyer}
+        isOpen={!!activeBuyer}
+        onClose={() => setActiveBuyer(null)}
+        defaultTab={activeTab}
       />
     </div>
   );
