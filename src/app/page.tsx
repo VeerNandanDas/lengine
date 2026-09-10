@@ -1,6 +1,7 @@
 import { LandingNav } from "@/components/landing/landing-nav";
 import { HeroSection } from "@/components/landing/hero-section";
 import { SystemOverviewSection } from "@/components/landing/system-overview-section";
+import { IntegrationsSection } from "@/components/landing/integrations-section";
 import { TwoEnginesSection } from "@/components/landing/two-engines-section";
 import { DarkFeatureGrid } from "@/components/landing/dark-feature-grid";
 import { TestimonialsSection } from "@/components/landing/testimonials-section";
@@ -21,7 +22,10 @@ export default function HomePage() {
         {/* 3. The Complete Cross-Border Trade Intelligence System Architecture */}
         <SystemOverviewSection />
 
-        {/* 4. Two Engines Showcase (Trade Flows + Buyer Directory) */}
+        {/* 4. Live Ingestion & Data Ecosystem - Direct Pipelines Showcase */}
+        <IntegrationsSection />
+
+        {/* 5. Two Engines Showcase (Trade Flows + Buyer Directory) */}
         <TwoEnginesSection />
 
         {/* 5. Institutional Dark Contrast Feature Grid */}

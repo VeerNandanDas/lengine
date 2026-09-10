@@ -12,6 +12,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { RadarChartDemo } from "@/components/ui/radar-chart";
 
 export function TwoEnginesSection() {
   return (
@@ -127,6 +128,52 @@ export function TwoEnginesSection() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
+          </div>
+        </div>
+
+        {/* Minimal Cross-Sector Demand Radar Telemetry */}
+        <div className="mt-10 bg-[#fafafa] rounded-xl border border-[#eaeaea] p-6 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-8 hover:border-slate-300 transition-all">
+          <div className="max-w-xl">
+            <div className="flex items-center gap-2 mb-2.5">
+              <span className="h-2 w-2 rounded-full bg-indigo-600 animate-pulse" />
+              <span className="font-mono text-xs text-indigo-600 font-medium uppercase tracking-wider">
+                Cross-Category Telemetry
+              </span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">
+              Multi-Sector Volume Velocity Radar
+            </h3>
+            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+              Synthesizing customs manifests across major trade categories to benchmark demand concentration, tariff exposure, and quarterly growth trajectories.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2 text-xs font-mono">
+              <span className="px-2.5 py-1 rounded-md bg-white border border-[#eaeaea] text-slate-700 font-medium shadow-2xs">
+                HS 85 • Electronics
+              </span>
+              <span className="px-2.5 py-1 rounded-md bg-white border border-[#eaeaea] text-slate-700 font-medium shadow-2xs">
+                HS 61-62 • Apparel
+              </span>
+              <span className="px-2.5 py-1 rounded-md bg-white border border-[#eaeaea] text-slate-700 font-medium shadow-2xs">
+                HS 09-21 • Groceries
+              </span>
+              <span className="px-2.5 py-1 rounded-md bg-white border border-[#eaeaea] text-slate-700 font-medium shadow-2xs">
+                HS 94 • Furniture
+              </span>
+              <span className="px-2.5 py-1 rounded-md bg-white border border-[#eaeaea] text-slate-700 font-medium shadow-2xs">
+                HS 95 • Toys
+              </span>
+              <span className="px-2.5 py-1 rounded-md bg-white border border-[#eaeaea] text-slate-700 font-medium shadow-2xs">
+                HS 33 • Beauty
+              </span>
+            </div>
+          </div>
+
+          <div className="w-full max-w-[340px] flex justify-center">
+            <RadarChartDemo
+              title="By Category"
+              description="Sales performance by category (Jan - Jun 2024)"
+              className="w-full bg-white border border-[#eaeaea]"
+            />
           </div>
         </div>
       </div>

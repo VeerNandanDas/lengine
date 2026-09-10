@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge";
 
 export function HeroSection() {
   return (
-    <section className="relative pt-12 pb-20 overflow-hidden">
+    <section className="relative pt-12 pb-0 overflow-hidden">
       {/* Ambient Warmth Glow Aura (inspired by reference image) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[450px] pointer-events-none -z-10 opacity-70">
         <div className="absolute inset-0 bg-gradient-to-tr from-indigo-100/40 via-rose-100/30 to-amber-100/30 blur-3xl rounded-full transform -translate-y-1/2" />
@@ -87,39 +87,98 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Interactive Terminal Mockup Container */}
-        <div className="mt-10 bg-white rounded-xl border border-[#eaeaea] shadow-sm overflow-hidden text-left">
-          {/* Terminal Window Header */}
-          <div className="px-4 py-3 bg-[#fafafa] border-b border-[#eaeaea] flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="h-3 w-3 rounded-full bg-slate-200 border border-slate-300" />
-              <span className="h-3 w-3 rounded-full bg-slate-200 border border-slate-300" />
-              <span className="h-3 w-3 rounded-full bg-slate-200 border border-slate-300" />
-              <span className="ml-2 font-mono text-xs text-slate-500">
-                lengine-terminal://corridors/live-telemetry
-              </span>
+        {/* Interactive MacBook Terminal Mockup Container - Attached to bottom edge of Hero Section (Dark Mode) */}
+        <div className="mt-12 bg-[#0B0F19] rounded-t-2xl sm:rounded-t-3xl rounded-b-none border-t border-x border-slate-800/90 border-b-0 shadow-[0_-12px_32px_-8px_rgba(15,23,42,0.18),0_-4px_12px_-2px_rgba(15,23,42,0.08),0_0_0_1px_rgba(255,255,255,0.06)] overflow-hidden text-left mb-0">
+          {/* macOS Terminal Window Chrome Header (Dark Mode) */}
+          <div className="px-4 py-3 bg-[#131826] border-b border-slate-800 flex items-center justify-between select-none">
+            {/* macOS Window Controls (Traffic Lights) */}
+            <div className="flex items-center gap-2 group/controls">
+              {/* Close (Red) */}
+              <button
+                type="button"
+                aria-label="Close"
+                className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e] flex items-center justify-center text-[#8e1d17] hover:brightness-110 transition-all cursor-default"
+              >
+                <svg
+                  className="w-1.5 h-1.5 opacity-0 group-hover/controls:opacity-100 transition-opacity"
+                  viewBox="0 0 6 6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                >
+                  <path d="M1 1L5 5M5 1L1 5" />
+                </svg>
+              </button>
+
+              {/* Minimize (Yellow) */}
+              <button
+                type="button"
+                aria-label="Minimize"
+                className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123] flex items-center justify-center text-[#8f610a] hover:brightness-110 transition-all cursor-default"
+              >
+                <svg
+                  className="w-1.5 h-1.5 opacity-0 group-hover/controls:opacity-100 transition-opacity"
+                  viewBox="0 0 6 6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                >
+                  <path d="M1 3H5" />
+                </svg>
+              </button>
+
+              {/* Maximize/Zoom (Green) */}
+              <button
+                type="button"
+                aria-label="Maximize"
+                className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29] flex items-center justify-center text-[#0e6118] hover:brightness-110 transition-all cursor-default"
+              >
+                <svg
+                  className="w-1.5 h-1.5 opacity-0 group-hover/controls:opacity-100 transition-opacity"
+                  viewBox="0 0 6 6"
+                  fill="currentColor"
+                >
+                  <path d="M1 1.5V5H4.5L1 1.5ZM5 4.5V1H1.5L5 4.5Z" />
+                </svg>
+              </button>
+
+              {/* Title / Path Pill */}
+              <div className="ml-3 hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#0B0F19] border border-slate-700/80 shadow-inner font-mono text-[11px] text-slate-300">
+                <span className="text-slate-500 font-sans">⌘</span>
+                <span>lengine-terminal://corridors/live-telemetry</span>
+              </div>
             </div>
 
+            {/* Mobile Fallback Title */}
+            <span className="sm:hidden font-mono text-[11px] text-slate-400 truncate max-w-[170px]">
+              live-telemetry
+            </span>
+
+            {/* Right Status Badge */}
             <div className="flex items-center gap-2 text-xs">
-              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-slate-500 font-mono text-[11px]">FEED ACTIVE</span>
+              <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-emerald-400 font-mono text-[11px] font-medium bg-emerald-950/60 border border-emerald-800/40 px-2 py-0.5 rounded-full">
+                FEED ACTIVE
+              </span>
             </div>
           </div>
 
-          {/* Terminal Body Preview */}
-          <div className="p-5 sm:p-6 bg-white space-y-4">
+          {/* Terminal Body Preview (Dark Mode) */}
+          <div className="p-5 sm:p-6 bg-[#0B0F19] space-y-4">
             {/* Search query representation */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3 rounded-lg bg-[#fafafa] border border-[#eaeaea]">
-              <div className="flex items-center gap-2.5">
-                <div className="h-7 w-7 rounded bg-white border border-[#eaeaea] flex items-center justify-center text-indigo-600">
-                  <Search className="h-3.5 w-3.5" />
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-[#131826] border border-slate-800/90 shadow-sm">
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-8 rounded-lg bg-indigo-950/80 border border-indigo-800/50 flex items-center justify-center text-indigo-400 flex-shrink-0">
+                  <Search className="h-4 w-4" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-semibold text-slate-900">
+                    <span className="font-mono text-xs font-semibold text-white">
                       HS 6302.31
                     </span>
-                    <span className="text-xs text-slate-600 font-medium">
+                    <span className="text-xs text-slate-300 font-medium">
                       Bed & Bath Linens (Organic Sateen)
                     </span>
                   </div>
@@ -129,57 +188,63 @@ export function HeroSection() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 text-xs sm:justify-end">
+              <div className="flex items-center gap-5 text-xs sm:justify-end">
                 <div>
-                  <span className="text-slate-400 text-[10px] block">Global TEUs</span>
-                  <span className="font-mono font-semibold text-slate-900">4.82M</span>
+                  <span className="text-slate-400 text-[10px] block uppercase tracking-wider font-mono">Global TEUs</span>
+                  <span className="font-mono font-semibold text-white">4.82M</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 text-[10px] block">YoY Growth</span>
-                  <span className="font-mono font-semibold text-emerald-600">+11.4%</span>
+                  <span className="text-slate-400 text-[10px] block uppercase tracking-wider font-mono">YoY Growth</span>
+                  <span className="font-mono font-semibold text-emerald-400">+11.4%</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 text-[10px] block">Tariff Rate</span>
-                  <span className="font-mono font-semibold text-slate-900">6.0% MFN</span>
+                  <span className="text-slate-400 text-[10px] block uppercase tracking-wider font-mono">Tariff Rate</span>
+                  <span className="font-mono font-semibold text-slate-200">6.0% MFN</span>
                 </div>
               </div>
             </div>
 
             {/* Quick row of verified foreign consignees */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-              <div className="p-3 rounded-lg border border-[#eaeaea] bg-white">
+              <div className="p-3.5 rounded-xl border border-slate-800/80 bg-[#111625] hover:border-indigo-500/40 hover:bg-[#151c2e] transition-all group">
                 <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="font-semibold text-slate-900 truncate">Pacific Textiles LLC</span>
+                  <span className="font-semibold text-white truncate group-hover:text-indigo-300 transition-colors">Pacific Textiles LLC</span>
                   <span className="text-xs">🇺🇸</span>
                 </div>
-                <p className="text-[11px] text-slate-500">Port of Long Beach (USLGB)</p>
-                <div className="mt-2 flex items-center justify-between text-[11px] pt-1.5 border-t border-[#eaeaea]">
+                <p className="text-[11px] text-slate-400">Port of Long Beach (USLGB)</p>
+                <div className="mt-2.5 flex items-center justify-between text-[11px] pt-2 border-t border-slate-800/80">
                   <span className="text-slate-400">MOQ: 1,200 TEUs</span>
-                  <span className="font-mono text-indigo-600 font-medium">FOB / CIF</span>
+                  <span className="font-mono text-indigo-400 font-medium bg-indigo-950/70 border border-indigo-800/40 px-1.5 py-0.5 rounded text-[10px]">
+                    FOB / CIF
+                  </span>
                 </div>
               </div>
 
-              <div className="p-3 rounded-lg border border-[#eaeaea] bg-white">
+              <div className="p-3.5 rounded-xl border border-slate-800/80 bg-[#111625] hover:border-indigo-500/40 hover:bg-[#151c2e] transition-all group">
                 <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="font-semibold text-slate-900 truncate">Meridian Nordic AG</span>
+                  <span className="font-semibold text-white truncate group-hover:text-indigo-300 transition-colors">Meridian Nordic AG</span>
                   <span className="text-xs">🇩🇪</span>
                 </div>
-                <p className="text-[11px] text-slate-500">Port of Hamburg (DEHAM)</p>
-                <div className="mt-2 flex items-center justify-between text-[11px] pt-1.5 border-t border-[#eaeaea]">
+                <p className="text-[11px] text-slate-400">Port of Hamburg (DEHAM)</p>
+                <div className="mt-2.5 flex items-center justify-between text-[11px] pt-2 border-t border-slate-800/80">
                   <span className="text-slate-400">MOQ: 850 TEUs</span>
-                  <span className="font-mono text-indigo-600 font-medium">CIF / DDP</span>
+                  <span className="font-mono text-indigo-400 font-medium bg-indigo-950/70 border border-indigo-800/40 px-1.5 py-0.5 rounded text-[10px]">
+                    CIF / DDP
+                  </span>
                 </div>
               </div>
 
-              <div className="p-3 rounded-lg border border-[#eaeaea] bg-white">
+              <div className="p-3.5 rounded-xl border border-slate-800/80 bg-[#111625] hover:border-indigo-500/40 hover:bg-[#151c2e] transition-all group">
                 <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="font-semibold text-slate-900 truncate">Al-Mansoor Gulf FZE</span>
+                  <span className="font-semibold text-white truncate group-hover:text-indigo-300 transition-colors">Al-Mansoor Gulf FZE</span>
                   <span className="text-xs">🇦🇪</span>
                 </div>
-                <p className="text-[11px] text-slate-500">Port of Jebel Ali (AEJEA)</p>
-                <div className="mt-2 flex items-center justify-between text-[11px] pt-1.5 border-t border-[#eaeaea]">
+                <p className="text-[11px] text-slate-400">Port of Jebel Ali (AEJEA)</p>
+                <div className="mt-2.5 flex items-center justify-between text-[11px] pt-2 border-t border-slate-800/80">
                   <span className="text-slate-400">MOQ: 2,400 TEUs</span>
-                  <span className="font-mono text-indigo-600 font-medium">FOB / EXW</span>
+                  <span className="font-mono text-indigo-400 font-medium bg-indigo-950/70 border border-indigo-800/40 px-1.5 py-0.5 rounded text-[10px]">
+                    FOB / EXW
+                  </span>
                 </div>
               </div>
             </div>

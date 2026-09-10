@@ -21,18 +21,21 @@ import {
   ArrowRight,
   ExternalLink,
   Layers,
+  Sparkles,
 } from "lucide-react";
 
 interface ShipmentHistorySheetProps {
   buyer: CompanyBuyer | null;
   isOpen: boolean;
   onClose: () => void;
+  onOpenDecisionMakers?: (buyer: CompanyBuyer) => void;
 }
 
 export function ShipmentHistorySheet({
   buyer,
   isOpen,
   onClose,
+  onOpenDecisionMakers,
 }: ShipmentHistorySheetProps) {
   if (!buyer) return null;
 
@@ -114,6 +117,32 @@ export function ShipmentHistorySheet({
 
         {/* Scrollable Manifest Content */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[#fafafa]">
+          {/* Section: Executive Decision Makers Link Banner */}
+          <div className="rounded-xl border border-indigo-200/90 bg-gradient-to-r from-indigo-50/70 via-white to-slate-50 p-4 flex items-center justify-between gap-4 shadow-xs">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                  <Sparkles className="h-3.5 w-3.5 text-indigo-600" />
+                  Executive Decision Makers
+                </span>
+                <span className="text-[10px] font-mono font-semibold bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded border border-indigo-200">
+                  5 Credits
+                </span>
+              </div>
+              <p className="text-xs text-slate-500">
+                Direct verified emails, phone lines, and LinkedIn profiles for {buyer.name}&apos;s leadership.
+              </p>
+            </div>
+            <Button
+              size="sm"
+              onClick={() => onOpenDecisionMakers?.(buyer)}
+              className="h-8 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium px-3 flex-shrink-0 flex items-center gap-1.5"
+            >
+              <span>View Contacts</span>
+              <ArrowRight className="h-3 w-3" />
+            </Button>
+          </div>
+
           {/* Section: Raw Bill of Lading Manifest Records */}
           <div>
             <div className="flex items-center justify-between mb-3">

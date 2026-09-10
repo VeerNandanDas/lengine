@@ -10,14 +10,21 @@ import {
   TrendingUp,
   Package,
   Calendar,
+  Coins,
+  Sparkles,
 } from "lucide-react";
 
 interface CompanyCardProps {
   buyer: CompanyBuyer;
   onSelect: (buyer: CompanyBuyer) => void;
+  onOpenDecisionMakers?: (buyer: CompanyBuyer) => void;
 }
 
-export function CompanyCard({ buyer, onSelect }: CompanyCardProps) {
+export function CompanyCard({
+  buyer,
+  onSelect,
+  onOpenDecisionMakers,
+}: CompanyCardProps) {
   return (
     <div
       onClick={() => onSelect(buyer)}
@@ -136,6 +143,37 @@ export function CompanyCard({ buyer, onSelect }: CompanyCardProps) {
             {buyer.lastShipmentDate}
           </span>
         </div>
+      </div>
+
+      {/* Action CTA Bar */}
+      <div className="mt-3.5 pt-3 border-t border-[#eaeaea] flex items-center gap-2">
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onOpenDecisionMakers?.(buyer);
+          }}
+          className="flex-1 bg-slate-900 hover:bg-indigo-600 text-white text-xs font-semibold py-2 px-3 rounded-md transition-all flex items-center justify-center gap-1.5 shadow-xs group/btn"
+        >
+          <Coins className="h-3.5 w-3.5 text-amber-300 fill-amber-300" />
+          <span>Decision Makers</span>
+          <span className="text-[10px] bg-white/20 text-white px-1.5 py-0.5 rounded font-mono font-normal">
+            5 Credits
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onSelect(buyer);
+          }}
+          className="h-8 px-2.5 rounded-md border border-[#eaeaea] bg-[#fafafa] hover:bg-white text-slate-600 hover:text-slate-900 text-xs font-medium flex items-center gap-1 transition-colors"
+          title="View Customs Manifest Records"
+        >
+          <span>BoLs</span>
+          <ArrowUpRight className="h-3.5 w-3.5 text-slate-400" />
+        </button>
       </div>
     </div>
   );

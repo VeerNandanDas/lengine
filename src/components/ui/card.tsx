@@ -19,7 +19,16 @@ function Card({
   )
 }
 
-function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
+function CardHeader({
+  className,
+  title,
+  description,
+  children,
+  ...props
+}: React.ComponentProps<"div"> & {
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+}) {
   return (
     <div
       data-slot="card-header"
@@ -28,7 +37,11 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
         className
       )}
       {...props}
-    />
+    >
+      {title && <CardTitle>{title}</CardTitle>}
+      {description && <CardDescription>{description}</CardDescription>}
+      {children}
+    </div>
   )
 }
 
@@ -90,6 +103,13 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
     />
   )
 }
+
+Card.Header = CardHeader
+Card.Title = CardTitle
+Card.Description = CardDescription
+Card.Content = CardContent
+Card.Footer = CardFooter
+Card.Action = CardAction
 
 export {
   Card,

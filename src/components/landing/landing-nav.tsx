@@ -30,6 +30,12 @@ export function LandingNav() {
             System Architecture
           </a>
           <a
+            href="#integrations"
+            className="hover:text-slate-900 transition-colors"
+          >
+            Integrations
+          </a>
+          <a
             href="#engines"
             className="hover:text-slate-900 transition-colors"
           >

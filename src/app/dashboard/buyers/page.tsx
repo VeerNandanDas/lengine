@@ -5,6 +5,7 @@ import { BUYERS_DATA, CompanyBuyer } from "@/lib/buyers-data";
 import { BuyerFilters, FilterState } from "@/components/buyers/buyer-filters";
 import { CompanyCard } from "@/components/buyers/company-card";
 import { ShipmentHistorySheet } from "@/components/buyers/shipment-history-sheet";
+import { DecisionMakersModal } from "@/components/buyers/decision-makers-modal";
 import { Database, Download, RefreshCw, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -20,6 +21,8 @@ export default function BuyerDirectoryPage() {
   const [filters, setFilters] = useState<FilterState>(initialFilters);
   const [selectedBuyer, setSelectedBuyer] = useState<CompanyBuyer | null>(null);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [enrichmentBuyer, setEnrichmentBuyer] = useState<CompanyBuyer | null>(null);
+  const [isEnrichmentModalOpen, setIsEnrichmentModalOpen] = useState(false);
 
   function handleFilterChange(key: keyof FilterState, value: string) {
     setFilters((prev) => ({ ...prev, [key]: value }));
@@ -32,6 +35,11 @@ export default function BuyerDirectoryPage() {
   function handleSelectBuyer(buyer: CompanyBuyer) {
     setSelectedBuyer(buyer);
     setIsSheetOpen(true);
+  }
+
+  function handleOpenDecisionMakers(buyer: CompanyBuyer) {
+    setEnrichmentBuyer(buyer);
+    setIsEnrichmentModalOpen(true);
   }
 
   function handleCloseSheet() {
@@ -153,6 +161,7 @@ export default function BuyerDirectoryPage() {
               key={buyer.id}
               buyer={buyer}
               onSelect={handleSelectBuyer}
+              onOpenDecisionMakers={handleOpenDecisionMakers}
             />
           ))}
         </div>
@@ -178,12 +187,24 @@ export default function BuyerDirectoryPage() {
         </div>
       )}
 
-      {/* Master-Detail Side-Sheet Drawer */}
+      {/* Master-Detail Side-Sheet Drawer (Shipment BoL History) */}
       <ShipmentHistorySheet
         buyer={selectedBuyer}
         isOpen={isSheetOpen}
         onClose={handleCloseSheet}
+        onOpenDecisionMakers={(buyer) => {
+          setIsSheetOpen(false);
+          handleOpenDecisionMakers(buyer);
+        }}
+      />
+
+      {/* Executive Decision Makers Center Modal (5 Credits Batch Unlock) */}
+      <DecisionMakersModal
+        buyer={enrichmentBuyer}
+        isOpen={isEnrichmentModalOpen}
+        onClose={() => setIsEnrichmentModalOpen(false)}
       />
     </div>
   );
 }
+
