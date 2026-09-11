@@ -34,13 +34,14 @@ const DEMO_UNLOCKS_KEY = "lengine_demo_unlocks";
 const DEMO_SINGLE_UNLOCKS_KEY = "lengine_demo_single_unlocks";
 
 function getDemoCredits(): number {
-  if (typeof window === "undefined") return 15;
+  if (typeof window === "undefined") return 500;
   const stored = localStorage.getItem(DEMO_CREDITS_KEY);
   if (stored !== null) {
     const val = parseInt(stored, 10);
-    return isNaN(val) ? 15 : val;
+    return isNaN(val) ? 500 : val;
   }
-  return 15;
+  localStorage.setItem(DEMO_CREDITS_KEY, "500");
+  return 500;
 }
 
 function setDemoCredits(balance: number): void {
@@ -286,37 +287,11 @@ export function DecisionMakersSection({ buyerId }: DecisionMakersSectionProps) {
 
           <div className="flex items-center gap-2 flex-wrap">
             {/* Credit Balance Badge */}
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-medium">
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20 text-xs">
               <Coins className="h-3.5 w-3.5 text-amber-400 fill-amber-400" />
               <span className="font-mono font-bold text-white">{credits}</span>
               <span className="text-amber-200/80">Credits</span>
             </div>
-
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleAddCredits}
-              className="h-8 text-xs text-slate-300 hover:text-white px-2 hover:bg-slate-800"
-            >
-              <PlusCircle className="h-3.5 w-3.5 mr-1 text-slate-400" />
-              +15
-            </Button>
-
-            {/* Test Fallback Scenario Toggle */}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setSimulateFailure(!simulateFailure)}
-              title="Toggle Waterfall Scenario B: Simulate zero results to test 0 credits deducted and human research fallback"
-              className={`h-8 text-xs transition-colors px-2.5 ${
-                simulateFailure
-                  ? "bg-amber-500/20 text-amber-300 border-amber-400/40 font-medium"
-                  : "border-slate-700 text-slate-300 hover:text-white bg-slate-800"
-              }`}
-            >
-              <RefreshCw className={`h-3 w-3 mr-1 ${simulateFailure ? "text-amber-400 animate-spin" : "text-slate-400"}`} />
-              <span>{simulateFailure ? "0 Results Mode" : "Test Fallback"}</span>
-            </Button>
 
             {!isUnlocked ? (
               <Button

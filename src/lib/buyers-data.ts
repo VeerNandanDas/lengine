@@ -93,7 +93,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
     ],
     shipments: [
       {
-        bolNumber: "MEDUST892147",
+        bolNumber: "MSCU2489102",
         date: "2026-08-28",
         containerId: "MSCU-7821940",
         containerType: "40HC",
@@ -131,7 +131,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
         customsStatus: "Cleared",
       },
       {
-        bolNumber: "CMAUS2019482",
+        bolNumber: "CMDU2019482",
         date: "2026-07-29",
         containerId: "CMAU-8910243",
         containerType: "40HC",
@@ -208,7 +208,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
     ],
     shipments: [
       {
-        bolNumber: "WMTLAX918230",
+        bolNumber: "EGLV9182304",
         date: "2026-09-03",
         containerId: "EGLV-9102834",
         containerType: "40HC",
@@ -227,7 +227,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
         customsStatus: "Cleared",
       },
       {
-        bolNumber: "MAEUWMT829104",
+        bolNumber: "MAEU8291041",
         date: "2026-08-26",
         containerId: "MRKU-6719024",
         containerType: "40HC",
@@ -285,7 +285,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
     ],
     shipments: [
       {
-        bolNumber: "THDSAV892104",
+        bolNumber: "CMDU8921045",
         date: "2026-08-31",
         containerId: "MSCU-8192034",
         containerType: "40HC",
@@ -343,7 +343,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
     ],
     shipments: [
       {
-        bolNumber: "WSIOAK491024",
+        bolNumber: "MSCU4910241",
         date: "2026-08-25",
         containerId: "CMAU-4819024",
         containerType: "40HC",
@@ -401,7 +401,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
     ],
     shipments: [
       {
-        bolNumber: "CSTSEA891024",
+        bolNumber: "MAEU8910247",
         date: "2026-08-29",
         containerId: "MRKU-5819024",
         containerType: "40HC",
@@ -459,7 +459,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
     ],
     shipments: [
       {
-        bolNumber: "HLCUDE918230",
+        bolNumber: "HLCU9182301",
         date: "2026-08-22",
         containerId: "HLXU-8902143",
         containerType: "40HC",
@@ -478,7 +478,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
         customsStatus: "Cleared",
       },
       {
-        bolNumber: "ONEHAM409124",
+        bolNumber: "ONEY4091248",
         date: "2026-08-05",
         containerId: "TGHU-2094182",
         containerType: "40HC",
@@ -536,7 +536,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
     ],
     shipments: [
       {
-        bolNumber: "MAEUFXT719204",
+        bolNumber: "MAEU7192043",
         date: "2026-08-17",
         containerId: "MRKU-9821043",
         containerType: "40HC",
@@ -594,7 +594,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
     ],
     shipments: [
       {
-        bolNumber: "DPWJEA819203",
+        bolNumber: "MSCU8192039",
         date: "2026-09-02",
         containerId: "MSCU-9021834",
         containerType: "40HC",
@@ -613,7 +613,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
         customsStatus: "Cleared",
       },
       {
-        bolNumber: "HLCUAE304918",
+        bolNumber: "HLCU3049185",
         date: "2026-08-19",
         containerId: "HLXU-4910293",
         containerType: "40HC",
@@ -671,7 +671,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
     ],
     shipments: [
       {
-        bolNumber: "IKEPHL819204",
+        bolNumber: "MAEU8192041",
         date: "2026-08-27",
         containerId: "MSCU-4910243",
         containerType: "40HC",
@@ -729,7 +729,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
     ],
     shipments: [
       {
-        bolNumber: "ONEYOK910243",
+        bolNumber: "ONEY9102431",
         date: "2026-08-30",
         containerId: "NYKU-7819024",
         containerType: "40HC",
@@ -787,7 +787,7 @@ export const BUYERS_DATA: CompanyBuyer[] = [
     ],
     shipments: [
       {
-        bolNumber: "MSCVLC491024",
+        bolNumber: "MSCU4910248",
         date: "2026-08-25",
         containerId: "MEDU-5910243",
         containerType: "40HC",

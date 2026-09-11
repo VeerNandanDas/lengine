@@ -48,17 +48,10 @@ export function AudienceSelector({
   const [searchQuery, setSearchQuery] = useState("");
   const [unlockedSet, setUnlockedSet] = useState<Set<string>>(new Set());
 
-  // Load unlocked buyers from localStorage demo state
+  // Load unlocked buyers from stored state
   useEffect(() => {
     const unlocked = getDemoUnlockedBuyers();
-    // Default fallback: if empty, pre-populate 3 buyers for demo convenience
-    if (unlocked.size === 0) {
-      const defaultUnlocked = new Set(["buyer-target", "buyer-walmart", "buyer-otto-group"]);
-      setUnlockedSet(defaultUnlocked);
-      localStorage.setItem(DEMO_UNLOCKS_KEY, JSON.stringify([...defaultUnlocked]));
-    } else {
-      setUnlockedSet(unlocked);
-    }
+    setUnlockedSet(unlocked);
   }, []);
 
   const filteredBuyers = BUYERS_DATA.filter((buyer) => {
@@ -82,12 +75,6 @@ export function AudienceSelector({
     return acc + (contacts.length || 2);
   }, 0);
 
-  const handleQuickUnlockAll = () => {
-    const allIds = BUYERS_DATA.map((b) => b.id);
-    setUnlockedSet(new Set(allIds));
-    localStorage.setItem(DEMO_UNLOCKS_KEY, JSON.stringify(allIds));
-  };
-
   return (
     <div className="space-y-4">
       {/* Search & Selection Bar */}
@@ -104,18 +91,6 @@ export function AudienceSelector({
         </div>
 
         <div className="flex items-center gap-3 self-end sm:self-auto">
-          {/* Quick unlock demo helper if needed */}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleQuickUnlockAll}
-            className="h-8 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-2.5"
-            title="Mark all buyers unlocked for testing"
-          >
-            <Sparkles className="h-3.5 w-3.5 mr-1.5 text-indigo-600 dark:text-indigo-400" />
-            Unlock All in Demo
-          </Button>
-
           <Button
             variant="outline"
             size="sm"

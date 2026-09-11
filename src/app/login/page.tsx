@@ -154,7 +154,7 @@ export default function LoginPage() {
               type="button"
               variant="outline"
               onClick={() => {
-                document.cookie = "demo_session=alex.chen@meridian-trade.com; path=/; max-age=86400";
+                document.cookie = "demo_session=trader@lengine.io; path=/; max-age=86400";
                 router.push("/dashboard");
                 router.refresh();
               }}

@@ -38,14 +38,14 @@ const DEMO_CREDITS_KEY = "lengine_demo_credits";
 const DEMO_UNLOCKS_KEY = "lengine_demo_unlocks";
 
 function getDemoCredits(): number {
-  if (typeof window === "undefined") return 15;
+  if (typeof window === "undefined") return 500;
   const stored = localStorage.getItem(DEMO_CREDITS_KEY);
   if (stored !== null) {
     const val = parseInt(stored, 10);
-    return isNaN(val) ? 15 : val;
+    return isNaN(val) ? 500 : val;
   }
-  localStorage.setItem(DEMO_CREDITS_KEY, "15");
-  return 15;
+  localStorage.setItem(DEMO_CREDITS_KEY, "500");
+  return 500;
 }
 
 function setDemoCredits(balance: number): void {
@@ -359,34 +359,6 @@ export function DecisionMakersModal({
               <span className="font-mono font-bold text-amber-950">{credits}</span>
               <span className="text-amber-700">Credits Available</span>
             </div>
-
-            {/* Quick Demo Credit Top-up */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleAddCredits}
-              title="Add 15 Demo Credits for testing"
-              className="h-8 text-xs text-slate-500 hover:text-slate-900 px-2"
-            >
-              <PlusCircle className="h-3.5 w-3.5 mr-1 text-slate-400" />
-              +15 Credits
-            </Button>
-
-            {/* Test Fallback Scenario Toggle */}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setSimulateFailure(!simulateFailure)}
-              title="Toggle Waterfall Scenario B: Simulate zero results returned to demonstrate 0 credits deducted and human research fallback"
-              className={`h-8 text-xs transition-colors px-2.5 ${
-                simulateFailure
-                  ? "bg-amber-50 text-amber-900 border-amber-300 font-medium"
-                  : "border-[#eaeaea] text-slate-600 hover:text-slate-900 bg-white"
-              }`}
-            >
-              <RefreshCw className={`h-3 w-3 mr-1 ${simulateFailure ? "text-amber-600 animate-spin" : "text-slate-400"}`} />
-              <span>{simulateFailure ? "Scenario B Active (0 Results)" : "Simulate 0 Results"}</span>
-            </Button>
 
             {/* Close Button */}
             <button

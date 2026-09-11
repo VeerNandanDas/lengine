@@ -96,48 +96,7 @@ export interface Campaign {
   };
 }
 
-export const INITIAL_CAMPAIGNS: Campaign[] = [
-  {
-    id: "camp-001",
-    name: "US West Coast Enterprise Consignee Outreach",
-    targetAudience: "Major US Retail Consignees (Long Beach & Los Angeles)",
-    buyersCount: 4,
-    contactsCount: 10,
-    status: "Active",
-    createdAt: "2026-09-02",
-    channels: ["Email", "WhatsApp"],
-    stats: {
-      sent: 10,
-      delivered: 10,
-      opened: 7,
-      replied: 3,
-      meetings: 2,
-      openRate: 70.0,
-      replyRate: 30.0,
-      meetingRate: 20.0,
-    },
-  },
-  {
-    id: "camp-002",
-    name: "European Department Store & Living Procurement Q3",
-    targetAudience: "German & UK Retail Sourcing Directors (Hamburg & Felixstowe)",
-    buyersCount: 3,
-    contactsCount: 6,
-    status: "Active",
-    createdAt: "2026-08-25",
-    channels: ["Email", "WhatsApp"],
-    stats: {
-      sent: 12,
-      delivered: 12,
-      opened: 9,
-      replied: 4,
-      meetings: 2,
-      openRate: 75.0,
-      replyRate: 33.3,
-      meetingRate: 16.7,
-    },
-  },
-];
+export const INITIAL_CAMPAIGNS: Campaign[] = [];
 
 /**
  * Replace dynamic tokens in text with buyer & contact data.

@@ -13,11 +13,11 @@ import {
 } from "recharts";
 
 const regionalMarketsData = [
-  { region: "North America", code: "NA", share: 38.4, buyers: "1,264", growth: "+14.2%" },
-  { region: "European Union", code: "EU", share: 26.8, buyers: "882", growth: "+9.6%" },
-  { region: "Middle East / GCC", code: "ME", share: 18.2, buyers: "598", growth: "+21.4%" },
-  { region: "Asia-Pacific", code: "APAC", share: 11.1, buyers: "365", growth: "+12.0%" },
-  { region: "Latin America", code: "LATAM", share: 5.5, buyers: "182", growth: "+6.8%" },
+  { region: "North America", code: "NA", share: 38.4, buyers: "6 Enterprise Consignees", growth: "+14.2%" },
+  { region: "European Union", code: "EU", share: 26.8, buyers: "3 Enterprise Consignees", growth: "+9.6%" },
+  { region: "Middle East / GCC", code: "ME", share: 18.2, buyers: "2 Enterprise Consignees", growth: "+21.4%" },
+  { region: "Asia-Pacific", code: "APAC", share: 11.1, buyers: "1 Enterprise Consignee", growth: "+12.0%" },
+  { region: "Latin America", code: "LATAM", share: 5.5, buyers: "Monitored Corridor", growth: "+6.8%" },
 ];
 
 interface CustomTooltipProps {

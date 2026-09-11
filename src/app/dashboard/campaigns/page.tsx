@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BUYERS_DATA } from "@/lib/buyers-data";
 import {
   INITIAL_CAMPAIGNS,
@@ -44,8 +44,7 @@ We are a primary manufacturer specializing in {{primary_commodity}} (declared un
 Would you be open to a brief 10-minute introduction this week to review our certified sample specs?
 
 Best regards,
-Alex Chen
-Head of Global Accounts • Meridian Trade Sourcing`;
+Global Trade Operations Desk • Export Intelligence`;
 
 const DEFAULT_WHATSAPP = `Hi {{decision_maker_name}}, following up on our email regarding {{buyer_company}}'s recent container arrivals at {{recent_port}}.
 
@@ -57,6 +56,18 @@ export default function CampaignsPage() {
   const [campaigns, setCampaigns] = useState<Campaign[]>(INITIAL_CAMPAIGNS);
   const [isWizardOpen, setIsWizardOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
+
+  // Load user campaigns from localStorage on mount
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("lengine_user_campaigns");
+      if (stored) {
+        setCampaigns(JSON.parse(stored));
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
 
   // Wizard State
   const [selectedBuyerIds, setSelectedBuyerIds] = useState<string[]>([
@@ -106,16 +117,25 @@ export default function CampaignsPage() {
         stats: {
           sent: selectedBuyers.length * 2,
           delivered: selectedBuyers.length * 2,
-          opened: Math.ceil(selectedBuyers.length * 1.4),
-          replied: 1,
+          opened: 0,
+          replied: 0,
           meetings: 0,
-          openRate: 70.0,
-          replyRate: 25.0,
+          openRate: 0.0,
+          replyRate: 0.0,
           meetingRate: 0.0,
         },
       };
 
-      setCampaigns([newCampaign, ...campaigns]);
+      setCampaigns((prev) => {
+        const updated = [newCampaign, ...prev];
+        try {
+          localStorage.setItem("lengine_user_campaigns", JSON.stringify(updated));
+        } catch {
+          // ignore
+        }
+        return updated;
+      });
+
       setIsLaunching(false);
       setIsWizardOpen(false);
       setLaunchSuccess(true);

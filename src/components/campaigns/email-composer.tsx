@@ -373,8 +373,8 @@ export function EmailComposer({
 
               <div className="flex items-center gap-2">
                 <span className="text-slate-400 uppercase font-semibold w-16 text-[10px]">From:</span>
-                <span className="font-semibold text-slate-900">Alex Chen</span>
-                <span className="text-slate-400 font-mono">&lt;alex.chen@meridian-trade.com&gt;</span>
+                <span className="font-semibold text-slate-900">Trade Operations Desk</span>
+                <span className="text-slate-400 font-mono">&lt;trade.desk@lengine.io&gt;</span>
               </div>
 
               <div className="flex items-center gap-2 pt-1 border-t border-[#eaeaea]">
@@ -393,8 +393,8 @@ export function EmailComposer({
             {/* Email Footer */}
             <div className="px-8 py-4 bg-slate-50 border-t border-[#eaeaea] text-xs text-slate-500 flex items-center justify-between">
               <div>
-                <p className="font-bold text-slate-800">Alex Chen</p>
-                <p className="text-[11px] text-slate-400">Head of Global Trade Accounts • Meridian Trade Sourcing</p>
+                <p className="font-bold text-slate-800">Trade Operations Desk</p>
+                <p className="text-[11px] text-slate-400">Export Intelligence & Procurement Desk</p>
               </div>
               <div className="text-[10px] text-slate-400 font-mono">
                 Sent via Lengine Trade Engine
