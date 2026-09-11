@@ -28,6 +28,10 @@ import {
   Anchor,
   CheckCircle2,
   PlusCircle,
+  AlertCircle,
+  Search,
+  AlertTriangle,
+  RefreshCw,
 } from "lucide-react";
 
 const DEMO_CREDITS_KEY = "lengine_demo_credits";
@@ -87,6 +91,18 @@ export function DecisionMakersModal({
   const [error, setError] = useState<string | null>(null);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
+  // Single Contact Waterfall States
+  const [singleUnlockedData, setSingleUnlockedData] = useState<Record<string, UnlockedDecisionMaker>>({});
+  const [unlockingContactId, setUnlockingContactId] = useState<string | null>(null);
+  const [failedContactStates, setFailedContactStates] = useState<
+    Record<string, { message: string; canRequestHumanResearch: boolean }>
+  >({});
+  const [humanResearchTickets, setHumanResearchTickets] = useState<
+    Record<string, { ticketId: string; status: string }>
+  >({});
+  const [requestingHumanResearchId, setRequestingHumanResearchId] = useState<string | null>(null);
+  const [simulateFailure, setSimulateFailure] = useState(false);
+
   // Close on Escape key
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -109,6 +125,8 @@ export function DecisionMakersModal({
     const currentCredits = getDemoCredits();
     setCredits(currentCredits);
     setError(null);
+    setFailedContactStates({});
+    setHumanResearchTickets({});
 
     const masked = getMaskedContacts(buyer.id);
     setMaskedContacts(masked);
@@ -136,6 +154,116 @@ export function DecisionMakersModal({
     setTimeout(() => setCopiedKey(null), 2000);
   }, []);
 
+  // Unlock single contact (costs 1 credit) with soft-lock and Apollo -> PDL waterfall
+  const handleUnlockSingle = async (contactId: string) => {
+    if (!buyer) return;
+    const currentCredits = getDemoCredits();
+    if (currentCredits < 1) {
+      setError("Insufficient credits. You need at least 1 credit to unlock this contact.");
+      return;
+    }
+
+    setUnlockingContactId(contactId);
+    setError(null);
+    // Clear any previous failure message on this specific card
+    setFailedContactStates((prev) => {
+      const next = { ...prev };
+      delete next[contactId];
+      return next;
+    });
+
+    try {
+      const res = await fetch("/api/contacts/unlock", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          buyerId: buyer.id,
+          contactId,
+          simulateFailure,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.success && data.contact) {
+        // Scenario A: Success - 1 Credit permanently deducted
+        const newBalance = Math.max(0, currentCredits - 1);
+        setDemoCredits(newBalance);
+        setCredits(newBalance);
+
+        setSingleUnlockedData((prev) => ({
+          ...prev,
+          [contactId]: data.contact,
+        }));
+      } else if (data.scenario === "not_found") {
+        // Scenario B: Failure across waterfall - hold cancelled, 0 credits deducted
+        setFailedContactStates((prev) => ({
+          ...prev,
+          [contactId]: {
+            message:
+              data.message ||
+              "We couldn't find a verified direct contact for this company. 0 Credits were deducted.",
+            canRequestHumanResearch: Boolean(data.canRequestHumanResearch),
+          },
+        }));
+      } else {
+        setError(data.message || "An unexpected error occurred during verification.");
+      }
+    } catch {
+      setError("Failed to reach verification registry. Please try again.");
+    } finally {
+      setUnlockingContactId(null);
+    }
+  };
+
+  // Human Research Request (costs 3 credits, 48hr turnaround)
+  const handleRequestHumanResearch = async (contactId: string, role: string) => {
+    if (!buyer) return;
+    const currentCredits = getDemoCredits();
+    if (currentCredits < 3) {
+      setError("Insufficient credits. Human Research requires 3 credits.");
+      return;
+    }
+
+    setRequestingHumanResearchId(contactId);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/contacts/human-research", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          buyerId: buyer.id,
+          contactId,
+          role,
+          companyName: buyer.name,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        const newBalance = Math.max(0, currentCredits - 3);
+        setDemoCredits(newBalance);
+        setCredits(newBalance);
+
+        setHumanResearchTickets((prev) => ({
+          ...prev,
+          [contactId]: {
+            ticketId: data.ticketId,
+            status: "queued",
+          },
+        }));
+      } else {
+        setError(data.message || "Failed to dispatch human research request.");
+      }
+    } catch {
+      setError("Failed to queue request with research desk.");
+    } finally {
+      setRequestingHumanResearchId(null);
+    }
+  };
+
   // Unlock all contacts (costs 5 credits)
   const handleUnlockAll = async () => {
     if (!buyer) return;
@@ -154,7 +282,7 @@ export function DecisionMakersModal({
 
       if (result.success && result.contacts) {
         // Deduct 5 credits in demo mode
-        const newBalance = currentCredits - 5;
+        const newBalance = Math.max(0, currentCredits - 5);
         setDemoCredits(newBalance);
         setCredits(newBalance);
         addDemoUnlockedBuyer(buyer.id);
@@ -242,6 +370,22 @@ export function DecisionMakersModal({
             >
               <PlusCircle className="h-3.5 w-3.5 mr-1 text-slate-400" />
               +15 Credits
+            </Button>
+
+            {/* Test Fallback Scenario Toggle */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setSimulateFailure(!simulateFailure)}
+              title="Toggle Waterfall Scenario B: Simulate zero results returned to demonstrate 0 credits deducted and human research fallback"
+              className={`h-8 text-xs transition-colors px-2.5 ${
+                simulateFailure
+                  ? "bg-amber-50 text-amber-900 border-amber-300 font-medium"
+                  : "border-[#eaeaea] text-slate-600 hover:text-slate-900 bg-white"
+              }`}
+            >
+              <RefreshCw className={`h-3 w-3 mr-1 ${simulateFailure ? "text-amber-600 animate-spin" : "text-slate-400"}`} />
+              <span>{simulateFailure ? "Scenario B Active (0 Results)" : "Simulate 0 Results"}</span>
             </Button>
 
             {/* Close Button */}
@@ -539,119 +683,364 @@ export function DecisionMakersModal({
                       </div>
                     </motion.div>
                   ))
-                : maskedContacts.map((contact, index) => (
-                    <motion.div
-                      key={contact.id}
-                      initial={{ opacity: 0, y: 14 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.25, delay: index * 0.06 }}
-                      className="bg-white rounded-xl border border-[#eaeaea] p-6 shadow-xs flex flex-col justify-between relative overflow-hidden"
-                    >
-                      <div>
-                        {/* Profile Header (Masked) */}
-                        <div className="flex items-start justify-between gap-3 mb-4">
-                          <div className="flex items-center gap-3">
-                            <div className="h-12 w-12 rounded-xl bg-slate-100 border border-[#eaeaea] text-slate-400 font-bold text-sm flex items-center justify-center flex-shrink-0">
-                              <Lock className="h-5 w-5 text-slate-400" />
+                : maskedContacts.map((contact, index) => {
+                    const singleData = singleUnlockedData[contact.id];
+                    const isSingleUnlocked = Boolean(singleData);
+                    const isCurrentlyUnlocking = unlockingContactId === contact.id;
+                    const failedState = failedContactStates[contact.id];
+                    const researchTicket = humanResearchTickets[contact.id];
+
+                    if (isSingleUnlocked && singleData) {
+                      return (
+                        <motion.div
+                          key={contact.id}
+                          initial={{ opacity: 0, scale: 0.96 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.25 }}
+                          className="bg-white rounded-xl border-2 border-emerald-500/30 hover:border-emerald-500/50 transition-all p-6 shadow-xs flex flex-col justify-between"
+                        >
+                          <div>
+                            {/* Profile Header (Unlocked) */}
+                            <div className="flex items-start justify-between gap-3 mb-4">
+                              <div className="flex items-center gap-3">
+                                <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-800 text-white font-bold text-sm flex items-center justify-center shadow-xs flex-shrink-0">
+                                  {singleData.name
+                                    .split(" ")
+                                    .map((n) => n[0])
+                                    .slice(0, 2)
+                                    .join("")}
+                                </div>
+                                <div>
+                                  <div className="flex items-center gap-1.5">
+                                    <h5 className="text-base font-bold text-slate-900 tracking-tight">
+                                      {singleData.name}
+                                    </h5>
+                                    <ShieldCheck className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                                  </div>
+                                  <span className="text-xs font-medium text-emerald-600">
+                                    {singleData.role}
+                                  </span>
+                                </div>
+                              </div>
+                              <span className="text-[10px] bg-emerald-50 border border-emerald-200 text-emerald-700 px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
+                                <CheckCircle2 className="h-3 w-3 text-emerald-600" />
+                                Unlocked (1 Credit)
+                              </span>
                             </div>
-                            <div>
-                              <div className="flex items-center gap-2">
-                                <h5 className="text-base font-bold text-slate-800 font-mono tracking-tight select-none">
-                                  {contact.maskedName}
-                                </h5>
-                                <span className="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-medium">
-                                  Locked
+
+                            {/* Department Badge */}
+                            <div className="mb-5">
+                              <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-slate-100 border border-[#eaeaea] px-2.5 py-0.5 rounded-md">
+                                <Building2 className="h-3 w-3 text-slate-400" />
+                                {singleData.department}
+                              </span>
+                            </div>
+
+                            {/* Unmasked Data Rows */}
+                            <div className="space-y-3 pt-1 border-t border-[#eaeaea]">
+                              {/* Work Email Row */}
+                              <div className="flex items-center justify-between text-xs py-1">
+                                <div className="flex items-center gap-2 min-w-0 pr-2">
+                                  <div className="h-7 w-7 rounded-md bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0">
+                                    <Mail className="h-3.5 w-3.5" />
+                                  </div>
+                                  <div className="truncate">
+                                    <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+                                      Direct Work Email
+                                    </span>
+                                    <a
+                                      href={`mailto:${singleData.email}`}
+                                      className="font-mono text-slate-800 hover:text-emerald-700 truncate block font-medium"
+                                    >
+                                      {singleData.email}
+                                    </a>
+                                  </div>
+                                </div>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => handleCopy(singleData.email, `email-${contact.id}`)}
+                                  className="h-7 px-2 border-[#eaeaea] text-[11px] text-slate-600 hover:text-slate-900 bg-white flex-shrink-0"
+                                >
+                                  {copiedKey === `email-${contact.id}` ? (
+                                    <>
+                                      <Check className="h-3 w-3 mr-1 text-emerald-600" />
+                                      <span className="text-emerald-600 font-medium">Copied</span>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Copy className="h-3 w-3 mr-1 text-slate-400" />
+                                      Copy
+                                    </>
+                                  )}
+                                </Button>
+                              </div>
+
+                              {/* Direct Phone Row */}
+                              <div className="flex items-center justify-between text-xs py-1">
+                                <div className="flex items-center gap-2 min-w-0 pr-2">
+                                  <div className="h-7 w-7 rounded-md bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0">
+                                    <Phone className="h-3.5 w-3.5" />
+                                  </div>
+                                  <div className="truncate">
+                                    <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+                                      Direct Line / Desk
+                                    </span>
+                                    <a
+                                      href={`tel:${singleData.phone}`}
+                                      className="font-mono text-slate-800 hover:text-emerald-700 truncate block font-medium"
+                                    >
+                                      {singleData.phone}
+                                    </a>
+                                  </div>
+                                </div>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => handleCopy(singleData.phone, `phone-${contact.id}`)}
+                                  className="h-7 px-2 border-[#eaeaea] text-[11px] text-slate-600 hover:text-slate-900 bg-white flex-shrink-0"
+                                >
+                                  {copiedKey === `phone-${contact.id}` ? (
+                                    <>
+                                      <Check className="h-3 w-3 mr-1 text-emerald-600" />
+                                      <span className="text-emerald-600 font-medium">Copied</span>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Copy className="h-3 w-3 mr-1 text-slate-400" />
+                                      Copy
+                                    </>
+                                  )}
+                                </Button>
+                              </div>
+
+                              {/* LinkedIn Profile */}
+                              <div className="flex items-center justify-between text-xs py-1">
+                                <div className="flex items-center gap-2 min-w-0">
+                                  <div className="h-7 w-7 rounded-md bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 flex-shrink-0">
+                                    <ExternalLink className="h-3.5 w-3.5" />
+                                  </div>
+                                  <div>
+                                    <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+                                      Executive Network
+                                    </span>
+                                    <span className="text-slate-800 font-medium">
+                                      Verified LinkedIn Profile
+                                    </span>
+                                  </div>
+                                </div>
+                                <a
+                                  href={singleData.linkedinUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 hover:text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-2.5 py-1 rounded-md transition-colors flex-shrink-0"
+                                >
+                                  Connect
+                                  <ExternalLink className="h-2.5 w-2.5" />
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Card Footer */}
+                          <div className="mt-5 pt-3 border-t border-[#eaeaea] flex items-center justify-between text-[10px] text-slate-400">
+                            <span className="flex items-center gap-1 text-emerald-600 font-medium">
+                              <CheckCircle2 className="h-3 w-3" />
+                              Single Verified Lead
+                            </span>
+                            <span>Direct Procurement Contact</span>
+                          </div>
+                        </motion.div>
+                      );
+                    }
+
+                    return (
+                      <motion.div
+                        key={contact.id}
+                        initial={{ opacity: 0, y: 14 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.25, delay: index * 0.06 }}
+                        className="bg-white rounded-xl border border-[#eaeaea] p-6 shadow-xs flex flex-col justify-between relative overflow-hidden"
+                      >
+                        <div>
+                          {/* Profile Header (Masked) */}
+                          <div className="flex items-start justify-between gap-3 mb-4">
+                            <div className="flex items-center gap-3">
+                              <div className="h-12 w-12 rounded-xl bg-slate-100 border border-[#eaeaea] text-slate-400 font-bold text-sm flex items-center justify-center flex-shrink-0">
+                                <Lock className="h-5 w-5 text-slate-400" />
+                              </div>
+                              <div>
+                                <div className="flex items-center gap-2">
+                                  <h5 className="text-base font-bold text-slate-800 font-mono tracking-tight select-none">
+                                    {contact.maskedName}
+                                  </h5>
+                                  <span className="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-medium">
+                                    Locked
+                                  </span>
+                                </div>
+                                <span className="text-xs font-semibold text-slate-700 block mt-0.5">
+                                  {contact.role}
                                 </span>
                               </div>
-                              <span className="text-xs font-semibold text-slate-700 block mt-0.5">
-                                {contact.role}
+                            </div>
+                          </div>
+
+                          {/* Department Badge */}
+                          <div className="mb-5">
+                            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 bg-slate-100 border border-[#eaeaea] px-2.5 py-0.5 rounded-md">
+                              <Building2 className="h-3 w-3 text-slate-400" />
+                              {contact.department}
+                            </span>
+                          </div>
+
+                          {/* Masked Data Rows */}
+                          <div className="space-y-3 pt-1 border-t border-[#eaeaea]">
+                            {/* Work Email Row */}
+                            <div className="flex items-center justify-between text-xs py-1">
+                              <div className="flex items-center gap-2 min-w-0">
+                                <div className="h-7 w-7 rounded-md bg-slate-100 border border-[#eaeaea] flex items-center justify-center text-slate-400 flex-shrink-0">
+                                  <Mail className="h-3.5 w-3.5" />
+                                </div>
+                                <div>
+                                  <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+                                    Direct Work Email
+                                  </span>
+                                  <span className="font-mono text-slate-400 select-none blur-[2.5px] hover:blur-none transition-all">
+                                    {contact.maskedEmail}
+                                  </span>
+                                </div>
+                              </div>
+                              <span className="text-[10px] text-slate-400 font-mono bg-slate-50 px-1.5 py-0.5 rounded border border-[#eaeaea]">
+                                1 Credit
+                              </span>
+                            </div>
+
+                            {/* Direct Phone Row */}
+                            <div className="flex items-center justify-between text-xs py-1">
+                              <div className="flex items-center gap-2 min-w-0">
+                                <div className="h-7 w-7 rounded-md bg-slate-100 border border-[#eaeaea] flex items-center justify-center text-slate-400 flex-shrink-0">
+                                  <Phone className="h-3.5 w-3.5" />
+                                </div>
+                                <div>
+                                  <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+                                    Direct Line / Desk
+                                  </span>
+                                  <span className="font-mono text-slate-400 select-none blur-[2.5px] hover:blur-none transition-all">
+                                    {contact.maskedPhone}
+                                  </span>
+                                </div>
+                              </div>
+                              <span className="text-[10px] text-slate-400 font-mono bg-slate-50 px-1.5 py-0.5 rounded border border-[#eaeaea]">
+                                1 Credit
+                              </span>
+                            </div>
+
+                            {/* LinkedIn Profile */}
+                            <div className="flex items-center justify-between text-xs py-1">
+                              <div className="flex items-center gap-2 min-w-0">
+                                <div className="h-7 w-7 rounded-md bg-slate-100 border border-[#eaeaea] flex items-center justify-center text-slate-400 flex-shrink-0">
+                                  <ExternalLink className="h-3.5 w-3.5" />
+                                </div>
+                                <div>
+                                  <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+                                    Executive Network
+                                  </span>
+                                  <span className="text-slate-400 text-xs">
+                                    LinkedIn Profile
+                                  </span>
+                                </div>
+                              </div>
+                              <span className="text-[10px] text-slate-400 font-mono bg-slate-50 px-1.5 py-0.5 rounded border border-[#eaeaea]">
+                                Locked
                               </span>
                             </div>
                           </div>
+
+                          {/* Action Button / Graceful Failure State */}
+                          <div className="mt-4 pt-3 border-t border-[#eaeaea]">
+                            {failedState ? (
+                              <div className="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200/80 text-amber-950 space-y-2.5 text-xs">
+                                <div className="flex items-start gap-2">
+                                  <AlertTriangle className="h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                                  <p className="leading-snug font-medium text-amber-900">
+                                    We couldn't find a verified direct contact for this company. 0 Credits were deducted.
+                                  </p>
+                                </div>
+
+                                {researchTicket ? (
+                                  <div className="p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] flex items-center gap-2">
+                                    <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                                    <div>
+                                      <span className="font-semibold block">Queued with Research Team</span>
+                                      <span className="text-[10px] text-emerald-700 font-mono">
+                                        Ticket #{researchTicket.ticketId} • 48hr turnaround
+                                      </span>
+                                    </div>
+                                  </div>
+                                ) : (
+                                  <div className="space-y-1.5 pt-1">
+                                    <Button
+                                      size="sm"
+                                      onClick={() => handleRequestHumanResearch(contact.id, contact.role)}
+                                      disabled={requestingHumanResearchId === contact.id}
+                                      className="w-full h-8 text-[11px] font-semibold bg-amber-700 hover:bg-amber-800 text-white rounded-lg flex items-center justify-center gap-1.5 shadow-xs transition-colors"
+                                    >
+                                      {requestingHumanResearchId === contact.id ? (
+                                        <>
+                                          <Loader2 className="h-3 w-3 animate-spin text-white" />
+                                          <span>Submitting to Research Team...</span>
+                                        </>
+                                      ) : (
+                                        <>
+                                          <Search className="h-3 w-3 text-amber-200" />
+                                          <span>Send to Human Research Team (Requires 3 Credits, 48hr turnaround)</span>
+                                        </>
+                                      )}
+                                    </Button>
+
+                                    <button
+                                      onClick={() => handleUnlockSingle(contact.id)}
+                                      className="w-full text-center text-[10px] text-slate-500 hover:text-slate-800 underline pt-0.5"
+                                    >
+                                      Try Waterfall Search Again
+                                    </button>
+                                  </div>
+                                )}
+                              </div>
+                            ) : (
+                              <Button
+                                size="sm"
+                                onClick={() => handleUnlockSingle(contact.id)}
+                                disabled={isCurrentlyUnlocking}
+                                className="w-full h-9 bg-slate-900 hover:bg-indigo-600 text-white font-medium text-xs rounded-lg flex items-center justify-center gap-1.5 transition-all shadow-xs disabled:opacity-85"
+                              >
+                                {isCurrentlyUnlocking ? (
+                                  <>
+                                    <Loader2 className="h-3.5 w-3.5 animate-spin text-indigo-200" />
+                                    <span>Searching global registries...</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Coins className="h-3.5 w-3.5 text-amber-400 fill-amber-400" />
+                                    <span>Unlock Contact (1 Credit)</span>
+                                  </>
+                                )}
+                              </Button>
+                            )}
+                          </div>
                         </div>
 
-                        {/* Department Badge */}
-                        <div className="mb-5">
-                          <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 bg-slate-100 border border-[#eaeaea] px-2.5 py-0.5 rounded-md">
-                            <Building2 className="h-3 w-3 text-slate-400" />
-                            {contact.department}
+                        {/* Card Footer */}
+                        <div className="mt-4 pt-3 border-t border-[#eaeaea] flex items-center justify-between text-[10px] text-slate-400">
+                          <span className="flex items-center gap-1 text-slate-500 font-medium">
+                            <Coins className="h-3 w-3 text-slate-400" />
+                            1 Credit Per Lead
                           </span>
+                          <span>Key Sourcing Contact</span>
                         </div>
-
-                        {/* Masked Data Rows */}
-                        <div className="space-y-3 pt-1 border-t border-[#eaeaea]">
-                          {/* Work Email Row */}
-                          <div className="flex items-center justify-between text-xs py-1">
-                            <div className="flex items-center gap-2 min-w-0">
-                              <div className="h-7 w-7 rounded-md bg-slate-100 border border-[#eaeaea] flex items-center justify-center text-slate-400 flex-shrink-0">
-                                <Mail className="h-3.5 w-3.5" />
-                              </div>
-                              <div>
-                                <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
-                                  Direct Work Email
-                                </span>
-                                <span className="font-mono text-slate-400 select-none blur-[2.5px] hover:blur-none transition-all">
-                                  {contact.maskedEmail}
-                                </span>
-                              </div>
-                            </div>
-                            <span className="text-[10px] text-slate-400 font-mono bg-slate-50 px-1.5 py-0.5 rounded border border-[#eaeaea]">
-                              5 Credits
-                            </span>
-                          </div>
-
-                          {/* Direct Phone Row */}
-                          <div className="flex items-center justify-between text-xs py-1">
-                            <div className="flex items-center gap-2 min-w-0">
-                              <div className="h-7 w-7 rounded-md bg-slate-100 border border-[#eaeaea] flex items-center justify-center text-slate-400 flex-shrink-0">
-                                <Phone className="h-3.5 w-3.5" />
-                              </div>
-                              <div>
-                                <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
-                                  Direct Line / Desk
-                                </span>
-                                <span className="font-mono text-slate-400 select-none blur-[2.5px] hover:blur-none transition-all">
-                                  {contact.maskedPhone}
-                                </span>
-                              </div>
-                            </div>
-                            <span className="text-[10px] text-slate-400 font-mono bg-slate-50 px-1.5 py-0.5 rounded border border-[#eaeaea]">
-                              5 Credits
-                            </span>
-                          </div>
-
-                          {/* LinkedIn Profile */}
-                          <div className="flex items-center justify-between text-xs py-1">
-                            <div className="flex items-center gap-2 min-w-0">
-                              <div className="h-7 w-7 rounded-md bg-slate-100 border border-[#eaeaea] flex items-center justify-center text-slate-400 flex-shrink-0">
-                                <ExternalLink className="h-3.5 w-3.5" />
-                              </div>
-                              <div>
-                                <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
-                                  Executive Network
-                                </span>
-                                <span className="text-slate-400 text-xs">
-                                  LinkedIn Profile
-                                </span>
-                              </div>
-                            </div>
-                            <span className="text-[10px] text-slate-400 font-mono bg-slate-50 px-1.5 py-0.5 rounded border border-[#eaeaea]">
-                              Locked
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Card Footer */}
-                      <div className="mt-5 pt-3 border-t border-[#eaeaea] flex items-center justify-between text-[10px] text-slate-400">
-                        <span className="flex items-center gap-1 text-slate-500 font-medium">
-                          <Lock className="h-3 w-3 text-slate-400" />
-                          Requires 5 Credits Unlock
-                        </span>
-                        <span>Key Sourcing Contact</span>
-                      </div>
-                    </motion.div>
-                  ))}
+                      </motion.div>
+                    );
+                  })}
             </AnimatePresence>
           </div>
         </div>
