@@ -47,7 +47,7 @@ export function ScrollProgressWidget() {
   return (
     <aside
       aria-label="Scroll percentage indicator"
-      className="fixed bottom-6 right-6 z-40 select-none print:hidden flex items-center gap-2"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 select-none print:hidden flex items-center gap-2"
     >
       <button
         type="button"

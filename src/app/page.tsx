@@ -6,6 +6,7 @@ import { TwoEnginesSection } from "@/components/landing/two-engines-section";
 import { DarkFeatureGrid } from "@/components/landing/dark-feature-grid";
 import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { PricingSection } from "@/components/landing/pricing-section";
+import { ContactEnquirySection } from "@/components/landing/contact-enquiry-section";
 import { CtaBanner } from "@/components/landing/cta-banner";
 import { LandingFooter } from "@/components/landing/landing-footer";
 import { ScrollProgressWidget } from "@/components/landing/scroll-progress-widget";
@@ -40,7 +41,10 @@ export default function HomePage() {
         {/* 7. Institutional Pricing Matrix with Annual/Monthly Toggle & FAQs */}
         <PricingSection />
 
-        {/* 8. Conversion CTA Banner */}
+        {/* 8. Institutional Get in Touch & Trade Desk Enquiry Form */}
+        <ContactEnquirySection />
+
+        {/* 9. Conversion CTA Banner */}
         <CtaBanner />
       </main>
 

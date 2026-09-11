@@ -111,10 +111,10 @@ export function PricingSection() {
           </p>
 
           {/* Billing Cycle Toggle */}
-          <div className="mt-8 inline-flex items-center gap-3 p-1 rounded-full border border-[#eaeaea] dark:border-[#27272a] bg-[#fafafa] dark:bg-[#18181b]">
+          <div className="mt-8 inline-flex items-center gap-1.5 sm:gap-3 p-1 rounded-full border border-[#eaeaea] dark:border-[#27272a] bg-[#fafafa] dark:bg-[#18181b] max-w-full">
             <button
               onClick={() => setIsAnnual(false)}
-              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+              className={`px-3 sm:px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
                 !isAnnual
                   ? "bg-white dark:bg-[#27272a] text-slate-900 dark:text-slate-100 shadow-xs border border-[#eaeaea] dark:border-transparent"
                   : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
@@ -124,7 +124,7 @@ export function PricingSection() {
             </button>
             <button
               onClick={() => setIsAnnual(true)}
-              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
                 isAnnual
                   ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xs"
                   : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
@@ -139,13 +139,13 @@ export function PricingSection() {
         </div>
 
         {/* Pricing Cards Grid */}
-        <div className="mt-14 grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        <div className="mt-12 sm:mt-14 grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
           {plans.map((plan) => {
             const price = isAnnual ? plan.annualPrice : plan.monthlyPrice;
             return (
               <div
                 key={plan.name}
-                className={`relative flex flex-col justify-between rounded-2xl p-8 transition-all ${
+                className={`relative flex flex-col justify-between rounded-2xl p-6 sm:p-8 transition-all ${
                   plan.popular
                     ? "bg-[#fafafa] dark:bg-[#121215] border-2 border-slate-900 dark:border-indigo-500 shadow-md"
                     : "bg-white dark:bg-[#0e0e11] border border-[#eaeaea] dark:border-[#27272a] hover:border-slate-300 dark:hover:border-slate-700"

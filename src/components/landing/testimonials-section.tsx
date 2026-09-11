@@ -26,7 +26,7 @@ export function TestimonialsSection() {
         {/* Split Grid: Metrics + Testimonials */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Big Stat Card 1 */}
-          <div className="bg-white dark:bg-[#0f0f12] rounded-xl border border-[#eaeaea] dark:border-[#27272a] p-8 flex flex-col justify-between">
+          <div className="bg-white dark:bg-[#0f0f12] rounded-xl border border-[#eaeaea] dark:border-[#27272a] p-5 sm:p-8 flex flex-col justify-between">
             <div>
               <span className="text-[11px] uppercase tracking-wider font-mono text-slate-400 dark:text-slate-500">
                 Sourcing Acceleration
@@ -50,7 +50,7 @@ export function TestimonialsSection() {
           </div>
 
           {/* Testimonial Card 1 */}
-          <div className="bg-white dark:bg-[#0f0f12] rounded-xl border border-[#eaeaea] dark:border-[#27272a] p-8 flex flex-col justify-between">
+          <div className="bg-white dark:bg-[#0f0f12] rounded-xl border border-[#eaeaea] dark:border-[#27272a] p-5 sm:p-8 flex flex-col justify-between">
             <div>
               <Quote className="h-6 w-6 text-indigo-400 mb-4 opacity-50" />
               <p className="text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-normal">
@@ -72,7 +72,7 @@ export function TestimonialsSection() {
           </div>
 
           {/* Testimonial Card 2 */}
-          <div className="bg-white dark:bg-[#0f0f12] rounded-xl border border-[#eaeaea] dark:border-[#27272a] p-8 flex flex-col justify-between">
+          <div className="bg-white dark:bg-[#0f0f12] rounded-xl border border-[#eaeaea] dark:border-[#27272a] p-5 sm:p-8 flex flex-col justify-between">
             <div>
               <Quote className="h-6 w-6 text-indigo-400 mb-4 opacity-50" />
               <p className="text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-normal">
