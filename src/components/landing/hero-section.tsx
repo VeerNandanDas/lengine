@@ -213,37 +213,37 @@ export function HeroSection() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
                 <div className="p-3.5 rounded-xl border border-slate-800/80 bg-[#111625] hover:border-indigo-500/40 hover:bg-[#151c2e] transition-all group">
                   <div className="flex items-center justify-between text-xs mb-1">
-                    <span className="font-semibold text-white truncate group-hover:text-indigo-300 transition-colors">Pacific Textiles LLC</span>
+                    <span className="font-semibold text-white truncate group-hover:text-indigo-300 transition-colors">Target Brands, Inc.</span>
                     <span className="text-xs">🇺🇸</span>
                   </div>
                   <p className="text-[11px] text-slate-400">Port of Long Beach (USLGB)</p>
                   <div className="mt-2.5 flex items-center justify-between text-[11px] pt-2 border-t border-slate-800/80">
-                    <span className="text-slate-400">MOQ: 1,200 TEUs</span>
+                    <span className="text-slate-400">MOQ: 3,800 TEUs</span>
                     <span className="font-mono text-indigo-400 font-medium bg-indigo-950/70 border border-indigo-800/40 px-1.5 py-0.5 rounded text-[10px]">FOB / CIF</span>
                   </div>
                 </div>
 
                 <div className="p-3.5 rounded-xl border border-slate-800/80 bg-[#111625] hover:border-indigo-500/40 hover:bg-[#151c2e] transition-all group">
                   <div className="flex items-center justify-between text-xs mb-1">
-                    <span className="font-semibold text-white truncate group-hover:text-indigo-300 transition-colors">Meridian Nordic AG</span>
+                    <span className="font-semibold text-white truncate group-hover:text-indigo-300 transition-colors">Otto Group</span>
                     <span className="text-xs">🇩🇪</span>
                   </div>
                   <p className="text-[11px] text-slate-400">Port of Hamburg (DEHAM)</p>
                   <div className="mt-2.5 flex items-center justify-between text-[11px] pt-2 border-t border-slate-800/80">
-                    <span className="text-slate-400">MOQ: 850 TEUs</span>
+                    <span className="text-slate-400">MOQ: 2,100 TEUs</span>
                     <span className="font-mono text-indigo-400 font-medium bg-indigo-950/70 border border-indigo-800/40 px-1.5 py-0.5 rounded text-[10px]">CIF / DDP</span>
                   </div>
                 </div>
 
                 <div className="p-3.5 rounded-xl border border-slate-800/80 bg-[#111625] hover:border-indigo-500/40 hover:bg-[#151c2e] transition-all group">
                   <div className="flex items-center justify-between text-xs mb-1">
-                    <span className="font-semibold text-white truncate group-hover:text-indigo-300 transition-colors">Al-Mansoor Gulf FZE</span>
+                    <span className="font-semibold text-white truncate group-hover:text-indigo-300 transition-colors">Landmark Group</span>
                     <span className="text-xs">🇦🇪</span>
                   </div>
                   <p className="text-[11px] text-slate-400">Port of Jebel Ali (AEJEA)</p>
                   <div className="mt-2.5 flex items-center justify-between text-[11px] pt-2 border-t border-slate-800/80">
-                    <span className="text-slate-400">MOQ: 2,400 TEUs</span>
-                    <span className="font-mono text-indigo-400 font-medium bg-indigo-950/70 border border-indigo-800/40 px-1.5 py-0.5 rounded text-[10px]">FOB / EXW</span>
+                    <span className="text-slate-400">MOQ: 2,800 TEUs</span>
+                    <span className="font-mono text-indigo-400 font-medium bg-indigo-950/70 border border-indigo-800/40 px-1.5 py-0.5 rounded text-[10px]">FOB / CIF</span>
                   </div>
                 </div>
               </div>

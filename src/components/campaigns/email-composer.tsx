@@ -364,10 +364,10 @@ export function EmailComposer({
               <div className="flex items-center gap-2">
                 <span className="text-slate-400 uppercase font-semibold w-16 text-[10px]">To:</span>
                 <span className="font-semibold text-slate-900">
-                  {targetBuyer?.name || "Pacific Textiles LLC"} Leadership
+                  {targetBuyer?.name || "Target Brands, Inc."} Leadership
                 </span>
                 <span className="text-slate-400 font-mono">
-                  &lt;procurement@{targetBuyer?.name.toLowerCase().replace(/[^a-z]/g, "") || "pacifictextiles"}.com&gt;
+                  &lt;procurement@{targetBuyer?.name.toLowerCase().replace(/[^a-z]/g, "") || "target"}.com&gt;
                 </span>
               </div>
 

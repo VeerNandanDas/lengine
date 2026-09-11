@@ -11,6 +11,7 @@ import {
   Layers,
 } from "lucide-react";
 import Link from "next/link";
+import { BUYERS_DATA } from "@/lib/buyers-data";
 import { DashboardSearchChart } from "@/components/dashboard/dashboard-search-chart";
 import { DashboardMarketsChart } from "@/components/dashboard/dashboard-markets-chart";
 
@@ -276,26 +277,32 @@ export default function DashboardPage() {
           {[
             {
               action: "BoL Registered",
-              detail: 'MEDUST892147 — 18,450 kg "Organic Cotton Bed Sheets"',
+              detail: `${BUYERS_DATA[0]?.shipments[0]?.bolNumber || "MEDUST892147"} — 18,450 kg "Target Brands Organic Sateen Bed Sheets"`,
               market: "Nhava Sheva (IN) → Long Beach (US)",
               time: "2 min ago",
             },
             {
               action: "Consignee Unlocked",
-              detail: "Pacific Textiles LLC — Derived MOQ: 1,200 TEUs",
-              market: "United States • FOB/CIF",
-              time: "15 min ago",
+              detail: `${BUYERS_DATA[0]?.name || "Target Brands, Inc."} — Derived MOQ: ${BUYERS_DATA[0]?.derivedMoq || "3,800 TEUs"}`,
+              market: `${BUYERS_DATA[0]?.country || "United States"} • ${BUYERS_DATA[0]?.usualIncoterms.join("/") || "FOB/CIF"}`,
+              time: "14 min ago",
             },
             {
               action: "Customs Cleared",
-              detail: 'HLCUDE918230 — 19,800 kg "Institutional White Terry Towels"',
-              market: "Nhava Sheva (IN) → Hamburg (DE)",
-              time: "48 min ago",
+              detail: `${BUYERS_DATA[1]?.shipments[0]?.bolNumber || "WMTLAX918230"} — 24,800 kg "Walmart Mainstays Microfiber Sheet Sets"`,
+              market: "Nhava Sheva (IN) → Los Angeles (US)",
+              time: "38 min ago",
+            },
+            {
+              action: "Consignee Unlocked",
+              detail: `${BUYERS_DATA[1]?.name || "Walmart Inc."} — Derived MOQ: ${BUYERS_DATA[1]?.derivedMoq || "8,500 TEUs"}`,
+              market: `${BUYERS_DATA[1]?.country || "United States"} • ${BUYERS_DATA[1]?.usualIncoterms.join("/") || "FOB/FCA"}`,
+              time: "52 min ago",
             },
             {
               action: "BoL Registered",
-              detail: 'DPWJEA819203 — 22,400 kg "Luxury Sateen Linens"',
-              market: "Mundra (IN) → Jebel Ali (AE)",
+              detail: `${BUYERS_DATA[5]?.shipments[0]?.bolNumber || "HLCUDE918230"} — 19,800 kg "Otto Group Luxury Terry Towels"`,
+              market: "Nhava Sheva (IN) → Hamburg (DE)",
               time: "1 hour ago",
             },
           ].map((item, i) => (

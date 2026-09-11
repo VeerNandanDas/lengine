@@ -53,7 +53,7 @@ export function AudienceSelector({
     const unlocked = getDemoUnlockedBuyers();
     // Default fallback: if empty, pre-populate 3 buyers for demo convenience
     if (unlocked.size === 0) {
-      const defaultUnlocked = new Set(["buyer-pac-tex", "buyer-meridian-nordic", "buyer-al-mansoor"]);
+      const defaultUnlocked = new Set(["buyer-target", "buyer-walmart", "buyer-otto-group"]);
       setUnlockedSet(defaultUnlocked);
       localStorage.setItem(DEMO_UNLOCKS_KEY, JSON.stringify([...defaultUnlocked]));
     } else {

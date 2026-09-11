@@ -31,7 +31,7 @@ export function WhatsAppPreview({
     "Hi {{decision_maker_name}}, following up on our email regarding {{buyer_company}}'s recent shipments arriving at {{recent_port}}.\n\nWe have specialized capacity for {{primary_commodity}} with volume pricing tailored to your derived MOQ.\n\nI've attached our certified export catalog and technical specs below for your team's review.";
 
   const resolvedText = substituteVariables(defaultText, buyer);
-  const contactName = buyer ? substituteVariables("{{decision_maker_name}}", buyer) : "James Whitfield";
+  const contactName = buyer ? substituteVariables("{{decision_maker_name}}", buyer) : "Gretchen McCarthy";
 
   return (
     <div className="w-full max-w-sm mx-auto rounded-[36px] border-[8px] border-slate-900 shadow-2xl bg-slate-900 overflow-hidden text-slate-800 select-none">
