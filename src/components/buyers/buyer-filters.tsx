@@ -28,6 +28,7 @@ const COUNTRIES = [
   { value: "United Kingdom", label: "🇬🇧 UK" },
   { value: "Japan", label: "🇯🇵 Japan" },
   { value: "Italy", label: "🇮🇹 Italy" },
+  { value: "Spain", label: "🇪🇸 Spain" },
 ];
 
 const MOQ_RANGES = [

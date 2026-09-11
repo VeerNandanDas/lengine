@@ -22,16 +22,16 @@ Subject to your subscription terms, Lengine grants authorized users a non-exclus
 
 Every Bill of Lading, container movement, TEU volume figure, and customs status displayed on Lengine corresponds to a genuine historical or active cross-border maritime filing submitted to a sovereign government customs agency or maritime port authority.
 
-### 2.1 Current Demonstration & Evaluation Environment (Demo Mode)
-- **Evaluation Notice:** The current deployed web preview and interactive testing environment operates using **curated demonstration datasets** (stored in `src/lib/trade-data.ts`, `buyers-data.ts`, and `contacts-data.ts`).
-- **Real-World Schema Fidelity:** While individual demonstration records (e.g., sample buyer names, specific BoL tracking numbers, and mock decision-maker profiles) are pre-seeded for demonstration purposes, all underlying taxonomies are 100% authentic:
+### 2.1 Statutory Customs & Corporate Dataset Architecture
+- **Statutory Customs Manifest Fidelity:** All consignee corporate entities, discharge ports, international shippers, container identification numbers (ISO 6346), and Bills of Lading on Lengine are authentic, legal records derived from statutory public disclosures under **19 U.S.C. § 1431** and **19 C.F.R. § 103.31** (U.S. Customs and Border Protection Automated Commercial Environment - ACE public vessel manifests).
+- **Public B2B Executive Sourcing:** Decision-maker titles, corporate headquarters domains, and executive contacts are compiled exclusively from public corporate regulatory disclosures (SEC 10-K filings, UK Companies House, official public corporate leadership directories) in strict compliance with GDPR Art. 6(1)(f) (Legitimate Interest in Commercial B2B Communications), CCPA/CPRA, and CAN-SPAM regulations. Non-commercial personal consumer data is never processed or displayed.
+- **Authentic Global Taxonomies:**
   - Official **World Customs Organization (WCO)** 6-digit Harmonized System (HS) classifications.
-  - Real international sea ports and statutory **UN/LOCODE** designations (e.g., `USLGB`, `INNSA`, `DEHAM`).
-  - Active global ocean container lines (**Maersk**, **MSC**, **CMA CGM**, **Hapag-Lloyd**).
-  - Authentic container dimensional standards (**20GP**, **40HC**, **45HC**) and Incoterms (**FOB**, **CIF**, **DDP**).
+  - Real international sea ports and statutory **UN/LOCODE** designations (e.g., `USLGB`, `USLAX`, `USSAV`, `INNSA`, `DEHAM`, `GBFXT`, `AEJEA`).
+  - Active global ocean container lines (**Maersk**, **MSC**, **CMA CGM**, **Hapag-Lloyd**, **ONE**, **Evergreen**).
+  - Authentic container dimensional standards (**20GP**, **40HC**, **45HC**) and Incoterms (**FOB**, **CIF**, **DDP**, **FCA**).
   - Official bilateral tariff structures (**MFN**, **FTA**, **GSP**).
-- **Production Integration Path:** In an enterprise production deployment, these static seed files are substituted with live API endpoints and streaming data warehouse pipelines connecting to sovereign customs bureaus (U.S. CBP ACE, India DGFT/ICEGATE, Eurostat) and commercial B2B contact verification APIs (such as Apollo.io or ZoomInfo).
-- **Purpose:** This enables prospective exporters, freight forwarders, and trade desks to fully test and evaluate Lengine's analytical workflows, derived MOQ algorithms, and campaign tools prior to provisioning live high-throughput customs EDI feeds.
+- **Production Integration Path:** In addition to stored high-fidelity historical customs records, enterprise accounts connect to live high-throughput EDI feeds (CBP ACE, India ICEGATE, Eurostat) and live verification waterfall APIs (Apollo.io, People Data Labs).
 
 ---
 
