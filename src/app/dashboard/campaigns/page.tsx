@@ -60,8 +60,8 @@ export default function CampaignsPage() {
 
   // Wizard State
   const [selectedBuyerIds, setSelectedBuyerIds] = useState<string[]>([
-    "buyer-pac-tex",
-    "buyer-meridian-nordic",
+    "buyer-target",
+    "buyer-walmart",
   ]);
   const [emailSubject, setEmailSubject] = useState(DEFAULT_SUBJECT);
   const [emailBody, setEmailBody] = useState(DEFAULT_BODY);

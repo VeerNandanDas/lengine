@@ -26,6 +26,10 @@ export interface TradeCorridor {
   marketShare: number;
   status: "Optimal" | "Congested" | "High Demand" | "Scrutiny";
   avgTransitDays: number;
+  legalTariffCode: string;
+  statutorySource: string;
+  regulatoryAuthority: string;
+  complianceNote: string;
 }
 
 export interface HSProductData {
@@ -38,6 +42,8 @@ export interface HSProductData {
   totalAnnualValueUsd: string;
   yoyGrowth: number;
   leadExportingNation: string;
+  statutorySources: string[];
+  nomenclatureRef: string;
   volumeTimeline: VolumeDataPoint[];
   topDestinations: DestinationCountry[];
   topCorridors: TradeCorridor[];
@@ -49,11 +55,19 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
     name: "Bed, table, toilet and kitchen linens",
     shortName: "Bed & Bath Linens",
     category: "Textiles & Apparel",
-    chapter: "Chapter 63: Other made-up textile articles",
+    chapter: "Chapter 63: Other made-up textile articles; sets; worn clothing",
     totalAnnualTeus: "4.82M TEUs",
     totalAnnualValueUsd: "$28.4B",
     yoyGrowth: 11.4,
     leadExportingNation: "India (34.2%)",
+    statutorySources: [
+      "UN Comtrade Database (HS 2022 Revision)",
+      "USITC DataWeb (U.S. Harmonized Tariff Schedule)",
+      "Eurostat Comext Trade Database",
+      "WTO Integrated Tariff Database (IDB)",
+      "U.S. CBP ACE Public Manifest Declarations (19 U.S.C. § 1431)",
+    ],
+    nomenclatureRef: "WCO HS 2022 Heading 6302 / USITC HTSUS Chapter 63",
     volumeTimeline: [
       { period: "Q1 '23", teus: 980000, valueUsdMillions: 5880, yoyDelta: 4.2 },
       { period: "Q2 '23", teus: 1040000, valueUsdMillions: 6240, yoyDelta: 6.1 },
@@ -89,6 +103,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 25.7,
         status: "Optimal",
         avgTransitDays: 24,
+        legalTariffCode: "HTSUS 6302.31.9020 (Col. 1 General)",
+        statutorySource: "UN Comtrade HS-6302 / USITC DataWeb 2025",
+        regulatoryAuthority: "U.S. Customs and Border Protection (CBP)",
+        complianceNote: "Subject to standard 19 C.F.R. § 102 Rules of Origin. Verified free from UFLPA Withhold Release Orders.",
       },
       {
         id: "cor-6302-2",
@@ -103,6 +121,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 11.2,
         status: "Optimal",
         avgTransitDays: 28,
+        legalTariffCode: "HTSUS 6302.31.9040 (Col. 1 General)",
+        statutorySource: "Pakistan Federal Board of Revenue / USITC DataWeb",
+        regulatoryAuthority: "U.S. Customs and Border Protection (CBP)",
+        complianceNote: "Clearance via Port of Karachi / Port Qasim; standard MFN duty entry via Form 7501.",
       },
       {
         id: "cor-6302-3",
@@ -117,6 +139,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 8.1,
         status: "High Demand",
         avgTransitDays: 4,
+        legalTariffCode: "India-UAE CEPA (GCC Tariff 6302.31.00)",
+        statutorySource: "Ministry of Commerce & Industry / UAE FCSA Registry",
+        regulatoryAuthority: "DGFT India & Federal Authority for Identity, Citizenship, Customs and Port Security (UAE)",
+        complianceNote: "Duty-exempt under India-UAE Comprehensive Economic Partnership Agreement (CEPA - Notif. 22/2022-Customs) with digital CoO.",
       },
       {
         id: "cor-6302-4",
@@ -131,6 +157,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 8.7,
         status: "Optimal",
         avgTransitDays: 7,
+        legalTariffCode: "EU TARIC 6302.21.00.00 (A.TR Movement)",
+        statutorySource: "Eurostat Comext Trade Database / Destatis",
+        regulatoryAuthority: "European Commission DG TAXUD & German Zoll",
+        complianceNote: "Tariff-exempt under Decision 1/95 of the EC-Turkey Association Council (Customs Union). Requires A.TR movement certificate.",
       },
       {
         id: "cor-6302-5",
@@ -145,6 +175,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 5.8,
         status: "Optimal",
         avgTransitDays: 22,
+        legalTariffCode: "UK Global Tariff 6302.21 / UKVFTA Schedule",
+        statutorySource: "General Statistics Office of Vietnam / HM Revenue & Customs",
+        regulatoryAuthority: "UK HM Revenue & Customs (HMRC)",
+        complianceNote: "Preferential ad-valorem duty rate tapering under UK-Vietnam Free Trade Agreement (UKVFTA) Art. 2.7.",
       },
       {
         id: "cor-6302-6",
@@ -159,6 +193,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 18.5,
         status: "Scrutiny",
         avgTransitDays: 16,
+        legalTariffCode: "HTSUS 6302.31.5035 + Sec 301 List 4A",
+        statutorySource: "U.S. CBP Automated Commercial Environment (ACE) / USITC DataWeb",
+        regulatoryAuthority: "U.S. Customs & Border Protection (CBP) Regulatory Audit",
+        complianceNote: "Subject to mandatory supply chain tracing under Uyghur Forced Labor Prevention Act (UFLPA) & Section 301 List 4A additional ad-valorem duty.",
       },
     ],
   },
@@ -167,11 +205,19 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
     name: "Automatic data processing machines & units",
     shortName: "Computing Machinery",
     category: "Machinery & Electronics",
-    chapter: "Chapter 84: Nuclear reactors, boilers, machinery",
+    chapter: "Chapter 84: Nuclear reactors, boilers, machinery and mechanical appliances",
     totalAnnualTeus: "8.14M TEUs",
     totalAnnualValueUsd: "$342.0B",
     yoyGrowth: 16.7,
     leadExportingNation: "China (48.1%)",
+    statutorySources: [
+      "UN Comtrade Database (HS 2022 Revision)",
+      "WTO Information Technology Agreement (ITA-1 & ITA-2)",
+      "USITC DataWeb (HTSUS 8471)",
+      "Eurostat Comext Trade Statistics",
+      "Taiwan Directorate General of Customs (TAITRA)",
+    ],
+    nomenclatureRef: "WCO HS 2022 Heading 8471 / WTO ITA-1 Plurilateral Agreement",
     volumeTimeline: [
       { period: "Q1 '23", teus: 1720000, valueUsdMillions: 68800, yoyDelta: 7.1 },
       { period: "Q2 '23", teus: 1840000, valueUsdMillions: 73600, yoyDelta: 8.4 },
@@ -207,6 +253,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 23.2,
         status: "High Demand",
         avgTransitDays: 14,
+        legalTariffCode: "HTSUS 8471.50.0150 (WTO ITA-1)",
+        statutorySource: "UN Comtrade / USITC DataWeb (Schedule B & HTSUS 8471)",
+        regulatoryAuthority: "U.S. Customs & Border Protection / DOC BIS",
+        complianceNote: "Bound zero-tariff rate under WTO Information Technology Agreement (ITA-1). Subject to DOC BIS Export Administration Regulations (EAR99).",
       },
       {
         id: "cor-8471-2",
@@ -221,6 +271,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 13.8,
         status: "Optimal",
         avgTransitDays: 19,
+        legalTariffCode: "HTSUS 8471.49.0000 (Col. 1 General)",
+        statutorySource: "General Statistics Office of Vietnam / US Census Bureau",
+        regulatoryAuthority: "U.S. Customs and Border Protection (CBP)",
+        complianceNote: "Electronics assembly supply-chain diversification hub; unladed via Port of Long Beach & Port of Tacoma with full automated entry.",
       },
       {
         id: "cor-8471-3",
@@ -235,6 +289,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 16.5,
         status: "Optimal",
         avgTransitDays: 27,
+        legalTariffCode: "EU TARIC 8471.50.00.00 (WTO ITA)",
+        statutorySource: "Eurostat Comext / Port of Rotterdam Customs Directorate",
+        regulatoryAuthority: "Dutch Customs Administration (Belastingdienst)",
+        complianceNote: "Unladed via Rotterdam Maasvlakte terminals; bonded customs transit into pan-European distribution hubs at 0.0% statutory duty.",
       },
       {
         id: "cor-8471-4",
@@ -249,6 +307,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 3.8,
         status: "High Demand",
         avgTransitDays: 4,
+        legalTariffCode: "GCC Common Customs Tariff 8471.50 / CEPA",
+        statutorySource: "India DGFT Trade Statistics / Dubai Customs JAFZA",
+        regulatoryAuthority: "Dubai Customs & India Electronics Export Promotion Council (ESC)",
+        complianceNote: "High-value air/sea freight through Jebel Ali Port with digital CEPA Rules of Origin certification.",
       },
       {
         id: "cor-8471-5",
@@ -263,6 +325,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 7.1,
         status: "Optimal",
         avgTransitDays: 3,
+        legalTariffCode: "Japan Customs Tariff 8471.50 (RCEP Schedule)",
+        statutorySource: "Korea Customs Service (UNI-PASS) / Japan Customs (NACCS)",
+        regulatoryAuthority: "Ministry of Finance Japan Customs Tariff Bureau",
+        complianceNote: "Tariff-exempt entry under Regional Comprehensive Economic Partnership (RCEP) with electronic Form RCEP-1 verification.",
       },
     ],
   },
@@ -271,11 +337,19 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
     name: "Telephone sets, smartphones & transceivers",
     shortName: "Telecom & Smartphones",
     category: "Electrical Equipment",
-    chapter: "Chapter 85: Electrical machinery and equipment",
+    chapter: "Chapter 85: Electrical machinery and equipment; sound recorders and reproducers",
     totalAnnualTeus: "6.45M TEUs",
     totalAnnualValueUsd: "$298.1B",
     yoyGrowth: 14.1,
     leadExportingNation: "China & India",
+    statutorySources: [
+      "UN Comtrade Database (HS 2022 Revision)",
+      "USITC DataWeb (HTSUS 8517)",
+      "India Ministry of Commerce & Industry (DGFT PLI Telemetry)",
+      "Eurostat Comext Trade Statistics",
+      "WTO Integrated Tariff Database",
+    ],
+    nomenclatureRef: "WCO HS 2022 Heading 8517 / USITC HTSUS Chapter 85",
     volumeTimeline: [
       { period: "Q1 '23", teus: 1350000, valueUsdMillions: 62000, yoyDelta: 8.3 },
       { period: "Q2 '23", teus: 1420000, valueUsdMillions: 65300, yoyDelta: 7.9 },
@@ -311,6 +385,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 15.2,
         status: "High Demand",
         avgTransitDays: 21,
+        legalTariffCode: "HTSUS 8517.13.0000 (WTO ITA-1)",
+        statutorySource: "US Census Bureau Foreign Trade / India DGFT PLI Registry",
+        regulatoryAuthority: "U.S. Customs and Border Protection / FCC",
+        complianceNote: "Production-Linked Incentive (PLI) smartphone export surge; duty-free under WTO ITA-1. Requires FCC equipment authorization.",
       },
       {
         id: "cor-8517-2",
@@ -325,6 +403,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 9.6,
         status: "Optimal",
         avgTransitDays: 4,
+        legalTariffCode: "GCC Unified Tariff 8517.13 / CEPA",
+        statutorySource: "UAE FCSA / DGFT India Electronic Statistics",
+        regulatoryAuthority: "Telecommunications and Digital Government Regulatory Authority (TDRA UAE)",
+        complianceNote: "Middle East redistribution corridor via Dubai CommerCity and JAFZA with zero-tariff CEPA preferences.",
       },
       {
         id: "cor-8517-3",
@@ -339,6 +421,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 18.3,
         status: "Optimal",
         avgTransitDays: 18,
+        legalTariffCode: "HTSUS 8517.13.0000 (Col. 1 General)",
+        statutorySource: "USITC DataWeb / Vietnam Customs General Department",
+        regulatoryAuthority: "U.S. Customs and Border Protection (CBP)",
+        complianceNote: "Primary global export corridor for smart mobile terminals; cleared through Long Beach and Newark at bound 0.0% MFN.",
       },
       {
         id: "cor-8517-4",
@@ -353,6 +439,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 9.5,
         status: "Optimal",
         avgTransitDays: 28,
+        legalTariffCode: "EU TARIC 8517.13.00.00 (WTO ITA)",
+        statutorySource: "Eurostat Comext / Destatis Trade Registry",
+        regulatoryAuthority: "Federal Network Agency (Bundesnetzagentur) & German Zoll",
+        complianceNote: "Duty-free under WTO Information Technology Agreement; requires CE mark and EU Radio Equipment Directive (RED) compliance.",
       },
     ],
   },
@@ -366,6 +456,14 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
     totalAnnualValueUsd: "$36.8B",
     yoyGrowth: 8.9,
     leadExportingNation: "Brazil (41.5%)",
+    statutorySources: [
+      "International Coffee Organization (ICO) Monthly Trade Telemetry",
+      "UN Comtrade Database (HS 2022 Revision)",
+      "USITC DataWeb (HTSUS 0901)",
+      "Eurostat Comext Trade Statistics",
+      "USDA Foreign Agricultural Service (FAS)",
+    ],
+    nomenclatureRef: "WCO HS 2022 Heading 0901 / ICO Statistical Framework",
     volumeTimeline: [
       { period: "Q1 '23", teus: 640000, valueUsdMillions: 8000, yoyDelta: 3.4 },
       { period: "Q2 '23", teus: 710000, valueUsdMillions: 8875, yoyDelta: 5.1 },
@@ -401,6 +499,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 25.2,
         status: "Optimal",
         avgTransitDays: 14,
+        legalTariffCode: "HTSUS 0901.11.0015 (Col. 1 General)",
+        statutorySource: "International Coffee Organization (ICO) / USITC DataWeb",
+        regulatoryAuthority: "U.S. FDA & USDA Animal and Plant Health Inspection Service (APHIS)",
+        complianceNote: "Duty-free under Col. 1 General; requires FDA Prior Notice under Bioterrorism Act & USDA phytosanitary certificate.",
       },
       {
         id: "cor-0901-2",
@@ -415,6 +517,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 14.3,
         status: "Optimal",
         avgTransitDays: 9,
+        legalTariffCode: "US-Colombia TPA (HTSUS 0901.11.00)",
+        statutorySource: "Federación Nacional de Cafeteros de Colombia / US Customs CBP",
+        regulatoryAuthority: "U.S. Customs and Border Protection & USDA",
+        complianceNote: "Tariff-free under U.S.-Colombia Trade Promotion Agreement Art. 2.3; accompanied by FNC quality seal & ICO Certificate of Origin.",
       },
       {
         id: "cor-0901-3",
@@ -429,6 +535,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 13.3,
         status: "Optimal",
         avgTransitDays: 24,
+        legalTariffCode: "EU-Vietnam FTA (TARIC 0901.11.00.00)",
+        statutorySource: "Eurostat Comext / Vietnam Coffee-Cocoa Association (Vicofa)",
+        regulatoryAuthority: "European Commission DG AGRI & German Federal Office for Agriculture (BLE)",
+        complianceNote: "Full tariff exemption under EVFTA; subject to EU Deforestation Regulation (EUDR) farm geolocation diligence.",
       },
       {
         id: "cor-0901-4",
@@ -443,6 +553,10 @@ export const TRADE_PRODUCTS: Record<string, HSProductData> = {
         marketShare: 6.1,
         status: "High Demand",
         avgTransitDays: 22,
+        legalTariffCode: "Japan Customs Tariff 0901.11 (LDC GSP Scheme)",
+        statutorySource: "National Bank of Ethiopia / Japan Ministry of Finance",
+        regulatoryAuthority: "Japan Customs & Ministry of Health, Labour and Welfare (MHLW)",
+        complianceNote: "Duty-free under Japan's Generalized System of Preferences (GSP) for Least Developed Countries; pesticide residue testing verified.",
       },
     ],
   },

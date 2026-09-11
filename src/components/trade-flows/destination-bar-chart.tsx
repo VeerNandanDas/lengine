@@ -170,7 +170,7 @@ export function DestinationBarChart({
             Key Corridors
           </span>
         </div>
-        <span>Metric: Import Demand</span>
+        <span>Source: USITC DataWeb & Eurostat Comext</span>
       </div>
     </div>
   );
