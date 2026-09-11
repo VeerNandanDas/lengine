@@ -76,13 +76,12 @@ export function TradeCorridorsTable({
       </div>
 
       {/* Table Container */}
-      <div className="overflow-x-auto">
-        <Table className="w-full">
-          <TableHeader className="bg-[#fafafa] dark:bg-[#18181b]">
-            <TableRow className="hover:bg-[#fafafa] dark:hover:bg-[#18181b] border-b border-[#eaeaea] dark:border-[#27272a]">
-              <TableHead className="text-slate-500 dark:text-slate-400 font-medium text-xs uppercase tracking-wider py-3.5 pl-5 w-[28%] min-w-[210px]">
-                Trade Corridor
-              </TableHead>
+      <Table className="w-full">
+        <TableHeader className="bg-[#fafafa] dark:bg-[#18181b]">
+          <TableRow className="hover:bg-[#fafafa] dark:hover:bg-[#18181b] border-b border-[#eaeaea] dark:border-[#27272a]">
+            <TableHead className="text-slate-500 dark:text-slate-400 font-medium text-xs uppercase tracking-wider py-3.5 pl-5 w-[30%] min-w-[210px]">
+              Trade Corridor
+            </TableHead>
               <TableHead className="text-slate-500 dark:text-slate-400 font-medium text-xs uppercase tracking-wider py-3.5 w-[18%] min-w-[130px]">
                 Annual Volume
               </TableHead>
@@ -283,7 +282,6 @@ export function TradeCorridorsTable({
             })}
           </TableBody>
         </Table>
-      </div>
 
       {/* Table Footer Summary */}
       <div className="p-4 bg-[#fafafa] dark:bg-[#18181b] border-t border-[#eaeaea] dark:border-[#27272a] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
