@@ -524,7 +524,7 @@ export function DecisionMakersModal({
 
           {/* Decision Makers Cards Grid - High Spacing & Clean Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
               {isUnlocked
                 ? unlockedContacts.map((contact, index) => (
                     <motion.div
